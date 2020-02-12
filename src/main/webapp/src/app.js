@@ -21,8 +21,9 @@ angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies',
     
     $rootScope.$on('$locationChangeStart', function () {
 
-        if($rootScope.authDetails.authenticated == false){
-            $location.path('/login');
+    	var url = $location.url();
+        if($rootScope.authDetails.authenticated == false && url != '/signup'){
+            $location.path('/signin');
         }
     });    
   }).run(function($rootScope) {

@@ -7,11 +7,16 @@ angular.module('homeon')
 	        templateUrl: 'src/home/home.html',
 	        controller: 'homeCtrl'
 	       })
-	    .when('/login', {
-	            templateUrl: 'src/login/login.html',
-	            controller: 'loginCtrl'          
+	    .when('/signin', {
+            templateUrl: 'src/signin/signin.html',
+            controller: 'signinCtrl'          
+	       })
+	    .when('/signup', {
+	        templateUrl: 'src/signup/signup.html',
+	        controller: 'signupCtrl'          
 	       })
 	    .otherwise({
 	      redirectTo: '/'
 	    }); 
 });
+

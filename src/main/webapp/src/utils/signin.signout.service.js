@@ -3,8 +3,8 @@
 angular.module('homeon')
   .service('LoginLogoutSrv', function($http, $cookies, $rootScope, $location, $localStorage, ngNotify, SERVICE_PATH) {
     var serviceFactory = {};
-    var urlLogin  = SERVICE_PATH.PUBLIC_PATH + '/login';
-    var urlLogout = SERVICE_PATH.PUBLIC_PATH + '/logout';
+    var urlLogin  = SERVICE_PATH.PUBLIC_PATH + '/signin';
+    var urlLogout = SERVICE_PATH.PUBLIC_PATH + '/signout';
 
     serviceFactory.login = function(email, password) {
       var requestParams = {

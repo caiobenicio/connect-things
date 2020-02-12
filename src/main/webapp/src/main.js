@@ -26,4 +26,5 @@ angular.module('homeon')
             return hasPermission;
         };
 
+
     });

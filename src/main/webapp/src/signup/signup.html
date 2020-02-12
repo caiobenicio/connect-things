@@ -1,0 +1,108 @@
+<div class="container">
+	<div class="wrapper wrapper-login">
+		<div class="container container-signup animated fadeIn">
+			<h3 class="text-center">Sign Up</h3>
+			<div class="login-form">
+				<div class="form-group form-floating-label">
+					<input  id="fullname" name="fullname" type="text" class="form-control input-border-bottom" required>
+					<label for="fullname" class="placeholder">Fullname</label>
+				</div>
+				<div class="form-group form-floating-label">
+					<input  id="email" name="email" type="email" class="form-control input-border-bottom" required>
+					<label for="email" class="placeholder">Email</label>
+				</div>
+				<div class="form-group form-floating-label">
+					<input type="password" class="form-control input-border-bottom" required>
+					<label for="password" class="placeholder">Password</label>
+					<div class="show-password">
+						<i class="flaticon-interface"></i>
+					</div>
+				</div>
+				<div class="form-group form-floating-label">
+					<input type="password" class="form-control input-border-bottom" required>
+					<label for="password" class="placeholder">Confirm Password</label>
+					<div class="show-password">
+						<i class="flaticon-interface"></i>
+					</div>
+				</div>
+				<div class="row form-sub m-0">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" name="agree" id="agree">
+						<label class="custom-control-label" for="agree">I Agree the terms and conditions.</label>
+					</div>
+				</div>
+				<div class="form-action">
+					<a href="#/signin" id="show-signin" class="btn btn-danger btn-rounded btn-login mr-3">Cancel</a>
+					<a href="#" class="btn btn-primary btn-rounded btn-login">Sign Up</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+	html, body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  font: 15px arial;
+  color: rgba(0, 0, 0, .7);
+}
+
+.wrapper {
+  height: 100%;
+  min-height: 100%;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-align-items: center;
+  align-items: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+}
+
+.container-signup, .wrapper.wrapper-login .container-signup {
+width: 400px;
+background: #fff;
+padding: 60px 25px;
+border-radius: 5px;
+-webkit-box-shadow: 0 .75rem 1.5rem rgba(18,38,63,.03);
+-moz-box-shadow: 0 .75rem 1.5rem rgba(18,38,63,.03);
+box-shadow: 0 .75rem 1.5rem
+rgba(18,38,63,.03);
+border: 1px solid #ebecec;
+}
+
+.container-login .btn-login, .btn-login {
+    padding: 15px 0;
+    width: 135px;
+}
+
+.form-action {
+    text-align: center;
+    padding: 25px 10px 0;
+}
+
+.my-3 {
+    margin-bottom: 1rem !important;
+}
+
+.form-floating-label .form-control.filled + .placeholder {
+    color: 
+    #177dff !important;
+}
+.form-control:focus {
+    border-color: 
+    #3e93ff;
+}
+
+.show-password {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 22px;
+    cursor: pointer;
+}
+</style>
