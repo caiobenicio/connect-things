@@ -1,0 +1,21 @@
+# APPLICATION
+spring:
+  application:
+    name: Connect Things
+    description: Projeto desenvolvido pelo aluno Caio Benicio da Faculdade UNA de Uberlândia.
+    version: project.version
+  profiles:
+    active: dev
+  jackson:
+    date-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
+
+# SERVER WEB
+server:  
+   contextPath: /  
+   port: 8081
+
+# SERVER MQTT   
+broker:
+   mqtt: tcp://192.168.198.161:1883
+   user: caiosilva
+   password: 506070
