@@ -56,6 +56,11 @@ angular.module('homeon')
         $rootScope.authDetails = $localStorage.authDetails;
       }
     };
+    
+    serviceFactory.clearStorage = function() {
+        delete $localStorage.authDetails;
+        delete $rootScope.authDetails; 
+    };
 
     return serviceFactory;
   });

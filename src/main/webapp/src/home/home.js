@@ -1,7 +1,9 @@
 'use strict'
 
 angular.module('homeon')
-  .controller('homeCtrl', function($scope){
+  .controller('homeCtrl', function($scope, $rootScope){
+	  
+	  $rootScope.statusMenu = true;
 
       $scope.hasAnyPermission = function(authorities) {
           var hasPermission = false;

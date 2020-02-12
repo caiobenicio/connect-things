@@ -15,7 +15,8 @@ angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies',
     $httpProvider.interceptors.push('httpRequestInterceptor');
   })
   .run(function($rootScope, ngNotify, LoginLogoutSrv, $location) {
-    $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
+    	
+	$rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
     LoginLogoutSrv.verifyAuth();
     
     $rootScope.$on('$locationChangeStart', function () {
@@ -24,6 +25,8 @@ angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies',
             $location.path('/login');
         }
     });    
+  }).run(function($rootScope) {
+	    $rootScope.statusMenu = false;
   });
 
   
