@@ -2,25 +2,25 @@
 	<div class="wrapper wrapper-login">
 		<div class="container container-signup animated fadeIn">
 			<h3 class="text-center">Sign Up</h3>
-			<div class="login-form">
+			<form class="login-form" ng-submit="signup(username, email, password, confirmPassword)">
 				<div class="form-group form-floating-label">
-					<input  id="fullname" name="fullname" type="text" class="form-control input-border-bottom" required>
-					<label for="fullname" class="placeholder">Fullname</label>
+					<input ng-model="username" id="fullname" name="fullname" type="text" class="form-control input-border-bottom" required>
+					<label for="fullname" class="placeholder">Nome</label>
 				</div>
 				<div class="form-group form-floating-label">
-					<input  id="email" name="email" type="email" class="form-control input-border-bottom" required>
-					<label for="email" class="placeholder">Email</label>
+					<input ng-model="email" id="email" name="email" type="email" class="form-control input-border-bottom" required>
+					<label for="email" class="placeholder">E-mail</label>
 				</div>
 				<div class="form-group form-floating-label">
-					<input type="password" class="form-control input-border-bottom" required>
-					<label for="password" class="placeholder">Password</label>
+					<input ng-model="password" type="password" class="form-control input-border-bottom" required>
+					<label for="password" class="placeholder">Senha</label>
 					<div class="show-password">
 						<i class="flaticon-interface"></i>
 					</div>
 				</div>
 				<div class="form-group form-floating-label">
-					<input type="password" class="form-control input-border-bottom" required>
-					<label for="password" class="placeholder">Confirm Password</label>
+					<input ng-model="confirmPassword" type="password" class="form-control input-border-bottom" required>
+					<label for="password" class="placeholder">Confirmar Senha</label>
 					<div class="show-password">
 						<i class="flaticon-interface"></i>
 					</div>
@@ -32,10 +32,10 @@
 					</div>
 				</div>
 				<div class="form-action">
-					<a href="#/signin" id="show-signin" class="btn btn-danger btn-rounded btn-login mr-3">Cancel</a>
-					<a href="#" class="btn btn-primary btn-rounded btn-login">Sign Up</a>
+					<a href="#/signin" id="show-signin" class="btn btn-danger btn-rounded btn-login mr-3">Cancelar</a>
+					<button type="submit" href="#" class="btn btn-primary btn-rounded btn-login">Cadastrar</button>
 				</div>
-			</div>
+			</form>
 		</div>
 	</div>
 </div>

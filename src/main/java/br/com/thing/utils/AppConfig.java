@@ -49,7 +49,7 @@ public class AppConfig {
     @PostConstruct
     public void onStartup() throws Exception {
     	
-    	InitMqtt.getinstance().connect(brokerMqtt);
+    	//InitMqtt.getinstance().connect(brokerMqtt);
     	
     	scheduleRepository.buscarAgendasAbertas().stream().
     		forEach(a -> { 
