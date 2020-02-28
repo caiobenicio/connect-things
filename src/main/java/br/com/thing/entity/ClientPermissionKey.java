@@ -1,53 +1,55 @@
-package br.com.thing.security;
+package br.com.thing.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 import br.com.thing.utils.BaseKey;
 
 @Embeddable
-public class UserPermissionKey extends BaseKey {
+public class ClientPermissionKey extends BaseKey {
 
     private static final long serialVersionUID = 201602010536L;
 
     @Column(name = "permission_id", length = 11, nullable = false)
     private Long permissionId;
+    
+    @Column(name = "client_id", length = 11, nullable = false)
+    private Long clientId;
 
-    @Column(name = "user_id", length = 11, nullable = false)
-    private Long userId;
-
-    public UserPermissionKey() {
+    
+    public ClientPermissionKey() {
     }
 
-    public UserPermissionKey(Long permissionId, Long userId) {
-        super();
-        this.permissionId = permissionId;
-        this.userId = userId;
-    }
+    public ClientPermissionKey(Long permissionId, Long clientId) {
+		super();
+		this.permissionId = permissionId;
+		this.clientId = clientId;
+	}
 
-    public Long getPermissionId() {
-        return this.permissionId;
-    }
+    
+	public Long getPermissionId() {
+		return permissionId;
+	}
 
-    public void setPermissionId(Long permissionId) {
-        this.permissionId = permissionId;
-    }
+	public void setPermissionId(Long permissionId) {
+		this.permissionId = permissionId;
+	}
 
-    public Long getUserId() {
-        return this.userId;
-    }
+	public Long getClientId() {
+		return clientId;
+	}
 
-    public void setUserId(Long userId) {
-        this.userId = userId;
-    }
+	public void setClientId(Long clientId) {
+		this.clientId = clientId;
+	}
 
-
-    @Override
+	
+	@Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
 
         result = prime * result + ((this.permissionId == null) ? 0 : this.permissionId.hashCode());
-        result = prime * result + ((this.userId == null) ? 0 : this.userId.hashCode());
+        result = prime * result + ((this.clientId == null) ? 0 : this.clientId.hashCode());
 
         return result;
     }
@@ -66,7 +68,7 @@ public class UserPermissionKey extends BaseKey {
             return false;
         }
 
-        UserPermissionKey other = (UserPermissionKey) obj;
+        ClientPermissionKey other = (ClientPermissionKey) obj;
 
         if (this.permissionId == null) {
             if (other.permissionId != null) {
@@ -76,11 +78,11 @@ public class UserPermissionKey extends BaseKey {
             return false;
         }
 
-        if (this.userId == null) {
-            if (other.userId != null) {
+        if (this.clientId == null) {
+            if (other.clientId != null) {
                 return false;
             }
-        } else if (!this.userId.equals(other.userId)) {
+        } else if (!this.clientId.equals(other.clientId)) {
             return false;
         }
 

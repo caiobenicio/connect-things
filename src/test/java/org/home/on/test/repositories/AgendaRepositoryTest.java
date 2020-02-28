@@ -7,7 +7,7 @@ import org.home.on.test.utils.AbstractTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.thing.entity.ScheduleEntity;
+import br.com.thing.entity.Schedule;
 import br.com.thing.repository.ScheduleRepository;
 
 public class AgendaRepositoryTest extends AbstractTest {
@@ -19,7 +19,7 @@ public class AgendaRepositoryTest extends AbstractTest {
 
     @Test
     public void findAllTest() {
-        List<ScheduleEntity> agenda = this.agendaRepository.findAll();
+        List<Schedule> agenda = this.agendaRepository.findAll();
 
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Test FindAll(): " + agenda);

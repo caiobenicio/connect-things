@@ -7,8 +7,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
-import br.com.thing.entity.PermissionEntity;
-import br.com.thing.entity.UserEntity;
+import br.com.thing.entity.Permission;
+import br.com.thing.entity.Client;
 import br.com.thing.repository.UserRepository;
 
 @Component
@@ -19,7 +19,7 @@ public class UserDetail implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        UserEntity user = this.userRepository.findByEmail(email);
+        Client user = this.userRepository.findByEmail(email);
 
         if (user == null) {
             throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
@@ -27,7 +27,7 @@ public class UserDetail implements UserDetailsService {
 
         LoginDetailBean login = new LoginDetailBean(user.getName(), user.getEmail(), user.getPassword());
 
-        for (PermissionEntity permission : user.getPermissions()) {
+        for (Permission permission : user.getPermissions()) {
             login.addRole(permission.getRole());
         }
 

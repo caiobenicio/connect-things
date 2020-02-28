@@ -5,6 +5,7 @@ logging:
     org.home.on: DEBUG
     org.springframework: INFO
     org.hibernate: INFO
+  liquibase: INFO
 
 # DATABASE
 spring:
@@ -16,17 +17,22 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
+    properties: 
+      hibernate:
+        format_sql: true
+        temp: 
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect               
+  liquibase:
+    enabled: false
+    change-log: classpath:/db/changelog/changelog-master.xml
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: postgres
+    password: 9090
 
 # SECURITY
 security:
   password:
     secret: secret
 
-# LIQUIBASE
-liquibase:
-  enabled: true
-  change-log: classpath:liquibase/config/master.xml
-  url: jdbc:postgresql://localhost:5432/postgres
-  user: postgres
-  password: 9090

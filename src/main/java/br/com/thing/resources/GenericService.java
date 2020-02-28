@@ -1,4 +1,4 @@
-package br.com.thing.service;
+package br.com.thing.resources;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
