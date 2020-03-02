@@ -8,13 +8,13 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import br.com.thing.entity.Home;
-import br.com.thing.repository.ResidenciaRepository;
+import br.com.thing.repository.HomeRepository;
 
 public class ResidenciaRepositoryTest extends AbstractTest {
     private static final Logger LOGGER = Logger.getLogger(ResidenciaRepositoryTest.class);
 
     @Autowired
-    public ResidenciaRepository residenciaRepository;
+    public HomeRepository residenciaRepository;
 
     @Test
     public void findAllTest() {

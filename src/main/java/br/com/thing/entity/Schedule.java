@@ -4,47 +4,64 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-public class Schedule extends BaseEntity<Long>{
-	 private static final long serialVersionUID = 1L;
+public class Schedule extends BaseEntity<Long> {
+	private static final long serialVersionUID = 1L;
 
-    private String topic;
-    private String command;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+	private String topic;
+	private String command;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy", timezone = "GMT-3")
-    @Temporal(TemporalType.DATE)
-    @Column(name = "date_schedule", nullable = false)
-    private Date dateSchedule;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT-3")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "date_schedule", nullable = false)
+	private Date dateSchedule;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "start_schedule", nullable = false)
-    private Date startSchedule;
-    
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "end_schedule", nullable = true)
-    private Date endSchedule;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "start_schedule", nullable = false)
+	private Date startSchedule;
 
-    private boolean repeat;
-    
-    @Column(name = "interval", nullable = true)
-    private Integer interval;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "end_schedule", nullable = true)
+	private Date endSchedule;
 
-    public Schedule() {
-    }
+	private boolean repeat;
 
-	public Schedule(String thingPath, String command, Date startSchedule, Date endSchedule, boolean repeat) {
+	@Column(name = "interval", nullable = true)
+	private Integer interval;
+
+	public Schedule() {
+	}
+
+	public Schedule(Long id, String thingPath, String command, Date startSchedule, Date endSchedule, boolean repeat) {
+		super();
+		this.id = id;
 		this.topic = thingPath;
 		this.command = command;
 		this.startSchedule = startSchedule;
 		this.endSchedule = endSchedule;
 		this.repeat = repeat;
+	}
+	
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getTopic() {

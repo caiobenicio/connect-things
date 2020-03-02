@@ -1,14 +1,29 @@
 'use strict';
 
 angular.module('homeon')
-  .controller('signupCtrl', function($scope, $rootScope, LoginLogoutSrv) {
-	  $rootScope.statusMenu = false;
+  .controller('signupCtrl', function($scope, RestSrv, SERVICE_PATH, LoginLogoutSrv, $location, $timeout) {    
+    var userUrl = SERVICE_PATH.PUBLIC_PATH + '/signup';
 
-    $scope.signup = function(username, email, password, confirmPassword) {
-    	
-    	if(password != confirmPassword) {
-    		console.log("senhas nao conferem");
-    	}
+    $scope.disable = 'false';
+    $scope.user = {}; 
+    
+    $scope.signup = function(user) {
+      
+      if(user.password != user.confirmPassword) {
+        $scope.disable = 'true'        
+        return;
+      }
+      delete user.confirmPassword;
+      RestSrv.add(userUrl, user, function() {
+        $location.path('/confirmCreatedUser');
+        document.getElementById("modal").onclick();
+       // document.querySelector('#modal').click();        
+      });
     };
 
+    $scope.signin = function() {
+      $location.path('/signin');
+    }
+    
   });
+

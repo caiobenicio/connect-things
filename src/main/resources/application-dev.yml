@@ -11,8 +11,8 @@ logging:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: 9090
+    username: openerp
+    password: postgres
     driverClassName: org.postgresql.Driver
   jpa:
     show-sql: true
@@ -28,8 +28,8 @@ spring:
     enabled: false
     change-log: classpath:/db/changelog/changelog-master.xml
     url: jdbc:postgresql://localhost:5432/postgres
-    user: postgres
-    password: 9090
+    user: openerp
+    password: postgres
 
 # SECURITY
 security:

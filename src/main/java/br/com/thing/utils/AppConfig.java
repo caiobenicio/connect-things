@@ -11,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import br.com.thing.AppMain;
+import br.com.thing.entity.Permission;
+import br.com.thing.repository.PermissionRepository;
 import br.com.thing.repository.ScheduleRepository;
 import br.com.thing.schedule.ScheduleTask;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -41,14 +43,26 @@ public class AppConfig {
 
     @Autowired
     private ScheduleRepository scheduleRepository;
+    
+    @Autowired
+    private PermissionRepository permissionRepository;
 
     @Autowired
     private ScheduleTask agendador;
     
     @PostConstruct
     public void onStartup() throws Exception {
+
+    	Permission p1 = new Permission();
+    	Permission p2 = new Permission();
+    	p1.setId(1L);
+    	p1.setRole("ROLE_ADMIN");
+    	p2.setId(2L);
+    	p2.setRole("ROLE_USER");
+
     	
     	//InitMqtt.getinstance().connect(brokerMqtt);
+
     	
     	scheduleRepository.buscarAgendasAbertas().stream().
     		forEach(a -> { 
