@@ -7,9 +7,9 @@ import javax.validation.constraints.NotNull;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "tb_schedule")
-@AttributeOverride(name = "id", column = @Column(name = "id_schedule"))
-public class ScheduleEntity extends BaseEntity<Long>{
+@Table(name = "schedule")
+@AttributeOverride(name = "id", column = @Column(name = "id"))
+public class Schedule extends BaseEntity<Long>{
 
 	 private static final long serialVersionUID = 201602010251L;
 
@@ -45,10 +45,10 @@ public class ScheduleEntity extends BaseEntity<Long>{
     @Column(name = "interval", nullable = true)
     private Integer interval;
 
-    public ScheduleEntity() {
+    public Schedule() {
     }
 
-	public ScheduleEntity(String thingPath, String command, Date startSchedule, Date endSchedule, boolean repeat) {
+	public Schedule(String thingPath, String command, Date startSchedule, Date endSchedule, boolean repeat) {
 		this.topic = thingPath;
 		this.command = command;
 		this.startSchedule = startSchedule;

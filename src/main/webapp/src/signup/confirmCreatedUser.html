@@ -1,46 +1,15 @@
 <div class="container">
 	<div class="wrapper wrapper-login">
 		<div class="container container-login animated fadeIn">
-			<h3 class="text-center" style="padding-bottom: 1em;">Acessar sua conta</h3>
-			<form class="login-form" ng-submit="signin(email, password)">
-				<div class="form-group form-floating-label">
-					<input ng-model="email" id="email" name="email" type="text"
-						class="form-control input-border-bottom" required> <label
-						for="email" class="placeholder">E-mail</label>
-				</div>
-				
-				<div class="form-group form-floating-label">
-					<input ng-model="password" type="password"
-						class="form-control input-border-bottom" required> <label
-						for="password" class="placeholder">Senha</label>
-					<div class="show-password">
-						<i class="flaticon-interface"></i>
-					</div>
-				</div>
-
-				<div class="row form-sub m-0" style="padding-bottom: 1em;">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input"
-							id="rememberme"> <label class="custom-control-label"
-							for="rememberme">Lembrar me</label>
-					</div>
-
-					<a href="#" class="link float-right"
-						style="padding-left: 5rem; font-size: small;">Esqueceu a senha
-						?</a>
-				</div>
-				<div class="form-action mb-3">
-					<button type="submit" href="#"
-						class="btn btn-primary btn-rounded btn-login">Entrar</button>
-				</div>
-				<div class="login-account">
-					<span class="msg">Nao possui uma conta ?</span> <a
-						ng-click="signup()" href="#/signup" id="show-signup" class="link">Criar
-						Conta</a>
-				</div>
-			</form>
+			<h3 href="#/signup" class="text-center" style="padding-bottom: 1em;">Cadastro
+				realizado com sucesso!</h3>
+			<div class="form-action mb-3">
+				<a href="#/signin"
+					class="btn btn-primary btn-rounded btn-login">Fazer Login</a>
+			</div>
 		</div>
 	</div>
+</div>
 
 <style>
 html, body {
@@ -141,9 +110,5 @@ body {
 
 .custom-control-label {
 	white-space: nowrap;
-}
-
-.form-floating-label {
-    position: relative;
 }
 </style>

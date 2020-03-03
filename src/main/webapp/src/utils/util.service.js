@@ -18,7 +18,7 @@ angular.module('homeon')
   .service('RestSrv', function(HttpRequestSrv){
     var restFactory = {};
     
-    // Find all data.	
+    // Find all data.
     restFactory.find = function(url, callback){
       HttpRequestSrv(url, 'GET', {}, callback);
     };

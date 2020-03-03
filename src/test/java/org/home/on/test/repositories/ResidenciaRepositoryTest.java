@@ -7,7 +7,7 @@ import org.home.on.test.utils.AbstractTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.thing.entity.ResidenciaEntity;
+import br.com.thing.entity.Home;
 import br.com.thing.repository.ResidenciaRepository;
 
 public class ResidenciaRepositoryTest extends AbstractTest {
@@ -18,7 +18,7 @@ public class ResidenciaRepositoryTest extends AbstractTest {
 
     @Test
     public void findAllTest() {
-        List<ResidenciaEntity> rsd = this.residenciaRepository.findAll();
+        List<Home> rsd = this.residenciaRepository.findAll();
 
         LOGGER.info(rsd);
     }

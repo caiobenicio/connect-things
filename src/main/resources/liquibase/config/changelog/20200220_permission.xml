@@ -6,8 +6,8 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
 	<changeSet id="1" author="caio">
-		<createTable tableName="tb_permission">
-			<column name="pk_id" type="bigint" autoIncrement="true">
+		<createTable tableName="permission">
+			<column name="id" type="bigint" autoIncrement="true">
 				<constraints primaryKey="true" nullable="false" />
 			</column>
 
@@ -18,14 +18,14 @@
 	</changeSet>
 
 	<changeSet id="2" author="caio">
-		<insert tableName="tb_permission">
-			<column name="pk_id" value="1" />
-			<column name="role" value="ROLE_ADMIN" />
+		<insert tableName="permission">
+			<column name="id" value="1" />
+			<column name="role" value="ADMIN" />
 		</insert>
 
-		<insert tableName="tb_permission">
-			<column name="pk_id" value="2" />
-			<column name="role" value="ROLE_USER" />
+		<insert tableName="permission">
+			<column name="id" value="2" />
+			<column name="role" value="USER" />
 		</insert>
 	</changeSet>
 

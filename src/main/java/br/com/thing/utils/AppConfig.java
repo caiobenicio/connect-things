@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import br.com.thing.AppMain;
-import br.com.thing.mqtt.InitMqtt;
 import br.com.thing.repository.ScheduleRepository;
 import br.com.thing.schedule.ScheduleTask;
 import springfox.documentation.builders.ApiInfoBuilder;

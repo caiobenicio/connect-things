@@ -5,20 +5,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.thing.entity.UserEntity;
+import br.com.thing.entity.User;
 import br.com.thing.utils.ResourcePaths;
 
 @RestController
 @RequestMapping(path = ResourcePaths.USER_PATH)
-public class UserResource extends GenericService<UserEntity, Long> {
+public class UserResource {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    @Override
-    public UserEntity insert(UserEntity user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return super.insert(user);
-    }
+//    @Override
+//    public User insert(User user) {
+//        user.setPassword(passwordEncoder.encode(user.getPassword()));
+//        return super.insert(user);
+//    }
 
 }

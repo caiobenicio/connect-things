@@ -1,14 +1,14 @@
 'use strict';
 
-angular.module('homeon')
-  .controller('signupCtrl', function($scope, $rootScope, LoginLogoutSrv) {
-	  $rootScope.statusMenu = false;
+angular.module('homeon').controller('signupCtrl',
+	function($scope, $rootScope, $location, LoginLogoutSrv) {
+		$rootScope.statusMenu = false;
 
-    $scope.signup = function(username, email, password, confirmPassword) {
-    	
-    	if(password != confirmPassword) {
-    		console.log("senhas nao conferem");
-    	}
-    };
+		$scope.user = {};
 
-  });
+		$scope.signup = function(user) {
+			console.log(user);
+			$location.path('/confirmCreatedUser');
+		};
+
+	});

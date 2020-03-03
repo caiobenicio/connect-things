@@ -11,7 +11,7 @@ import org.home.on.test.utils.AbstractTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import br.com.thing.entity.UserEntity;
+import br.com.thing.entity.User;
 import br.com.thing.repository.UserRepository;
 
 public class UserRepositoryTest extends AbstractTest {
@@ -23,7 +23,7 @@ public class UserRepositoryTest extends AbstractTest {
 
     @Test
     public void findAllTest() {
-        List<UserEntity> users = this.userRepository.findAll();
+        List<User> users = this.userRepository.findAll();
 
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Test FindAll(): " + users);
@@ -38,7 +38,7 @@ public class UserRepositoryTest extends AbstractTest {
         String email = "caio" + System.currentTimeMillis() + "@user.com";
         String password = "1234";
 
-        UserEntity usuario = new UserEntity();
+        User usuario = new User();
         usuario.setName(name);
         usuario.setEmail(email);
         usuario.setPassword(password);
@@ -58,7 +58,7 @@ public class UserRepositoryTest extends AbstractTest {
             addTest();
         }
 
-        UserEntity usuarioFind = this.userRepository.findByName("Usuario Teste").get(0);
+        User usuarioFind = this.userRepository.findByName("Usuario Teste").get(0);
 
 		/* Test Update */
 

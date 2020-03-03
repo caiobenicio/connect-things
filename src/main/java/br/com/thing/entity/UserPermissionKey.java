@@ -1,4 +1,4 @@
-package br.com.thing.security;
+package br.com.thing.entity;
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 

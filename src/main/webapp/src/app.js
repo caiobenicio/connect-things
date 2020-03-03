@@ -22,7 +22,7 @@ angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies',
     $rootScope.$on('$locationChangeStart', function () {
 
     	var url = $location.url();
-        if($rootScope.authDetails.authenticated == false && url != '/signup'){
+        if($rootScope.authDetails.authenticated == false && url != '/signup' && url != '/confirmCreatedUser'){
             $location.path('/signin');
         }
     });    

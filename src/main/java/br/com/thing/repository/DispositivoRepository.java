@@ -2,9 +2,9 @@ package br.com.thing.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import br.com.thing.entity.DispositivoEntity;
+import br.com.thing.entity.Device;
 
-public interface DispositivoRepository extends JpaRepository<DispositivoEntity, Long> {
+public interface DispositivoRepository extends JpaRepository<Device, Long> {
 
 
 }

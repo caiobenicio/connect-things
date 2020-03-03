@@ -5,11 +5,11 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import br.com.thing.entity.ScheduleEntity;
+import br.com.thing.entity.Schedule;
 
-public interface ScheduleRepository extends JpaRepository<ScheduleEntity, Long> {
+public interface ScheduleRepository extends JpaRepository<Schedule, Long> {
 
-    @Query("SELECT a FROM ScheduleEntity as a WHERE (a.startSchedule >= now()) OR (a.repeat = true)")
-    List<ScheduleEntity> buscarAgendasAbertas();
+    @Query("SELECT a FROM Schedule as a WHERE (a.startSchedule >= now()) OR (a.repeat = true)")
+    List<Schedule> buscarAgendasAbertas();
 
 }

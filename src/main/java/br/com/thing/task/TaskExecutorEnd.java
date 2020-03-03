@@ -2,15 +2,15 @@ package br.com.thing.task;
 
 import java.util.TimerTask;
 
-import br.com.thing.entity.ScheduleEntity;
+import br.com.thing.entity.Schedule;
 import br.com.thing.mqtt.Publisher;
 
 public class TaskExecutorEnd extends TimerTask {
 
 	private String command;
-	private ScheduleEntity schedule;
+	private Schedule schedule;
 
-	public TaskExecutorEnd(ScheduleEntity schedule, String command) {
+	public TaskExecutorEnd(Schedule schedule, String command) {
 		this.schedule = schedule;
 		this.command = command;
 	}
