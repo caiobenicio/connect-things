@@ -23,23 +23,26 @@ public final class ResourcePaths {
     
     public static final String PERMISSION_PATH = PRIVATE_ROOT_PATH + "/permission";
 
-    public static final String RESIDENCIA_PATH =  PRIVATE_ROOT_PATH + "/residencia";
+    public static final String RESIDENCIA_PATH =  PRIVATE_ROOT_PATH + "/home";
 
-    public static final String COMODO_PATH =  PRIVATE_ROOT_PATH + "/comodo";
+    public static final String COMODO_PATH =  PRIVATE_ROOT_PATH + "/room";
 
     public static final String SENSOR_PATH =  PRIVATE_ROOT_PATH + "/sensor";
 
-    public static final String DISPOSITIVO_PATH =  PRIVATE_ROOT_PATH + "/dispositivo";
+    public static final String DISPOSITIVO_PATH =  PRIVATE_ROOT_PATH + "/device";
 
+    public static final String SCHEDULE_PATH =  PRIVATE_ROOT_PATH + "/schedule";
+    
 
     ///////////////////////////////////////////////////////////////
     // PUBLIC PATHS
     ///////////////////////////////////////////////////////////////
 
-    public static final String SCHEDULE_PATH =  PUBLIC_ROOT_PATH + "/schedule";
 
     public static final String LOGIN_PATH = PUBLIC_ROOT_PATH + "/login";
 
+    public static final String SIGNUP_PATH =  PUBLIC_ROOT_PATH + "/signup";
+    
     public static final String LOGOUT_PATH = PUBLIC_ROOT_PATH + "/logout";
 
     private ResourcePaths() {}

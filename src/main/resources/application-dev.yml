@@ -5,24 +5,42 @@ logging:
     org.home.on: DEBUG
     org.springframework: INFO
     org.hibernate: INFO
+  liquibase: INFO
 
 # DATABASE
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: 9090
+    username: openerp
+    password: postgres
     driverClassName: org.postgresql.Driver
   jpa:
     show-sql: true
     hibernate:
+<<<<<<< HEAD
       ddl-auto: create
+=======
+      ddl-auto: update
+    properties: 
+      hibernate:
+        format_sql: true
+        temp: 
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect               
+  liquibase:
+    enabled: false
+    change-log: classpath:/db/changelog/changelog-master.xml
+    url: jdbc:postgresql://localhost:5432/postgres
+    user: openerp
+    password: postgres
+>>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 
 # SECURITY
 security:
   password:
     secret: secret
 
+<<<<<<< HEAD
 # LIQUIBASE
 liquibase:
   enabled: false
@@ -30,3 +48,5 @@ liquibase:
   url: jdbc:postgresql://localhost:5432/postgres
   user: postgres
   password: 9090
+=======
+>>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351

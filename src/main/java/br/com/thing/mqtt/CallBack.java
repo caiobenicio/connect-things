@@ -5,6 +5,8 @@ import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
+import br.com.thing.web_socket.WebSocket;
+
 public class CallBack implements MqttCallback {
 	
 	private String instanceData = "";
@@ -24,6 +26,8 @@ public class CallBack implements MqttCallback {
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		try {
+			
+			WebSocket.enviarMensagemClientes(message.toString());
 			System.out.println("Mensagem recebida: " + message.toString() + "|| No topico \"" + topic.toString());
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+<<<<<<< HEAD:src/main/resources/db/changelog/changelog/20200220_permission.xml
+	<changeSet id="1" author="caio">
+		<createTable tableName="permission">
+			<column name="id" type="bigint" autoIncrement="true">
+				<constraints primaryKey="true" nullable="false" />
+			</column>
+=======
+<!-- 	<changeSet id="1" author="caio"> -->
+<!-- 		<createTable tableName="permission"> -->
+<!-- 			<column name="id" type="bigint" autoIncrement="true"> -->
+<!-- 				<constraints primaryKey="true" nullable="false" /> -->
+<!-- 			</column> -->
+>>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351:src/main/resources/db/changelog/changelog/20170908214000_permission.xml
+
+<!-- 			<column name="role" type="varchar(255)"> -->
+<!-- 				<constraints nullable="false" /> -->
+<!-- 			</column> -->
+<!-- 		</createTable> -->
+<!-- 	</changeSet> -->
+
+<<<<<<< HEAD:src/main/resources/db/changelog/changelog/20200220_permission.xml
+	<changeSet id="2" author="caio">
+		<insert tableName="permission">
+			<column name="id" value="1" />
+			<column name="role" value="ADMIN" />
+=======
+	<changeSet id="1" author="caio">
+		<insert tableName="permission">
+			<column name="id" value="1" />
+			<column name="role" value="ROLE_ADMIN" />
+>>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351:src/main/resources/db/changelog/changelog/20170908214000_permission.xml
+		</insert>
+
+		<insert tableName="permission">
+			<column name="id" value="2" />
+<<<<<<< HEAD:src/main/resources/db/changelog/changelog/20200220_permission.xml
+			<column name="role" value="USER" />
+=======
+			<column name="role" value="ROLE_USER" />
+>>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351:src/main/resources/db/changelog/changelog/20170908214000_permission.xml
+		</insert>
+	</changeSet>
+
+</databaseChangeLog>
