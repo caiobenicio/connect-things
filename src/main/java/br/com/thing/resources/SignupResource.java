@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.entity.Client;
 import br.com.thing.entity.Permission;
-import br.com.thing.repository.UserRepository;
+import br.com.thing.repository.ClientRepository;
 import br.com.thing.utils.ResourcePaths;
+
 
 @RestController
 @RequestMapping(path = ResourcePaths.SIGNUP_PATH)
@@ -22,8 +23,8 @@ public class SignupResource extends GenericService<Client, Long> {
     private PasswordEncoder passwordEncoder;
 
     @Autowired
-    private UserRepository userRepository;
-    
+    private ClientRepository userRepository;
+
     @Override    
     public Client insert(@RequestBody Client user) {
 
@@ -35,13 +36,14 @@ public class SignupResource extends GenericService<Client, Long> {
             //throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
         }
 
-    	Permission p = new Permission();
-    	p.setRole("ROLE_USER");
+        
+    	Permission p = new Permission(2L, "ROLE_USER");
+    	
         List<Permission> list = new ArrayList<>();
         list.add(p);
-       
         user.setPermissions(list);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        return super.insert(user);
+
+        return super.insert(user); 
     }
 }

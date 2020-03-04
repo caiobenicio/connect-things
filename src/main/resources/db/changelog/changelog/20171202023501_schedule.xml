@@ -6,8 +6,8 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="caio">
-        <createTable tableName="schedule">
-            <column name="id" type="bigint" autoIncrement="true">
+        <createTable tableName="tb_schedule">
+            <column name="id_schedule" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
             <column name="topic" type="varchar(45)">

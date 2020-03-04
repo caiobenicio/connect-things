@@ -10,9 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import br.com.thing.entity.Schedule;
 import br.com.thing.repository.ScheduleRepository;
 
-public class AgendaRepositoryTest extends AbstractTest {
+public class ScheduleRepositoryTest extends AbstractTest {
 
-    private static final Logger LOGGER = Logger.getLogger(UserRepositoryTest.class);
+    private static final Logger LOGGER = Logger.getLogger(ClientRepositoryTest.class);
 
     @Autowired
     private ScheduleRepository agendaRepository;

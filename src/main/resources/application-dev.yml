@@ -17,10 +17,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-<<<<<<< HEAD
-      ddl-auto: create
-=======
-      ddl-auto: update
+      ddl-auto: create-drop
     properties: 
       hibernate:
         format_sql: true
@@ -33,20 +30,10 @@ spring:
     url: jdbc:postgresql://localhost:5432/postgres
     user: openerp
     password: postgres
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 
 # SECURITY
 security:
   password:
     secret: secret
 
-<<<<<<< HEAD
-# LIQUIBASE
-liquibase:
-  enabled: false
-  change-log: classpath:liquibase/config/master.xml
-  url: jdbc:postgresql://localhost:5432/postgres
-  user: postgres
-  password: 9090
-=======
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
+

@@ -1,9 +1,7 @@
 'use strict';
 
 angular.module('homeon')
-    .controller('mainController', function ($scope, LoginLogoutSrv, $location, $rootScope) {
-
-
+    .controller('mainController', function ($scope, LoginLogoutSrv, $location, $rootScope, WebSocketService) {
 
         $scope.logout = function() {
             LoginLogoutSrv.logout();
@@ -25,6 +23,18 @@ angular.module('homeon')
 
             return hasPermission;
         };
+        
+        $scope.messages = [];
+        $scope.message = "";
+        $scope.max = 140;
 
+        $scope.addMessage = function() {
+        	WebSocketService.send($scope.message);
+          $scope.message = "";
+        };
+
+        WebSocketService.receive().then(null, null, function(message) {
+          $scope.messages.push(message);
+        });
 
     });

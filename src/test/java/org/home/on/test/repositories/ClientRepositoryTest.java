@@ -11,27 +11,19 @@ import org.home.on.test.utils.AbstractTest;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-<<<<<<< HEAD
-import br.com.thing.entity.User;
-=======
 import br.com.thing.entity.Client;
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
-import br.com.thing.repository.UserRepository;
+import br.com.thing.repository.ClientRepository;
 
-public class UserRepositoryTest extends AbstractTest {
+public class ClientRepositoryTest extends AbstractTest {
 
-    private static final Logger LOGGER = Logger.getLogger(UserRepositoryTest.class);
+    private static final Logger LOGGER = Logger.getLogger(ClientRepositoryTest.class);
 
     @Autowired
-    private UserRepository userRepository;
+    private ClientRepository userRepository;
 
     @Test
     public void findAllTest() {
-<<<<<<< HEAD
-        List<User> users = this.userRepository.findAll();
-=======
         List<Client> users = this.userRepository.findAll();
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 
         if (LOGGER.isInfoEnabled()) {
             LOGGER.info("Test FindAll(): " + users);
@@ -46,11 +38,7 @@ public class UserRepositoryTest extends AbstractTest {
         String email = "caio" + System.currentTimeMillis() + "@user.com";
         String password = "1234";
 
-<<<<<<< HEAD
-        User usuario = new User();
-=======
         Client usuario = new Client();
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
         usuario.setName(name);
         usuario.setEmail(email);
         usuario.setPassword(password);
@@ -70,11 +58,7 @@ public class UserRepositoryTest extends AbstractTest {
             addTest();
         }
 
-<<<<<<< HEAD
-        User usuarioFind = this.userRepository.findByName("Usuario Teste").get(0);
-=======
         Client usuarioFind = this.userRepository.findByName("Usuario Teste").get(0);
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 
 		/* Test Update */
 

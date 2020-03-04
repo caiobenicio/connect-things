@@ -6,28 +6,28 @@
         http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet id="1" author="caio">
-        <createTable tableName="sensor">
-            <column name="id" type="bigint" autoIncrement="true">
+        <createTable tableName="tb_sensor">
+            <column name="pk_id" type="bigint" autoIncrement="true">
                 <constraints primaryKey="true" nullable="false" />
             </column>
-            <column name="name" type="varchar(45)">
+            <column name="nome" type="varchar(45)">
                 <constraints nullable="false" />
             </column>
-            <column name="description" type="varchar(255)">
-                <constraints nullable="true" />
+            <column name="descricao" type="varchar(255)">
+                <constraints nullable="false" />
             </column>
-            <column name="active" type="boolean">
+            <column name="estado_sensor" type="char(10)">
                 <constraints nullable="false" />
             </column>
         </createTable>
     </changeSet>
 
     <changeSet id="2" author="caio">
-        <insert tableName="sensor">
-            <column name="id" value="1" />
-            <column name="name" value="presença" />
-            <column name="description" value="garagem frontal" />
-            <column name="active" value="true" />
+        <insert tableName="tb_sensor">
+            <column name="pk_id" value="1" />
+            <column name="nome" value="Sensor Frente" />
+            <column name="descricao" value="sensor frente1" />
+            <column name="estado_sensor" value="ativado" />
         </insert>
     </changeSet>
 

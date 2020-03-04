@@ -1,5 +1,8 @@
 package br.com.thing.utils;
 
+import java.util.Arrays;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +14,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import br.com.thing.AppMain;
-<<<<<<< HEAD
-=======
 import br.com.thing.entity.Permission;
 import br.com.thing.repository.PermissionRepository;
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 import br.com.thing.repository.ScheduleRepository;
 import br.com.thing.schedule.ScheduleTask;
 import springfox.documentation.builders.ApiInfoBuilder;
@@ -29,7 +29,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableAutoConfiguration
 @ComponentScan(basePackageClasses = AppMain.class)
-public class AppConfig {
+public class AppContext {
 
     @Value("${spring.application.name}")
     private String appName;
@@ -56,13 +56,17 @@ public class AppConfig {
     @PostConstruct
     public void onStartup() throws Exception {
 
-    	Permission p1 = new Permission();
-    	Permission p2 = new Permission();
-    	p1.setId(1L);
-    	p1.setRole("ROLE_ADMIN");
-    	p2.setId(2L);
-    	p2.setRole("ROLE_USER");
 
+    	if(permissionRepository.findById(1L) != null 
+    			&& permissionRepository.findById(2L) != null) {
+    		
+        	Permission p1 = new Permission(1L, "ROLE_ADMIN");
+        	Permission p2 = new Permission(2L, "ROLE_USER");
+
+        	List<Permission> permissions = Arrays.asList(p1, p2);
+        	
+        	permissionRepository.saveAll(permissions);
+    	}
     	
     	//InitMqtt.getinstance().connect(brokerMqtt);
 

@@ -1,34 +1,5 @@
 package br.com.thing.entity;
 
-<<<<<<< HEAD
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-@Entity
-@Table(name = "device")
-@AttributeOverride(name = "id", column = @Column(name = "id"))
-public class Device extends BaseEntity<Long> {
-
-    private static final long serialVersionUID = 201602010251L;
-
-    @NotNull
-    @Size(min = 2, max = 45)
-    @Column(name = "name", length = 45, nullable = false)
-    private String name;
-    
-    @Size(min = 2, max = 45)
-    @Column(name = "function", length = 45, nullable = true)
-    private String function;
-
-    @NotNull
-    @Column(name = "active", length = 255, nullable = false)
-    private boolean active;
-
-=======
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -52,18 +23,10 @@ public class Device extends BaseEntity<Long> {
     private Room room;
 
     
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 	public Device() {
 		super();
 	}
 
-<<<<<<< HEAD
-	public Device(String name, String function, Boolean active) {
-		super();
-		this.name = name;
-		this.function = function;
-		this.active = active;
-=======
 	public Device(Long id, String name, String description, Boolean active, Room room) {
 		super();
 		this.id = id;
@@ -79,7 +42,6 @@ public class Device extends BaseEntity<Long> {
 
 	public void setId(Long id) {
 		this.id = id;
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 	}
 
 	public String getName() {
@@ -90,15 +52,6 @@ public class Device extends BaseEntity<Long> {
 		this.name = name;
 	}
 
-<<<<<<< HEAD
-	public String getFunction() {
-		return function;
-	}
-
-	public void setFunction(String function) {
-		this.function = function;
-	}
-
 	public boolean isActive() {
 		return active;
 	}
@@ -107,7 +60,6 @@ public class Device extends BaseEntity<Long> {
 		this.active = active;
 	}
 
-=======
 	public String getDescription() {
 		return description;
 	}
@@ -132,5 +84,4 @@ public class Device extends BaseEntity<Long> {
 		this.room = room;
 	}
    	
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 }

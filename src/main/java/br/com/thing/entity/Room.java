@@ -1,23 +1,5 @@
 package br.com.thing.entity;
 
-<<<<<<< HEAD
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-
-@Entity
-@Table(name = "room")
-@AttributeOverride(name = "id", column = @Column(name = "id"))
-public class Room extends BaseEntity<Long> {
-
-    private static final long serialVersionUID = 201602010251L;
-
-    @NotNull
-    @Column(name = "name", length = 120, nullable = false)
-    private String name;
-=======
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -82,6 +64,5 @@ public class Room extends BaseEntity<Long> {
 	public void setHome(Home home) {
 		this.home = home;
 	}
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 
 }

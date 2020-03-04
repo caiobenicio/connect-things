@@ -1,42 +1,5 @@
 package br.com.thing.entity;
 
-<<<<<<< HEAD
-import javax.persistence.AttributeOverride;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
-@Entity
-@Table(name = "sensor")
-@AttributeOverride(name = "id", column = @Column(name = "id"))
-public class Sensor extends BaseEntity<Long> {
-
-    private static final long serialVersionUID = 201602010251L;
-
-    @NotNull
-    @Size(min = 4, max = 45)
-    @Column(name = "name", length = 45, nullable = false)
-    private String name;
-
-    @NotNull
-    @Column(name = "description", length = 255, nullable = true)
-    private String description;
-
-    @NotNull
-    @Column(name = "active", length = 10, nullable = false)
-    private boolean active;
-
-    public Sensor() {
-    }
-
-	public Sensor(String name, String description, boolean active) {
-		super();
-		this.name = name;
-		this.description = description;
-		this.active = active;
-=======
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -80,7 +43,6 @@ public class Sensor extends BaseEntity<Long> {
 
 	public void setId(Long id) {
 		this.id = id;
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 	}
 
 	public String getName() {
@@ -99,7 +61,6 @@ public class Sensor extends BaseEntity<Long> {
 		this.description = description;
 	}
 
-<<<<<<< HEAD
 	public boolean isActive() {
 		return active;
 	}
@@ -108,7 +69,6 @@ public class Sensor extends BaseEntity<Long> {
 		this.active = active;
 	}
 
-=======
 	public Boolean getActive() {
 		return active;
 	}
@@ -125,6 +85,5 @@ public class Sensor extends BaseEntity<Long> {
 		this.room = room;
 	}
 
->>>>>>> 27e4d0c87bd3c8a5f6938831f643c1b3711f7351
 }
 
