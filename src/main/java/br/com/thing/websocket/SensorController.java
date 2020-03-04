@@ -11,7 +11,6 @@ public class SensorController extends TextWebSocketHandler {
 	  @MessageMapping("/sensor")
 	  @SendTo("/topic/sensor")
 	  public SensorDTO greeting(String message) throws Exception {
-	    Thread.sleep(1000); // simulated delay
-	    return new SensorDTO();
+	    return new SensorDTO("temperatura", "casa/sala/temp", "20.0");
 	  }
 }
