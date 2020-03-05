@@ -1,7 +1,13 @@
 package br.com.thing;
 
 import java.net.InetAddress;
+import java.net.NetworkInterface;
+import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
@@ -15,22 +21,27 @@ import br.com.thing.utils.AppContext;
 public class AppMain {
 
     private static final Logger LOGGER = LogManager.getLogger(AppMain.class);
+    static List<String> ip = new ArrayList<String>();
 
-    public static void main(String[] args) throws UnknownHostException {
-        ApplicationContext app = SpringApplication.run(AppContext.class, args);
+    public static void main(String[] args) throws UnknownHostException, SocketException {
+      //  ApplicationContext app = SpringApplication.run(AppContext.class, args);
+        
+    	Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
+        for (NetworkInterface netint : Collections.list(nets))
+            displayInterfaceInformation(netint);
 
-        String applicationName = app.getEnvironment().getProperty("spring.application.name");
-        String contextPath = app.getEnvironment().getProperty("server.contextPath");
-        String port = app.getEnvironment().getProperty("server.port");
-        String hostAddress = InetAddress.getLocalHost().getHostAddress();
-        String brokerMqtt = app.getEnvironment().getProperty("broker.mqtt");
-
-        LOGGER.info("\n|------------------------------------------------------------" +
-                "\n| Application '" + applicationName + "' is running! Access URLs:" +
-                "\n|   Local:     	   	http://127.0.0.1:" + port + contextPath +
-                "\n|   External:   	   	http://" + hostAddress + ":" + port + contextPath +
-                "\n|   BROKER MQTT: "+	brokerMqtt  							+
-                "\n|------------------------------------------------------------");
     }
+    
+    
+    
+	public static void displayInterfaceInformation(NetworkInterface netint) throws SocketException {
+		Enumeration<InetAddress> inetAddresses = netint.getInetAddresses();
+		inetAddresses.asIterator();
+		System.out.println(inetAddresses.asIterator());
+		for (InetAddress inetAddress : Collections.list(inetAddresses)) {
+			
+			System.out.printf("InetAddress: %s\n", inetAddress);
+		}
+	}
 
 }

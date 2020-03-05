@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import br.com.thing.AppMain;
 import br.com.thing.entity.Permission;
+import br.com.thing.mqtt.InitMqtt;
 import br.com.thing.repository.PermissionRepository;
 import br.com.thing.repository.ScheduleRepository;
 import br.com.thing.schedule.ScheduleTask;
@@ -55,7 +56,6 @@ public class AppContext {
     
     @PostConstruct
     public void onStartup() throws Exception {
-
 
     	if(permissionRepository.findById(1L) != null 
     			&& permissionRepository.findById(2L) != null) {

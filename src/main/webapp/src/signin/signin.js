@@ -22,9 +22,4 @@ angular.module('homeon').controller('signinCtrl',
           $scope.message = "";
         };
 
-        WebSocketService.receive().then(null, null, function(message) {
-        	console.log(message);
-          $scope.messages.push(message);
-        });
-
 	});
