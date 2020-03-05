@@ -1,5 +1,6 @@
 package br.com.thing.utils;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -43,6 +44,8 @@ public class AppContext {
     
     @Value("${broker.mqtt}")
     private String brokerMqtt;
+    
+    static List<String> ip = new ArrayList<String>();
 
 
     @Autowired
