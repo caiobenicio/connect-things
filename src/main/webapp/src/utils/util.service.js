@@ -49,8 +49,8 @@ angular.module('homeon')
     var msg = "caio";
     
     pathSocket.RECONNECT_TIMEOUT = 30000;
-    pathSocket.BASE_URL = "/ws";
-    pathSocket.CHAT_TOPIC = "/topic/sensor";
+    pathSocket.BASE_URL = "/stomp";
+    pathSocket.CHAT_TOPIC = "/clientWeb/sensor";
     pathSocket.CHAT_BROKER = "/app/sensor";
     
     var initialize = function() {

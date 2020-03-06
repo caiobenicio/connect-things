@@ -12,8 +12,9 @@ public class SensorDTO {
 		super();
 	}
 
-	public SensorDTO( String name, String topic, String mensage) {
+	public SensorDTO(Long id, String name, String topic, String mensage) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.topic = topic;
 		this.mensage = mensage;

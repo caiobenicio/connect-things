@@ -24,7 +24,6 @@ public class CallBack implements MqttCallback {
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		try {
-			
 			//WebSocket.enviarMensagemClientes(message.toString());
 			System.out.println("Mensagem recebida: " + message.toString() + "|| No topico \"" + topic.toString());
 		} catch (Exception e) {
