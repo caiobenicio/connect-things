@@ -49,30 +49,23 @@ angular.module('homeon')
     var msg = "caio";
     
     pathSocket.RECONNECT_TIMEOUT = 30000;
-    pathSocket.BASE_URL = "/stomp";
-    pathSocket.CHAT_TOPIC = "/clientWeb/sensor";
-    pathSocket.CHAT_BROKER = "/app/sensor";
     
     var initialize = function() {
-      socket = new SockJS(pathSocket.BASE_URL);
+      socket = new SockJS('/ws');
       stompClient = Stomp.over(socket);
       
       stompClient.connect({}, function(frame){
-      	stompClient.subscribe(pathSocket.CHAT_TOPIC, function(data) {
-    		console.log(data);
-    	});
+      	stompClient.subscribe('/channel/casa-caio', onMessageReceived);
       })
     };
    
       service.send = function(message) {
         var id = Math.floor(Math.random() * 1000000);
         
-        stompClient.send(pathSocket.CHAT_BROKER, {
-          priority: 9
-        }, JSON.stringify({
-          message: message,
-          id: id
-        }));
+        stompClient.send('/app/chat/casa-caio/addUser',
+        	    {},
+        	    JSON.stringify({sender: 'clientWeb', type: 'JOIN'})
+         );
       };
       
       var reconnect = function() {
@@ -80,6 +73,18 @@ angular.module('homeon')
           initialize();
         }, pathSocket.RECONNECT_TIMEOUT);
       };
+      
+      var onMessageReceived = function(payload) {
+    	  var message = JSON.parse(payload.body);
+    	  console.log(message);
+    	  
+    	    var chatMessage = {
+    	    	      sender: 'clientWeb',
+    	    	      content: '/join casa-caio',
+    	    	      type: 'CHAT'
+    	    	    };
+    	    	    stompClient.send('/app/chat/casa-caio/sendMessage', {}, JSON.stringify(chatMessage));
+      }
       
     initialize();
     

@@ -68,8 +68,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher(ResourcePaths.LOGOUT_PATH))
 				.logoutSuccessHandler(new HeaderHandler()).and()
 				// CSRF configuration.
-				//.csrf().csrfTokenRepository(csrfTokenRepository()).and()
-				.csrf().disable()
+				.csrf().csrfTokenRepository(csrfTokenRepository()).and()
+				//.csrf().disable()
 				.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
     }
     

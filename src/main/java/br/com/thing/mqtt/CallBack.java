@@ -4,10 +4,14 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
+import org.springframework.messaging.Message;
+
+import br.com.thing.websocket.WebSocketSenderService;
 
 public class CallBack implements MqttCallback {
 	
 	private String instanceData = "";
+	private WebSocketSenderService ws = null;
 
 	public CallBack(String instance) {
 		instanceData = instance;
@@ -24,7 +28,11 @@ public class CallBack implements MqttCallback {
 	@Override
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		try {
-			//WebSocket.enviarMensagemClientes(message.toString());
+			
+			ws = new WebSocketSenderService();
+			ws.receiveMessage((Message) message);
+			//FireGreeting f = new FireGreeting(sensor);
+			//sensor.fireGreeting(topic, message);
 			System.out.println("Mensagem recebida: " + message.toString() + "|| No topico \"" + topic.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,7 +43,7 @@ public class CallBack implements MqttCallback {
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken token) {
 		try {
-			//System.out.println("Recebido da instancia: " + instanceData + "");
+			System.out.println("Recebido da instancia: " + instanceData + "");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

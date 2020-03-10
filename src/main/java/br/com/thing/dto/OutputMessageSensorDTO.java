@@ -1,6 +1,6 @@
 package br.com.thing.dto;
 
-public class SensorDTO {
+public class OutputMessageSensorDTO {
 
 	private Long id;
 	private String name;
@@ -8,11 +8,7 @@ public class SensorDTO {
 	private String mensage;
 	
 	
-	public SensorDTO() {
-		super();
-	}
-
-	public SensorDTO(Long id, String name, String topic, String mensage) {
+	public OutputMessageSensorDTO(Long id, String name, String topic, String mensage) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -59,6 +55,5 @@ public class SensorDTO {
 	public void setMensage(String mensage) {
 		this.mensage = mensage;
 	}
-	
 	
 }

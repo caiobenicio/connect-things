@@ -45,7 +45,7 @@ public class AppContext {
     @Value("${broker.mqtt}")
     private String brokerMqtt;
     
-    static List<String> ip = new ArrayList<String>();
+    static String ip = null;
 
 
     @Autowired
@@ -71,7 +71,8 @@ public class AppContext {
         	permissionRepository.saveAll(permissions);
     	}
     	
-    	//InitMqtt.getinstance().connect(brokerMqtt);
+    	
+    	InitMqtt.getinstance().connect(IpAddress.getinstance().findIp());
 
     	
     	scheduleRepository.buscarAgendasAbertas().stream().
