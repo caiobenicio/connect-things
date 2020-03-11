@@ -24,7 +24,6 @@ angular.module('homeon')
             $rootScope.authDetails = { name: data.name, authenticated: data.authenticated, permissions: data.authorities };
             $localStorage.authDetails = $rootScope.authDetails;
             $location.path('/');
-            ngNotify.set('Welcome ' + data.name + '.', 'success');
           } else {
             $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
             ngNotify.set('Email or password that you have entered do not match our records.', { type: 'failure', duration: 5000 });

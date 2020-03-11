@@ -20,7 +20,7 @@ angular.module('homeon')
             });
 
 
-
+            console.log(hasPermission);
             return hasPermission;
         };
     });

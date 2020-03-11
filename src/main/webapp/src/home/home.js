@@ -5,22 +5,8 @@ angular.module('homeon')
 	  
 	  $rootScope.statusMenu = true;
 
-      $scope.hasAnyPermission = function(authorities) {
-          var hasPermission = false;
-
-          $rootScope.authDetails.permissions.forEach(function(permission) {
-              authorities.forEach(function(authority) {
-                  if (permission.authority === authority) {
-                      hasPermission = true;
-                  }
-              });
-          });
-
-
-
-          return hasPermission;
-      };
       
+	  WebSocketService.connect();
       
       $scope.messages = [];
       $scope.message = "";
@@ -31,9 +17,9 @@ angular.module('homeon')
         $scope.message = "";
       };
 
-      WebSocketService.receive().then(null, null, function(message) {
-        $scope.messages.push(message);
-      });
+//      WebSocketService.receive().then(null, null, function(message) {
+//        $scope.messages.push(message);
+//      });
 
 
   });

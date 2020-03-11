@@ -66,7 +66,7 @@ public class WebSocketSenderService {
 	}
 
 	public void receiveMessage(final Message message) {
-		
+
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		SendMessages leaveMessage = new SendMessages();
