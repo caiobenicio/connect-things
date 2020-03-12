@@ -27,8 +27,9 @@ angular.module('homeon')
  // Leave the current room and enter a new one.
     function enterRoom(newRoomId) {
 
+     var id = Math.floor(Math.random() * 1000000);
      var roomId = newRoomId;
-     var topic = '/app/chat/'+newRoomId;
+     var topic = '/app/chat/'+newRoomId+"."+id;
 
       if (currentSubscription) {
         currentSubscription.unsubscribe();
@@ -37,7 +38,7 @@ angular.module('homeon')
 
       stompClient.send(topic+'/addUser',
         {},
-        JSON.stringify({sender: roomId, type: 'JOIN'})
+        JSON.stringify({sender: username, type: 'JOIN'})
       );
     }
 

@@ -45,7 +45,8 @@ public class WebSocketSenderService {
 
 		logger.info("Sending message...");
 		
-		new Subscribe("caio/safado");
+		
+		//new Subscribe("caio/safado");
 //		rabbitTemplate.convertAndSend(ConfigExchangeQueue.EXCHANGE_NAME_TOPIC,
 //				ConfigExchangeQueue.ROUTING_KEY, returnObj(message));
 	}
