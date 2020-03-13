@@ -16,27 +16,31 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Gateway extends BaseEntity<Long> {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-	private String model;	
-	
+	private String model;
+
 	@Column(name = "quantity_doors_io", length = 11, nullable = false)
 	private Integer quantityDoorsIO;
-	
+
 	@Column(name = "input_tension", length = 11, nullable = false)
 	private Double inputTesion;
-	
+
 	@ElementCollection
-	@CollectionTable(name="connectivity_types")
-	private Set<String> connectivityTypes = new HashSet<>();;
-	
+	@CollectionTable(name = "connectivity_types")
+	private Set<String> connectivityTypes = new HashSet<>();
+
 	@ManyToOne
-	@JoinColumn(name="client_id")
+	@JoinColumn(name = "client_id")
 	private Client client;
+
 	
+	public Gateway() {
+		super();
+	}
 	
 	public Gateway(Long id, String name, String model, Integer quantityDoorsIO, Double inputTesion,
 			Set<String> connectivityTypes, Client client) {
@@ -50,76 +54,57 @@ public class Gateway extends BaseEntity<Long> {
 		this.client = client;
 	}
 
-
-	public Gateway() {
-		super();
-	}
-
-
 	public Long getId() {
 		return id;
 	}
-
 
 	public String getName() {
 		return name;
 	}
 
-
 	public String getModel() {
 		return model;
 	}
-
 
 	public Integer getQuantityDoorsIO() {
 		return quantityDoorsIO;
 	}
 
-
 	public Double getInputTesion() {
 		return inputTesion;
 	}
-
 
 	public Set<String> getConnectivityTypes() {
 		return connectivityTypes;
 	}
 
-
 	public Client getClient() {
 		return client;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
 	}
 
-
 	public void setName(String name) {
 		this.name = name;
 	}
-
 
 	public void setModel(String model) {
 		this.model = model;
 	}
 
-
 	public void setQuantityDoorsIO(Integer quantityDoorsIO) {
 		this.quantityDoorsIO = quantityDoorsIO;
 	}
-
 
 	public void setInputTesion(Double inputTesion) {
 		this.inputTesion = inputTesion;
 	}
 
-
 	public void setConnectivityTypes(Set<String> connectivityTypes) {
 		this.connectivityTypes = connectivityTypes;
 	}
-
 
 	public void setClient(Client client) {
 		this.client = client;

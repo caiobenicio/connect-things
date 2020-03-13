@@ -5,10 +5,10 @@ import static java.lang.String.format;
 import java.io.IOException;
 
 import org.eclipse.paho.client.mqttv3.MqttException;
+import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.handler.annotation.DestinationVariable;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
@@ -66,24 +66,19 @@ public class WebSocketSenderService {
 		messagingTemplate.convertAndSend(format("/channel/%s", roomId), chatMessage);
 	}
 
-	public void receiveMessage(final Message message) {
+	public void receiveMessage(final MqttMessage message) throws IOException {
 
 		ObjectMapper objectMapper = new ObjectMapper();
 		
 		SendMessages leaveMessage = new SendMessages();
 		leaveMessage.setType(MessageType.LEAVE);
 		
-		try {
-			rootNode = objectMapper.readTree(message.getPayload().toString());
-			String destination = rootNode.path("destination").textValue();
-			leaveMessage.setSender(rootNode.path("body").textValue());	
-			
-			messagingTemplate.convertAndSend(format("/channel/%s", destination), leaveMessage );
-			logger.info("Body: " + rootNode.path("body").textValue());
-			
-		} catch (IOException e) {
-			logger.info("Error to map recieve message... " + e.getMessage());
-		}
+		rootNode = objectMapper.valueToTree(message);
+		String destination = rootNode.path("destination").textValue();
+		leaveMessage.setSender(rootNode.path("body").textValue());	
+		
+		messagingTemplate.convertAndSend(format("/channel/%s", destination), leaveMessage );
+		logger.info("Body: " + rootNode.path("body").textValue());
 		
 	}
 		

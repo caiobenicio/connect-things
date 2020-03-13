@@ -22,7 +22,7 @@ public class IpAddress {
         for (NetworkInterface netint : Collections.list(nets))
         	displayInterfaceInformation(netint);
         
-        if(ip.isEmpty() || ip.isBlank())
+        if(ip.isEmpty())
         	return "tcp://127.0.1:1883";
         
 		return ip.replaceFirst("/", "tcp://")+ ":1883";

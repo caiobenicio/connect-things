@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,8 +49,6 @@ public class AppContext {
 	@Value("${broker.mqtt}")
 	private String brokerMqtt;
 
-	static String ip = null;
-
 	@Autowired
 	private ScheduleRepository scheduleRepository;
 
@@ -85,6 +84,11 @@ public class AppContext {
 			agendador.agendamento(a);
 		});
 
+	}
+	
+	@PreDestroy
+	public void onShutdown() throws Exception {
+		System.out.println("desligou");
 	}
 
 	@Bean

@@ -55,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 				.antMatchers("/assets/angularJs/**", "/assets/fonts/**", "/assets/img/**", "/assets/css/**", 
 						     "/assets/js/plugin/webfont/**", "/assets/js/core/**", "/assets/js/**",
 						     "/assets/js/plugin/jquery-ui-1.12.1.custom/**", "/src/**").permitAll()
-				.antMatchers("/ws/**").permitAll()
+				//.antMatchers("/ws/**").permitAll()
 				.antMatchers("/").permitAll()
 				.antMatchers("index.html").permitAll()
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()

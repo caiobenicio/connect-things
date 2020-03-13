@@ -11,7 +11,7 @@ import br.com.thing.websocket.WebSocketSenderService;
 public class CallBack implements MqttCallback {
 	
 	private String instanceData = "";
-	private WebSocketSenderService ws = null;
+	private WebSocketSenderService ws = new WebSocketSenderService();
 
 	public CallBack(String instance) {
 		instanceData = instance;
@@ -29,10 +29,7 @@ public class CallBack implements MqttCallback {
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		try {
 			
-			ws = new WebSocketSenderService();
-			ws.receiveMessage((Message) message);
-			//FireGreeting f = new FireGreeting(sensor);
-			//sensor.fireGreeting(topic, message);
+			ws.receiveMessage(message);
 			System.out.println("Mensagem recebida: " + message.toString() + "|| No topico \"" + topic.toString());
 		} catch (Exception e) {
 			e.printStackTrace();

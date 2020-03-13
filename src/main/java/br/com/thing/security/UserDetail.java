@@ -16,7 +16,7 @@ public class UserDetail implements UserDetailsService {
 
     @Autowired
     private ClientRepository userRepository;
-
+    
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Client user = this.userRepository.findByEmail(email);
@@ -25,12 +25,12 @@ public class UserDetail implements UserDetailsService {
             throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
         }
 
-        LoginDetailBean login = new LoginDetailBean(user.getId(),user.getName(), user.getEmail(), user.getPassword());
+        LoginDetailBean login = new LoginDetailBean(user.getName(), user.getEmail(), user.getPassword());
 
         for (Permission permission : user.getPermissions()) {
             login.addRole(permission.getRole());
         }
-
+        
         return login;
     }
 
