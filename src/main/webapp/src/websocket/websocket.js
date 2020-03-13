@@ -38,7 +38,7 @@ angular.module('homeon')
 
       stompClient.send(topic+'/addUser',
         {},
-        JSON.stringify({sender: username, type: 'JOIN'})
+        JSON.stringify({sender: "D1", type: 'JOIN'})
       );
     }
 

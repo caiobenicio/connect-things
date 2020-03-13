@@ -9,7 +9,7 @@ angular.module('homeon')
 	  WebSocketService.connect();
       
       $scope.messages = [];
-      $scope.message = "";
+      $scope.message = "caio";
       $scope.max = 140;
 
       $scope.addMessage = function() {

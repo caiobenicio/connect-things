@@ -21,7 +21,7 @@ angular.module('homeon')
           var data = response.data;
 
           if (data.name) {
-            $rootScope.authDetails = { name: data.name, authenticated: data.authenticated, permissions: data.authorities };
+            $rootScope.authDetails = {id: data.id, name: data.name, authenticated: data.authenticated, permissions: data.authorities };
             $localStorage.authDetails = $rootScope.authDetails;
             $location.path('/');
           } else {

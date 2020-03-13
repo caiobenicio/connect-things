@@ -28,6 +28,10 @@ public class Client extends BaseEntity<Long> {
 	@JsonIgnore
 	@OneToMany(mappedBy="client")
 	private List<Home> home = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="client")
+	private List<Gateway> gateway = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "client_permission", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "permission_id") )

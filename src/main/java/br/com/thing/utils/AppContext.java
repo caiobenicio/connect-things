@@ -12,11 +12,14 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 import br.com.thing.AppMain;
+import br.com.thing.entity.Client;
 import br.com.thing.entity.Permission;
 import br.com.thing.mqtt.InitMqtt;
+import br.com.thing.repository.ClientRepository;
 import br.com.thing.repository.PermissionRepository;
 import br.com.thing.repository.ScheduleRepository;
 import br.com.thing.schedule.ScheduleTask;
@@ -33,74 +36,75 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackageClasses = AppMain.class)
 public class AppContext {
 
-    @Value("${spring.application.name}")
-    private String appName;
+	@Value("${spring.application.name}")
+	private String appName;
 
-    @Value("${spring.application.description}")
-    private String appDescription;
+	@Value("${spring.application.description}")
+	private String appDescription;
 
-    @Value("${spring.application.version}")
-    private String appVersion;
-    
-    @Value("${broker.mqtt}")
-    private String brokerMqtt;
-    
-    static String ip = null;
+	@Value("${spring.application.version}")
+	private String appVersion;
 
+	@Value("${broker.mqtt}")
+	private String brokerMqtt;
 
+	static String ip = null;
+
+	@Autowired
+	private ScheduleRepository scheduleRepository;
+
+	@Autowired
+	private PermissionRepository permissionRepository;
+
+	@Autowired
+	private ClientRepository clientRepository;
+	
     @Autowired
-    private ScheduleRepository scheduleRepository;
-    
-    @Autowired
-    private PermissionRepository permissionRepository;
+    private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private ScheduleTask agendador;
 
-    @Autowired
-    private ScheduleTask agendador;
-    
-    @PostConstruct
-    public void onStartup() throws Exception {
+	@PostConstruct
+	public void onStartup() throws Exception {
 
-    	if(permissionRepository.findById(1L) != null 
-    			&& permissionRepository.findById(2L) != null) {
-    		
-        	Permission p1 = new Permission(1L, "ROLE_ADMIN");
-        	Permission p2 = new Permission(2L, "ROLE_USER");
+		Permission p1 = new Permission(1L, "ROLE_ADMIN");
+		Permission p2 = new Permission(2L, "ROLE_USER");
+		List<Permission> permissions = Arrays.asList(p1, p2);
+		permissionRepository.saveAll(permissions);
+		
+		Client c = new Client("caio", "caio@live.com", passwordEncoder.encode("9090"));
+		List<Permission> list = new ArrayList<>();
+		list.add(p2);
+		c.setPermissions(list);
+		clientRepository.save(c);
 
-        	List<Permission> permissions = Arrays.asList(p1, p2);
-        	
-        	permissionRepository.saveAll(permissions);
-    	}
-    	
-    	
-    	InitMqtt.getinstance().connect(IpAddress.getinstance().findIp());
+		InitMqtt.getinstance().connect(IpAddress.getinstance().findIp());
 
-    	
-    	scheduleRepository.buscarAgendasAbertas().stream().
-    		forEach(a -> { 
-    			agendador.agendamento(a);
-    		}
-    	);
-    	
-    }
-    
-    @Bean
-    public Docket newsApi() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .apiInfo(apiInfo()).select().paths(PathSelectors.regex(ResourcePaths.ROOT_PATH + "/.*")).build();
-    }
+		scheduleRepository.buscarAgendasAbertas().stream().forEach(a -> {
+			agendador.agendamento(a);
+		});
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title(appName).description(appDescription).version(appVersion).build();
-    }
-    
-    @Bean(name = "applicationProperty")
-    public ApplicationProperty getApplicationProperty() {
-        return new ApplicationProperty();
-    }
+	}
 
-    @Bean(name = "passwordEncoder")
-    public StandardPasswordEncoder getStandardPasswordEncoder() {
-        return new StandardPasswordEncoder(getApplicationProperty().getSecret());
-    }
+	@Bean
+	public Docket newsApi() {
+		return new Docket(DocumentationType.SWAGGER_2).apiInfo(apiInfo()).select()
+				.paths(PathSelectors.regex(ResourcePaths.ROOT_PATH + "/.*")).build();
+	}
+
+	private ApiInfo apiInfo() {
+		return new ApiInfoBuilder().title(appName).description(appDescription).version(appVersion).build();
+	}
+
+	@Bean(name = "applicationProperty")
+	public ApplicationProperty getApplicationProperty() {
+		return new ApplicationProperty();
+	}
+
+	@Bean(name = "passwordEncoder")
+	public StandardPasswordEncoder getStandardPasswordEncoder() {
+		return new StandardPasswordEncoder(getApplicationProperty().getSecret());
+	}
 
 }

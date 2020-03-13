@@ -26,7 +26,7 @@ public class Home extends BaseEntity<Long> {
 
 	@OneToMany(mappedBy="home")
 	private List<Room> room;
-
+	
 	
 	public Home() {
 		super();

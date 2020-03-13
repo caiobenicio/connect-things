@@ -32,7 +32,7 @@ public class AppMain {
                 "\n|   External:   http:/" + hostAddress + ":" + port + contextPath +
                 "\n|------------------------------------------------------------");
 
-        
     }
+   
    
 }
