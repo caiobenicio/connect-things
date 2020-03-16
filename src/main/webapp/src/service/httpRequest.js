@@ -37,6 +37,12 @@ angular.module('homeon')
     restFactory.delete = function(url, data, callback){
       HttpRequestSrv(url, 'DELETE', data, callback);
     };
+
+    // find by email a data.
+    restFactory.findByEmail = function(url, data, callback){
+      HttpRequestSrv(url, 'GET', data, callback);
+    };
+    
     return restFactory;
   })
 

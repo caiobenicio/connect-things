@@ -1,17 +1,5 @@
 'use strict';
 
-angular.module('homeon').controller('signupCtrl',
-	function($scope, $rootScope, $location, LoginLogoutSrv) {
-		$rootScope.statusMenu = false;
-
-		$scope.user = {};
-
-		$scope.signup = function(user) {
-			console.log(user);
-			$location.path('/confirmCreatedUser');
-		};
-
-	});
 angular.module('homeon')
   .controller('signupCtrl', function($scope, RestSrv, SERVICE_PATH, LoginLogoutSrv, $location, $timeout) {    
     var userUrl = SERVICE_PATH.PUBLIC_PATH + '/signup';
@@ -25,11 +13,14 @@ angular.module('homeon')
         $scope.disable = 'true'        
         return;
       }
+      
+      if(user.isGateway == null || user.isGateway == undefined) {
+    	  user.isGateway = false;
+      }
+      
       delete user.confirmPassword;
       RestSrv.add(userUrl, user, function() {
         $location.path('/confirmCreatedUser');
-       // document.getElementById("modal").onclick();
-       // document.querySelector('#modal').click();        
       });
     };
 

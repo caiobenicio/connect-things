@@ -1,10 +1,17 @@
 'use strict'
 
 angular.module('homeon')
-  .controller('homeCtrl', function($scope, $rootScope, WebSocketService){
+  .controller('homeCtrl', function($scope, $rootScope, WebSocketService, RestSrv){
 	  
 	  $rootScope.statusMenu = true;
-      
-	  WebSocketService.connect();
+	  
+//	  var isGateway = $rootScope.authDetails.isGateway;
+//	  if(isGateway) {
+//		  RestSrv.findByEmail('/api/private/user', $rootScope.authDetails.email, function(response) {
+//		        console.log(response);
+//	      });
+//	  }
+//      
+	//  WebSocketService.connect();
 
   });

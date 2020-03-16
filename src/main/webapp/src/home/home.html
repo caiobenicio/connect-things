@@ -1,45 +1,94 @@
-<div class="container">
-
-
-	<form ng-submit="addMessage()" name="messageForm">
-		<input type="text" placeholder="Compose a new message..."
-			ng-model="message" />
-		<div class="info">
-			<span class="count" ng-bind="max - message.length"
-				ng-class="{danger: message.length > max}">140</span>
-			<button ng-disabled="message.length > max || message.length === 0">Send</button>
-		</div>
-	</form>
-	<hr />
-	<p ng-repeat="message in messages | orderBy:'time':true"
-		class="message">
-		<time>{{message.time | date:'HH:mm'}}</time>
-		<span ng-class="{self: message.self}">{{message.message}}</span>
-	</p>
-
-</div>
-
-
 <div class="login">
 	<div class="container">
-		<div class="wrapper wrapper-login">
-			<div class="container container-login animated fadeIn">
-				<h3 class="text-center" style="padding-bottom: 1em;">Acessar sua conta</h3>
-				<form class="login-form" ng-submit="signin(email)">
-					<div class="form-group form-floating-label">
-						<input ng-model="email" id="email" name="email" type="text" class="form-control input-border-bottom"
-						 required>
-						<label for="email" class="placeholder">E-mail</label>
-					</div>
 	
-	
-					<div class="form-action mb-3">
-						<button type="submit" href="#" class="btn btn-primary btn-rounded btn-login">Entrar</button>
-					</div>
+	<h1>ola</h1>
+		<form ng-submit="addMessage()" name="messageForm">
+			<input type="text" placeholder="Compose a new message..."
+				ng-model="message" />
+			<div class="info">
+				<span class="count" ng-bind="max - message.length"
+					ng-class="{danger: message.length > max}">140</span>
+				<button ng-disabled="message.length > max || message.length === 0">Send</button>
+			</div>
+		</form>
+		<hr />
+		<p ng-repeat="message in messages | orderBy:'time':true"
+			class="message">
+			<time>{{message.time | date:'HH:mm'}}</time>
+			<span ng-class="{self: message.self}">{{message.message}}</span>
+		</p>
 
-				</form>
-			</div>	
-		</div>
 	</div>
 </div>
 
+<style>
+.form-floating-label .placeholder1 {
+	padding: .375rem .75rem;
+	transition: all .2s;
+	opacity: .8;
+	margin-bottom: 0 !important;
+	font-size: 13px !important;
+	font-weight: 400;
+	top: 12px;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 24px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+</style>

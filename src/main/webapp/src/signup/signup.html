@@ -1,81 +1,156 @@
 <div class="login">
 	<div class="container">
-	<div class="wrapper wrapper-login">
-		<div class="container container-signup animated fadeIn">
-			<h3 class="text-center">Sign Up</h3>
-			<form name="userForm" class="login-form" ng-submit="signup(user)"
-				novalidate>
-				<div class="form-group form-floating-label">
-					<input ng-model="user.name" name="fullname" type="text"
-						class="form-control input-border-bottom" required> <label
-						for="fullname" class="placeholder">Nome</label>
-				</div>
-				<div class="form-group form-floating-label">
-					<input ng-model="user.email" name="email" type="email"
-						class="form-control input-border-bottom" required> <label
-						for="email" class="placeholder">E-mail</label>
-				</div>
-				<div class="form-group form-floating-label">
-					<input ng-model="user.password" name="password" type="password"
-						class="form-control input-border-bottom" id="showPassword1" required> <label
-						for="password" class="placeholder">Senha</label>
-					<div onclick="showPassword1()" class="show-password">
-						<i class="flaticon-interface"></i>
+		<div class="wrapper wrapper-login">
+			<div class="container container-signup animated fadeIn">
+				<h3 class="text-center">Inscrever-se</h3>
+				<form name="userForm" class="login-form" ng-submit="signup(user)"
+					novalidate>
+					<div class="form-group form-floating-label">
+						<input ng-model="user.name" name="fullname" type="text"
+							class="form-control input-border-bottom" required> <label
+							for="fullname" class="placeholder">Nome</label>
 					</div>
-				</div>
-				<div class="form-group form-floating-label">
-					<input ng-model="user.confirmPassword" name="confirmPassword"
-						type="password" class="form-control input-border-bottom" id="showPassword2" required>
-					<label for="password" class="placeholder">Confirmar Senha</label>
-					<div onclick="showPassword2()" class="show-password">
-						<i class="flaticon-interface"></i>
+					<div class="form-group form-floating-label">
+						<input ng-model="user.email" name="email" type="email"
+							class="form-control input-border-bottom" required> <label
+							for="email" class="placeholder">E-mail</label>
 					</div>
-				</div>
-				<span ng-show="disable == 'true'"
-					style="justify-content: flex-end; display: flex; color: red; font-size: 16px;">
-					A senha deve ser igual. </span>
+					<div class="form-group form-floating-label">
+						<input ng-model="user.password" name="password" type="password"
+							class="form-control input-border-bottom" id="showPassword1"
+							required> <label for="password" class="placeholder">Senha</label>
+						<div onclick="showPassword1()" class="show-password">
+							<i class="flaticon-interface"></i>
+						</div>
+					</div>
+					<div class="form-group form-floating-label">
+						<input ng-model="user.confirmPassword" name="confirmPassword"
+							type="password" class="form-control input-border-bottom"
+							id="showPassword2" required> <label for="password"
+							class="placeholder">Confirmar Senha</label>
+						<div onclick="showPassword2()" class="show-password">
+							<i class="flaticon-interface"></i>
+						</div>
+					</div>
+					<span ng-show="disable == 'true'"
+						style="justify-content: flex-end; display: flex; color: red; font-size: 16px;">
+						A senha deve ser igual. </span>
 
-				<div class="row form-sub m-0">
-					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input" name="agree" 
-							id="agree" required> <label class="custom-control-label"
-							for="agree">Aceito os termos de condiçoes.</label>
+					<div class="form-group form-floating-label"
+						style="padding-top: 0.5em">
+						<label class="switch"> 
+						<input type="checkbox" ng-model="user.isGateway"> 
+						<span class="slider round"></span>
+						</label> <label for="gateway" class="placeholder1">Possui gateway?</label>
 					</div>
+
+					<div class="form-action">
+						<a href="#/signin" id="show-signin"
+							class="btn btn-danger btn-rounded btn-login mr-3">Cancelar</a>
+						<button type="submit"
+							class="btn btn-primary btn-rounded btn-login"
+							ng-disabled="userForm.$invalid">Cadastrar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<!-- Button trigger modal -->
+	<button id="modal" style="display: none;" type="button"
+		class="btn btn-primary" data-toggle="modal"
+		data-target="#exampleModalCenter"></button>
+
+
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalCenterTitle"
+		aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-body">
+					<h2>Cadastro realizado com sucesso</h2>
 				</div>
-				<div class="form-action">
-					<a href="#/signin" id="show-signin"
-						class="btn btn-danger btn-rounded btn-login mr-3">Cancelar</a>
-					<button type="submit" class="btn btn-primary btn-rounded btn-login"
-						ng-disabled="userForm.$invalid">Cadastrar</button>
+				<div class="modal-footer">
+					<button type="button" ng-click="signin()" class="btn btn-secondary"
+						data-dismiss="modal">Ok</button>
 				</div>
-			</form>
+			</div>
 		</div>
 	</div>
 </div>
 
-<!-- Button trigger modal -->
-<button id="modal" style="display: none;" type="button"
-	class="btn btn-primary" data-toggle="modal"
-	data-target="#exampleModalCenter"></button>
+<style>
+.form-floating-label .placeholder1 {
+	padding: .375rem .75rem;
+	transition: all .2s;
+	opacity: .8;
+	margin-bottom: 0 !important;
+	font-size: 13px !important;
+	font-weight: 400;
+	top: 12px;
+}
 
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 24px;
+}
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-	role="dialog" aria-labelledby="exampleModalCenterTitle"
-	aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-body">
-				<h2>Cadastro realizado com sucesso</h2>
-			</div>
-			<div class="modal-footer">
-				<button type="button" ng-click="signin()" class="btn btn-secondary"
-					data-dismiss="modal">Ok</button>
-			</div>
-		</div>
-	</div>
-</div>
-</div>
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+</style>
 
 <script>
 	function showPassword1() {
