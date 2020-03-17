@@ -42,6 +42,17 @@ public class Gateway extends BaseEntity<Long> {
 		super();
 	}
 	
+	public Gateway(String name, String model, Integer quantityDoorsIO, Double inputTesion,
+			Set<String> connectivityTypes, Client client) {
+		super();
+		this.name = name;
+		this.model = model;
+		this.quantityDoorsIO = quantityDoorsIO;
+		this.inputTesion = inputTesion;
+		this.connectivityTypes = connectivityTypes;
+		this.client = client;
+	}
+	
 	public Gateway(Long id, String name, String model, Integer quantityDoorsIO, Double inputTesion,
 			Set<String> connectivityTypes, Client client) {
 		super();

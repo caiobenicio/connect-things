@@ -2,6 +2,7 @@ package br.com.thing.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -24,6 +25,9 @@ public class Client extends BaseEntity<Long> {
     private String name;
 	private String email;
 	private String password;
+	
+	@Column(name = "gateway")
+	private Boolean isGateway;
 
 	@JsonIgnore
 	@OneToMany(mappedBy="client")
@@ -41,11 +45,12 @@ public class Client extends BaseEntity<Long> {
 	public Client() {
 	}
 
-    public Client(String name, String email, String password) {
+    public Client(String name, String email, String password, Boolean isGateway) {
     	super();
 		this.name = name;
 		this.email = email;
 		this.password = password;
+		this.isGateway = isGateway;
     }
 
 
@@ -83,5 +88,13 @@ public class Client extends BaseEntity<Long> {
 
 	public void setPermissions(List<Permission> permissions) {
 		this.permissions = permissions;
+	}
+
+	public Boolean isGateway() {
+		return isGateway;
+	}
+
+	public void setIsGateway(Boolean isGateway) {
+		this.isGateway = isGateway;
 	}
 }

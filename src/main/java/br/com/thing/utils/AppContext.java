@@ -72,7 +72,7 @@ public class AppContext {
 		List<Permission> permissions = Arrays.asList(p1, p2);
 		permissionRepository.saveAll(permissions);
 		
-		Client c = new Client("caio", "caio@live.com", passwordEncoder.encode("9090"));
+		Client c = new Client("caio", "caio@live.com", passwordEncoder.encode("9090"), true);
 		List<Permission> list = new ArrayList<>();
 		list.add(p2);
 		c.setPermissions(list);

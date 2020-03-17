@@ -14,6 +14,11 @@ public class UserResource extends GenericService<Client, Long> {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    
+    public Client findByEmail(Client user) {
+		return user;
+    	
+    }
 
     @Override
     public Client insert(Client user) {

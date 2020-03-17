@@ -6,6 +6,7 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 import org.springframework.messaging.Message;
 
+import br.com.thing.utils.TopicConstant;
 import br.com.thing.websocket.WebSocketSenderService;
 
 public class CallBack implements MqttCallback {
@@ -29,8 +30,14 @@ public class CallBack implements MqttCallback {
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		try {
 			
-			ws.receiveMessage(message);
-			System.out.println("Mensagem recebida: " + message.toString() + "|| No topico \"" + topic.toString());
+			if(topic.equals(TopicConstant.APPWEB_MQTT)) {
+				
+				new Subscribe(message.toString());
+			} else {
+				
+				ws.receiveMessage(message);
+			}
+			System.out.println("Mensagem recebida: " + message.toString() + " || No topico: " + topic.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

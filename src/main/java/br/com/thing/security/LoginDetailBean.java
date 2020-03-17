@@ -20,13 +20,16 @@ public class LoginDetailBean extends BaseBean implements UserDetails {
     private final String email;
 
     private final String password;
+    
+    private final Boolean isGateway;
 
     private final Set<String> roles;
 
-    public LoginDetailBean(String name, String email, String passwordHash) {
+    public LoginDetailBean(String name, String email, String passwordHash, Boolean isGateway) {
     	this.name = name;
         this.email = email;
         this.password = passwordHash;
+        this.isGateway = isGateway;
         this.roles = new HashSet<String>();
     }
 
@@ -71,7 +74,12 @@ public class LoginDetailBean extends BaseBean implements UserDetails {
         return email;
     }
 
-    @Override
+    public Boolean getIsGateway() {
+		return isGateway;
+	}
+
+
+	@Override
     public boolean isAccountNonExpired() {
         return true;
     }

@@ -11,8 +11,8 @@ logging:
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: 9090
+    username: openerp
+    password: postgres
     driverClassName: org.postgresql.Driver
   devtools: 
     restart: 

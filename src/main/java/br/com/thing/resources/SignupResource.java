@@ -33,12 +33,10 @@ public class SignupResource extends GenericService<Client, Long> {
         if (userBean != null) {
             System.out.println("Email ja cadastrado");
             return null;
-            //throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
+         //   throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
         }
 
-        
     	Permission p = new Permission(2L, "ROLE_USER");
-    	
         List<Permission> list = new ArrayList<>();
         list.add(p);
         user.setPermissions(list);

@@ -2,51 +2,54 @@ package br.com.thing.entity;
 
 import java.util.Date;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
-@Table(name = "schedule")
-@AttributeOverride(name = "id", column = @Column(name = "id"))
-public class Schedule extends BaseEntity<Long>{
+public class Schedule extends BaseEntity<Long> {
+	private static final long serialVersionUID = 201602010251L;
 
-	 private static final long serialVersionUID = 201602010251L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @NotNull
-    @Column(name = "topic", length = 45, nullable = false)
-    private String topic;
+	@NotNull
+	private String topic;
 
-    @NotNull
-    @Column(name = "command", length = 6, nullable = false)
-    private String command;
-    
-    @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy", timezone = "GMT-3")
-    @Temporal(TemporalType.DATE)
-    @Column(name = "date_schedule", nullable = false)
-    private Date dateSchedule;
+	@NotNull
+	private String command;
 
-    @NotNull
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "start_schedule", nullable = false)
-    private Date startSchedule;
-    
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern="dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "end_schedule", nullable = true)
-    private Date endSchedule;
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT-3")
+	@Temporal(TemporalType.DATE)
+	@Column(name = "date_schedule", nullable = false)
+	private Date dateSchedule;
 
-    @NotNull
-    @Column(name = "repeat", nullable = false)
-    private boolean repeat;
-    
-    @Column(name = "interval", nullable = true)
-    private Integer interval;
+	@NotNull
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "start_schedule", nullable = false)
+	private Date startSchedule;
 
-    public Schedule() {
-    }
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy HH:mm:ss", timezone = "GMT-3")
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "end_schedule", nullable = true)
+	private Date endSchedule;
+
+	@NotNull
+	private boolean repeat;
+	private Integer interval;
+
+	public Schedule() {
+	}
 
 	public Schedule(String thingPath, String command, Date startSchedule, Date endSchedule, boolean repeat) {
 		this.topic = thingPath;

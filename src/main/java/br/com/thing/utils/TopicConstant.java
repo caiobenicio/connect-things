@@ -2,7 +2,7 @@ package br.com.thing.utils;
 
 public final class TopicConstant {
 
-	//DISPOSITIVO
+	// DISPOSITIVO
 	
 	public static String DISPOSITIVO_SALA_LUZ = "casa/sala/luz";
 	public static String DISPOSITIVO_SALA_SOM = "casa/sala/som";
@@ -20,11 +20,15 @@ public final class TopicConstant {
 	public static String DISPOSITIVO_GARANGEM_LUZ = "casa/garagem/luz";
 	
 	
-	//SENSOR
+	// SENSOR
 	
 	public static String SENSOR_GARAGEM_PRESENCA = "casa/garagem/presenca";
-	public static String SENSOR_SALA_TEMPERATURA = "casa/sala/temperatura";
+	public static String SENSOR_SALA_TEMPERATURA = "appweb/wemosd1/casa/sala/temperatura";
+	public static String SENSOR_SALA_UMIDADE = "appweb/wemosd1/casa/sala/umidade";
 	
+	// TOPIC BASE MQTT 
+	
+	public static String APPWEB_MQTT = "appweb/mqtt";
 	
 	private TopicConstant() {}
 }
