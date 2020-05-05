@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 <div class="sidebar">
-	
+
 	<div class="sidebar-background"></div>
 	<div class="sidebar-wrapper scrollbar-inner">
 		<div class="sidebar-content">
@@ -84,3 +84,13 @@
 	</div>
 </div>
 <!-- End Sidebar -->
+
+<script>
+		$(document).ready(function () {
+
+		$('#sidebarCollapse').on('click', function () {
+				$('#sidebar').toggleClass('active');
+		});
+
+	});
+</script>

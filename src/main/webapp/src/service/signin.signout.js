@@ -21,7 +21,7 @@ angular.module('homeon')
           var data = response.data;
 
           if (data.name) {
-            $rootScope.authDetails = {name: data.name, email: data.principal.email, authenticated: data.authenticated, 
+            $rootScope.authDetails = {name: data.name, email: data.principal.email, authenticated: data.authenticated,
             		permissions: data.authorities, isGateway: data.principal.isGateway };
             $localStorage.authDetails = $rootScope.authDetails;
             $location.path('/');
@@ -47,6 +47,7 @@ angular.module('homeon')
       $http(requestParams).finally(function success(response) {
         delete $localStorage.authDetails;
         $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
+        $rootScope.statusSidenav = false;
         $location.path("/");
       });
     };
@@ -56,10 +57,10 @@ angular.module('homeon')
         $rootScope.authDetails = $localStorage.authDetails;
       }
     };
-    
+
     serviceFactory.clearStorage = function() {
         delete $localStorage.authDetails;
-        delete $rootScope.authDetails; 
+        delete $rootScope.authDetails;
     };
 
     return serviceFactory;

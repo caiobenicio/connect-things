@@ -35,7 +35,7 @@ public class CallBack implements MqttCallback {
 				new Subscribe(message.toString());
 			} else {
 				
-				ws.receiveMessage(message);
+			//	ws.receiveMessage(message);
 			}
 			System.out.println("Mensagem recebida: " + message.toString() + " || No topico: " + topic.toString());
 		} catch (Exception e) {

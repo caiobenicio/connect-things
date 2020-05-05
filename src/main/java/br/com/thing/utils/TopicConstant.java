@@ -28,7 +28,7 @@ public final class TopicConstant {
 	
 	// TOPIC BASE MQTT 
 	
-	public static String APPWEB_MQTT = "appweb/mqtt";
+	public static String APPWEB_MQTT = "appweb/mqtt/+/+";
 	
 	private TopicConstant() {}
 }

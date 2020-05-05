@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AppMain<connect-things>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "br.com.thing.AppMain",
+            "projectName": "connect-things",
+            "args": ""
+        }
+    ]
+}

@@ -15,19 +15,18 @@ angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies',
     $httpProvider.interceptors.push('httpRequestInterceptor');
   })
   .run(function($rootScope, ngNotify, LoginLogoutSrv, $location) {
-    	
+
 	$rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
     LoginLogoutSrv.verifyAuth();
-    
+
     $rootScope.$on('$locationChangeStart', function () {
 
     	var url = $location.url();
         if($rootScope.authDetails.authenticated == false && url != '/signup' && url != '/confirmCreatedUser'){
             $location.path('/signin');
         }
-    });    
+    });
   }).run(function($rootScope) {
 	    $rootScope.statusMenu = false;
+      $rootScope.statusSidenav = false;
   });
-
-  

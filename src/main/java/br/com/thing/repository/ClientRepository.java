@@ -3,7 +3,9 @@ package br.com.thing.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
+import br.com.thing.dto.GatewayClientDTO;
 import br.com.thing.entity.Client;
 
 public interface ClientRepository extends JpaRepository<Client, Long> {
@@ -13,5 +15,5 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     //public List<UserEntity> findByPermissoes(UserPermissionEntity permissao);
     //public UserEntity findByName(String name);
     public List<Client>findByName(String name);
-
+ 
 }

@@ -1230,7 +1230,7 @@ body {
  color:#bfbfbf!important
 }
 .main-header[data-background-color] .navbar-header .navbar-nav .nav-item .nav-link {
- color:#fff!important
+ color:#7b7878 !important
 }
 .main-header[data-background-color] .navbar-header .navbar-nav .nav-item .nav-link:focus,
 .main-header[data-background-color] .navbar-header .navbar-nav .nav-item .nav-link:hover {
@@ -1255,7 +1255,7 @@ body {
  background:#716aca!important
 }
 .main-header[data-background-color=purple] .navbar-header {
- background:#716aca!important
+ background: white!important
 }
 .main-header[data-background-color=light-blue] {
  background:#36a3f7!important
@@ -3005,7 +3005,7 @@ label.error {
  right:0
 }
 .dropdown-item {
- font-size:13px
+ font-size:15px
 }
 .navbar .navbar-nav .notification {
  position:absolute;

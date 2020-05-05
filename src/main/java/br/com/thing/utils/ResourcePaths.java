@@ -33,6 +33,8 @@ public final class ResourcePaths {
 
     public static final String SCHEDULE_PATH =  PRIVATE_ROOT_PATH + "/schedule";
     
+    public static final String GATEWAY_PATH =  PRIVATE_ROOT_PATH + "/gateway";
+    
 
     ///////////////////////////////////////////////////////////////
     // PUBLIC PATHS
