@@ -16,16 +16,11 @@ public class IpAddress {
 		return instance == null? new IpAddress() : instance;
 	}
 	
-	public String findIp() throws SocketException, UnknownHostException {
+	public void findIpExternal() throws SocketException, UnknownHostException {
 		
         Enumeration<NetworkInterface> nets = NetworkInterface.getNetworkInterfaces();
         for (NetworkInterface netint : Collections.list(nets))
         	displayInterfaceInformation(netint);
-        
-        if(ip.isEmpty())
-        	return "tcp://127.0.1:1883";
-        
-		return ip.replaceFirst("/", "tcp://")+ ":1883";
 	}
 	
 	public static void displayInterfaceInformation(NetworkInterface netint) throws SocketException, UnknownHostException {
@@ -41,8 +36,12 @@ public class IpAddress {
 		}
 	}
 	
-	public String getIpExterno() {
-		return ip.replace("tcp://", "").replace(":1883", "");
+	public String getIpExternal() {
+		return ip.replaceFirst("/", "");
+	}
+	
+	public String getIpWithTcp() {
+		return ip.replaceFirst("/", "tcp://") + ":1883";
 	}
 	
 }

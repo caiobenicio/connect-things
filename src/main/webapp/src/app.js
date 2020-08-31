@@ -3,7 +3,7 @@
 var BASE_URL;
 BASE_URL = window.location.origin + '/api';
 
-angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies', 'ngStorage', 'ngStomp'])
+angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies', 'ngStorage', 'ngStomp', 'ui.bootstrap'])
   .constant('SERVICE_PATH', {
     'ROOT_PATH': BASE_URL,
     'PUBLIC_PATH': BASE_URL + '/public',
@@ -16,6 +16,7 @@ angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies',
   })
   .run(function($rootScope, ngNotify, LoginLogoutSrv, $location) {
 
+	//LoginLogoutSrv.clearStorage();
 	$rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
     LoginLogoutSrv.verifyAuth();
 
@@ -27,6 +28,6 @@ angular.module('homeon', ['checklist-model', 'ngNotify', 'ngRoute', 'ngCookies',
         }
     });
   }).run(function($rootScope) {
-	    $rootScope.statusMenu = false;
-      $rootScope.statusSidenav = false;
+	  $rootScope.navbarMenu = false;
+      $rootScope.sidenavMenu = false;
   });

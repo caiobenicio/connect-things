@@ -462,7 +462,7 @@ body {
  top:0;
  bottom:0;
  left:0;
- width:240px;
+ //width:240px;
  padding-top:57px;
  display:block;
  z-index:1000;
@@ -1383,7 +1383,7 @@ body {
  border-width:3px!important
 }
 .avatar-lg .rounded {
- border-radius:8px!important
+ border-radius:34px!important
 }
 .avatar-lg .avatar-title {
  font-size:24px
@@ -9831,4 +9831,13 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:last-child 
   width:100%!important;
   padding:60px 15px!important
  }
+}
+
+#circulo {
+width: 15px;
+height: 15px;
+background-color: green;
+margin: 2px;
+margin-left: 11px;
+border-radius: 50%;
 }

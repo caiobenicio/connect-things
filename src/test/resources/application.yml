@@ -10,7 +10,7 @@ spring:
 # SERVER
 server:
   contextPath: /
-  port: 8080
+  port: 8081
   
 # SERVER MQTT   
 broker:

@@ -35,6 +35,10 @@ public final class ResourcePaths {
     
     public static final String GATEWAY_PATH =  PRIVATE_ROOT_PATH + "/gateway";
     
+    public static final String PROFILE_PATH =  PRIVATE_ROOT_PATH + "/profile";
+    
+    public static final String TAB_PATH =  PRIVATE_ROOT_PATH + "/tab";
+    
 
     ///////////////////////////////////////////////////////////////
     // PUBLIC PATHS

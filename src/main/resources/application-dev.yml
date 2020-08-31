@@ -10,10 +10,17 @@ logging:
 # DATABASE
 spring:
   datasource:
+    type: com.zaxxer.hikari.HikariDataSource
     url: jdbc:postgresql://localhost:5432/postgres
-    username: openerp
-    password: postgres
+    username: postgres
+    password: 9090
     driverClassName: org.postgresql.Driver
+    hikari:
+        connection-test-query: SELECT 1 FROM DUAL
+        pool-name: homeon
+        minimum-idle: 1
+        idle-timeout: 10000
+        maximum-pool-size: 5
   devtools: 
     restart: 
       trigger-file: .reloadtrigger
@@ -38,5 +45,4 @@ spring:
 security:
   password:
     secret: secret
-
 

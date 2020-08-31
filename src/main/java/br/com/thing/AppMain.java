@@ -24,7 +24,7 @@ public class AppMain {
         String applicationName = app.getEnvironment().getProperty("spring.application.name");
         String contextPath = app.getEnvironment().getProperty("server.contextPath");
         String port = app.getEnvironment().getProperty("server.port");
-        String hostAddress = IpAddress.getinstance().getIpExterno();
+        String hostAddress = IpAddress.getinstance().getIpExternal();
         
         logger.info("\n|------------------------------------------------------------" +
                 "\n| Application '" + applicationName + "' is running! Access URLs:" +

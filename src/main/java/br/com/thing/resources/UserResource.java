@@ -17,7 +17,6 @@ public class UserResource extends GenericService<Client, Long> {
     
     public Client findByEmail(Client user) {
 		return user;
-    	
     }
 
     @Override

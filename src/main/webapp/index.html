@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Dashboard</title>
 
-<link rel="icon" href="./assets/img/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="./assets/ico/conn.jpg" type="image/x-icon" />
 
 <meta
 	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
@@ -13,12 +13,13 @@
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
 	<link rel="stylesheet" href="/assets/css/style.css">
+	<link rel="stylesheet" href="/src/home/home.css">
 
 	<script src="/assets/js/jquery.3.2.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
-	<script src="./assets/js/bootstrap-toggle.min.js"></script>
-	<script src="./assets/js/webfont.min.js"></script>
+	<script src="/assets/js/bootstrap-toggle.min.js"></script>
+	<script src="/assets/js/webfont.min.js"></script>
 	<script>
 		WebFont.load({
 			google: {"families":["Open+Sans:300,400,600,700"]},
@@ -32,11 +33,20 @@
 </head>
 <body ng-controller="mainController">
 
-	<!-- Side Nav -->
-	<div ng-include="'src/fragments/navbar.html'" ng-if="statusMenu" style="display:none"></div>
-	<div class="main" style="padding-top: 4rem !important">
-		<div id="sidebar" ng-include="'src/fragments/sidenav.html'" ng-if="statusMenu"></div>
-		<ng-view> </ng-view>
+	<div class="main" >
+	
+		<div class="row">
+			<div ng-include="'src/fragments/navbar.html'" ng-if="navbarMenu" style="height: 57px; background-color: red"></div>
+		</div>
+		
+		<div class="row">	
+			<div class="col-2" ng-if="sidenavMenu">
+				<div id="sidebar" ng-include="'src/fragments/sidenav.html'" ></div>					
+			</div>
+			<div class="col" style="margin-left: .5rem">
+				<div ng-view></div>
+			</div>
+		</div>
 	</div>
 
 	<!-- dependecias:js -->
@@ -55,6 +65,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/ng-stomp@0.5.0/src/ng-stomp.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 	<!-- inject:js -->
 	<script src="src/app.js"></script>
 	<script src="src/main.js"></script>
@@ -65,9 +76,10 @@
 	<script src="src/service/websocket.js"></script>
 	<script src="src/service/interceptor.js"></script>
 	<script src="src/service/httpRequest.js"></script>
-
 	<script src="src/utils/routers.js"></script>
 	<script src="src/utils/filter.js"></script>
+	
+	<script src="src/profile/profile.js"></script>
 	<!-- endinject -->
 
 	<style>
@@ -98,6 +110,9 @@
 	    transition: all 0.3s;
 	}
 
+#sidebarMyaccount, #sidebar{
+	display: block;
+}
 
 	</style>
 	<script>

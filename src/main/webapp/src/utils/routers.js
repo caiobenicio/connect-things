@@ -12,6 +12,9 @@ angular.module('homeon').config(function($routeProvider) {
 		controller : 'signupCtrl'
 	}).when('/confirmCreatedUser', {
 		templateUrl : 'src/signup/confirmCreatedUser.html'
+	}).when('/profile', {
+		templateUrl : 'src/profile/profile.html',
+		controller : 'profileCtrl'
 	}).otherwise({
 		redirectTo : '/'
 	});

@@ -3,7 +3,8 @@
 angular.module('homeon')
   .controller('homeCtrl', function($scope, $rootScope, WebSocketService, RestSrv){
 	  
-	  $rootScope.statusMenu = true;
+	  $rootScope.navbarMenu = true;
+      $rootScope.sidenavMenu = true;
 	  
 //	  var isGateway = $rootScope.authDetails.isGateway;
 //	  if(isGateway) {

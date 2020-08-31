@@ -13,6 +13,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
@@ -67,6 +68,8 @@ public class AppContext {
 	@PostConstruct
 	public void onStartup() throws Exception {
 
+		IpAddress.getinstance().findIpExternal();
+		
 		Permission p1 = new Permission(1L, "ROLE_ADMIN");
 		Permission p2 = new Permission(2L, "ROLE_USER");
 		List<Permission> permissions = Arrays.asList(p1, p2);
@@ -78,7 +81,7 @@ public class AppContext {
 		c.setPermissions(list);
 		clientRepository.save(c);
 
-		InitMqtt.getinstance().connect(IpAddress.getinstance().findIp());
+		InitMqtt.getinstance().connect(IpAddress.getinstance().getIpWithTcp());
 
 		scheduleRepository.buscarAgendasAbertas().stream().forEach(a -> {
 			agendador.agendamento(a);
@@ -101,14 +104,16 @@ public class AppContext {
 		return new ApiInfoBuilder().title(appName).description(appDescription).version(appVersion).build();
 	}
 
-	@Bean(name = "applicationProperty")
-	public ApplicationProperty getApplicationProperty() {
-		return new ApplicationProperty();
-	}
-
-	@Bean(name = "passwordEncoder")
-	public StandardPasswordEncoder getStandardPasswordEncoder() {
-		return new StandardPasswordEncoder(getApplicationProperty().getSecret());
-	}
+//	@Bean(name = "applicationProperty")
+//	@Primary
+//	public ApplicationProperty getApplicationProperty() {
+//		return new ApplicationProperty();
+//	}
+//
+//	@SuppressWarnings("deprecation")
+//	@Bean(name = "passwordEncoder")
+//	public StandardPasswordEncoder getStandardPasswordEncoder() {
+//		return new StandardPasswordEncoder(getApplicationProperty().getSecret());
+//	}
 
 }

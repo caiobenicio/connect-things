@@ -15,7 +15,6 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 public class Schedule extends BaseEntity<Long> {
-	private static final long serialVersionUID = 201602010251L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

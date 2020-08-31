@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -30,6 +31,7 @@ import org.springframework.web.util.WebUtils;
 import br.com.thing.utils.ResourcePaths;
 
 @Configuration
+@EnableAutoConfiguration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -51,18 +53,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and().authorizeRequests()
+        http.httpBasic().and()
+        	.authorizeRequests()
+//				//.antMatchers("/ws/**").permitAll()
+
 				.antMatchers("/assets/angularJs/**", "/assets/fonts/**", "/assets/img/**", "/assets/css/**", 
 						     "/assets/js/plugin/webfont/**", "/assets/js/core/**", "/assets/js/**",
-						     "/assets/js/plugin/jquery-ui-1.12.1.custom/**", "/src/**").permitAll()
-				//.antMatchers("/ws/**").permitAll()
+						     "/assets/js/plugin/jquery-ui-1.12.1.custom/**", "/assets/ico/**",
+						     "/src/**").permitAll()
+				
 				.antMatchers("/").permitAll()
 				.antMatchers("index.html").permitAll()
+				// Global Authority to OPTIONS (permit all).
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-				.antMatchers(ResourcePaths.PUBLIC_ROOT_PATH + ResourcePaths.ALL).permitAll()
+        		.antMatchers(ResourcePaths.PUBLIC_ROOT_PATH + ResourcePaths.ALL).permitAll()
+        		
+        		// profile Authorities
+        		.antMatchers(HttpMethod.GET, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+        		.antMatchers(HttpMethod.POST, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+        		.antMatchers(HttpMethod.PUT, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+        		.antMatchers(HttpMethod.DELETE, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
 
-                // Permission Authorities.
-                .antMatchers(HttpMethod.GET, ResourcePaths.PERMISSION_PATH).hasAnyAuthority(AUTH_ADMIN).anyRequest()
+        		// profile tab/**
+        		.antMatchers(HttpMethod.GET, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+        		.antMatchers(HttpMethod.POST, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+        		.antMatchers(HttpMethod.PUT, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+        		.antMatchers(HttpMethod.DELETE, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+        		
+        		.anyRequest()
             	.fullyAuthenticated().and()
 				// Logout configuration.
 				.logout().logoutRequestMatcher(new AntPathRequestMatcher(ResourcePaths.LOGOUT_PATH))

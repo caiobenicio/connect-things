@@ -10,7 +10,6 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-
 public class LoginDetailBean extends BaseBean implements UserDetails {
 
     private static final long serialVersionUID = 1L;

@@ -41,6 +41,7 @@ public class SignupResource extends GenericService<Client, Long> {
         list.add(p);
         user.setPermissions(list);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setIsGateway(true);
 
         return super.insert(user); 
     }
