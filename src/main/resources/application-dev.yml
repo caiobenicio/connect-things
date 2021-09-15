@@ -10,22 +10,15 @@ logging:
 # DATABASE
 spring:
   datasource:
-    type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/postgres
-    username: postgres
-    password: 9090
+    url: jdbc:postgresql://10.1.8.188:5432/postgres
+    username: web_feeder
+    password: cedro2016
     driverClassName: org.postgresql.Driver
-    hikari:
-        connection-test-query: SELECT 1 FROM DUAL
-        pool-name: homeon
-        minimum-idle: 1
-        idle-timeout: 10000
-        maximum-pool-size: 5
   devtools: 
     restart: 
       trigger-file: .reloadtrigger
   jpa:
-    show-sql: true
+    show-sql: false
     hibernate:
       ddl-auto: create-drop
     properties: 
@@ -43,6 +36,6 @@ spring:
 
 # SECURITY
 security:
-  password:
+  password: 
     secret: secret
 

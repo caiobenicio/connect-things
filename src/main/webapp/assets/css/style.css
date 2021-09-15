@@ -362,7 +362,7 @@ body {
  float:left;
  width:240px;
  height:57px;
- line-height:55px;
+/*  line-height:55px; */
  color:#333;
  z-index:1001;
  font-size:17px;
@@ -6254,8 +6254,8 @@ label.error {
 *
 * Copyright (c) 2018 Daniel Eden
 */.animated {
- -webkit-animation-duration:1s;
- animation-duration:1s;
+ -webkit-animation-duration: .1s;
+ animation-duration: .1s;
  -webkit-animation-fill-mode:both;
  animation-fill-mode:both
 }

@@ -1,12 +1,17 @@
 'use strict'
 
 angular.module('homeon').controller('profileCtrl',
-		function($scope, $rootScope, WebSocketService, RestSrv) {
+		function($scope, $rootScope, WebSocketService, RestSrv, SERVICE_PATH) {
+
+			var id = $rootScope.authDetails.id;
 
 			$rootScope.navbarMenu = true;
 			$rootScope.sidenavMenu = true;
 			$scope.tab = 1;
-			//var findConvenioMedicoUrl = SERVICE_PATH.PRIVATE_PATH + "/convenio/findByMedico/" + $scope.medico.id;
+			$scope.user = {};
+			$scope.userCopy = {};
+
+			var userUrl = SERVICE_PATH.PRIVATE_PATH + '/user';
 
 			$scope.setTab = function(newTab) {
 				$scope.tab = newTab;
@@ -16,8 +21,29 @@ angular.module('homeon').controller('profileCtrl',
 				return $scope.tab === tabNum;
 			};
 
-//			RestSrv.find("", function(status, data) {
-//				
-//				
-//			});
+			if (id != "" && id != undefined) {
+				var userFindId = userUrl + '/findById/' + id;
+				RestSrv.find(userFindId, function(status, data) {
+					$scope.user = data.data;
+					$scope.userCopy = angular.copy($scope.user);
+				});
+			}
+
+			$scope.cancelUser = function() {
+				$scope.user = angular.copy($scope.userCopy);
+			}
+			
+		    $scope.deleteUser = function(user) {
+		        RestSrv.delete(userUrl, user, function() {
+
+		        });
+		      };
+
+		      $scope.saveUser = function(user) {
+		        if (user.id) {
+		          RestSrv.edit(userUrl, user, function() {
+		            delete user.password;
+		          });
+		        }
+		      };
 		});

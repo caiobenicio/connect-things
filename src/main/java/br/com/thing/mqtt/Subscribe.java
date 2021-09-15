@@ -7,47 +7,31 @@ import br.com.thing.utils.TopicConstant;
 
 public class Subscribe {
 
-	private MqttClient myClient = null;
+	private MqttClient myClient;
 	private int subQoS = 0;
 	private String topic;
 	
 	public Subscribe() {
-		super();
 	}
 	
 	public Subscribe(String topic) throws MqttException {
-		super();
 		this.topic = topic;
 		
-		myClient = InitMqtt.getinstance().getMyClient();
+		myClient = null;
 		myClient.subscribe(topic, 1);
 		System.out.println(topic);
 	}
 
-
-	public void subscribeTopic(String topic) {
-		
-		try {		
-			
-			myClient = InitMqtt.getinstance().getMyClient();
-			myClient.subscribe(topic, 1);
-			
-		}catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public void subscribeTopic() {
+	public void subscribeTopic(String clientId) {
 
 		try {
 
-			myClient = InitMqtt.getinstance().getMyClient();
-
+			myClient = MqttConnection.getInstance().getMyClient(clientId);
+			String topicBase = TopicConstant.APPWEB_MQTT.replace("?", clientId);
+			
 			// topic base para receber o topico que a placa ira disponibilizar
-			myClient.subscribe(TopicConstant.APPWEB_MQTT);
-			
-			
-			
+			myClient.subscribe(topicBase, 1);
+
 			//myClient.subscribe(TopicConstant.SENSOR_SALA_TEMPERATURA, subQoS);
 		//	myClient.subscribe(TopicConstant.SENSOR_GARAGEM_PRESENCA, 1);
 //			myClient.subscribe(TopicConstant.DISPOSITIVO_SALA_TV, subQoS);
@@ -57,7 +41,7 @@ public class Subscribe {
 //			myClient.subscribe(TopicConstant.DISPOSITIVO_VARANDA_LUZ, subQoS);
 //			myClient.subscribe(TopicConstant.DISPOSITIVO_GARANGEM_LUZ, subQoS);
 
-			System.out.println("Topicos subscribe: " + TopicConstant.APPWEB_MQTT);
+			System.out.println("Topicos subscribe: " + topicBase);
 		//	System.out.println("Topicos subscribe:" + TopicConstant.SENSOR_SALA_TEMPERATURA);
 		} catch (Exception e) {
 			e.printStackTrace();

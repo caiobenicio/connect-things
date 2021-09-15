@@ -1,0 +1,12 @@
+{
+    "java.project.referencedLibraries": {
+        "include": [
+            "lib/**/*.jar",
+            "c:\\Users\\caio.silva\\Documents\\postgresql-9.4.1212.jar"
+        ],
+        "exclude": [
+            "c:\\Users\\caio.silva\\Git\\connect-things\\src\\main\\resources\\postgresql-9.4.1212.jar"
+        ]
+    },
+    "java.configuration.updateBuildConfiguration": "interactive"
+}

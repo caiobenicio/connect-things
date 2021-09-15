@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeon')
-  .service('HttpRequestSrv', function($q, $timeout, $http, ngNotify){
+  .service('HttpRequestSrv', function($q, $timeout, $http, $location){
     return function(url, method, data, callback){
       var requestParams = {
         method: method,
@@ -10,9 +10,19 @@ angular.module('homeon')
         data: data
       };
       $http(requestParams).then(
-        function successCallback(response){
-          callback && callback(response.data);
-        });
+    	        function successCallback(response) {
+    	            callback('ok',response.data);
+    	        },
+    	        function errorCallback(response) {
+    	            if(response.data !== null){
+
+    	            	console.log(response.data)
+    	            	callback('error',response.data);
+    	            	$location.path('/');
+    	            }
+    	        });      
+
+      
     };
   })
   .service('RestSrv', function(HttpRequestSrv){
@@ -21,6 +31,10 @@ angular.module('homeon')
     // Find all data.
     restFactory.find = function(url, callback){
       HttpRequestSrv(url, 'GET', {}, callback);
+    };
+    
+    restFactory.findById = function(url, data, callback) {
+        new HttpRequestSrv(url, 'GET', {}, callback);
     };
     
     // Aadd a new data.

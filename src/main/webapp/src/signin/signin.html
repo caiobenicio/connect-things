@@ -1,9 +1,10 @@
 <div class="login">
 	<div class="container">
-		<div class="wrapper wrapper-login">
+		<div class="wrapper wrapper-login"">
 			<div class="container container-login animated fadeIn">
 				<h3 class="text-center" style="padding-bottom: 1em;">Acessar sua conta</h3>
-				<form class="login-form" ng-submit="signin(email, password)">
+				
+				<form method="post" class="login-form" ng-submit="signin(email, password)">
 					<div class="form-group form-floating-label">
 						<input ng-model="email" id="email" name="email" type="text" class="form-control input-border-bottom"
 						 required>
@@ -27,19 +28,21 @@
 						<a href="#" class="link float-right" style="padding-left: 5rem; font-size: small;">Esqueceu a senha ?</a>
 					</div>
 					<div class="form-action mb-3">
-						<button type="submit" href="#" class="btn btn-primary btn-rounded btn-login">Entrar</button>
-					</div>
-					<div class="login-account">
-						<span class="msg">Nao possui uma conta ?</span>
-						<button ng-click="signup()" id="show-signup" class="btn btn-primary btn-border btn-round btn-xs">Criar Conta</button>
+						<button type="submit" class="btn btn-primary btn-rounded btn-login">Entrar</button>
 					</div>
 				</form>
+				
+				<div class="login-account">
+					<span class="msg">Nao possui uma conta ?</span>
+					<button ng-click="addUser($event,null)" id="show-signup" class="btn btn-primary btn-border btn-round btn-xs">Criar Conta</button>
+				</div>
 			</div>	
 		</div>
 	</div>
 </div>
 
 <script>
+
 	function showPassword() {
 	  var x = document.getElementById("showPassword");
 	  if (x.type === "password") {

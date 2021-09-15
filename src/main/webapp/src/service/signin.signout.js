@@ -1,4 +1,4 @@
-'use strict';
+	'use strict';
 
 angular.module('homeon')
   .service('LoginLogoutSrv', function($http, $cookies, $rootScope, $location, $localStorage, ngNotify, SERVICE_PATH) {
@@ -22,17 +22,18 @@ angular.module('homeon')
 
           if (data.name) {
             $rootScope.authDetails = {name: data.name, email: data.principal.email, authenticated: data.authenticated,
-            		permissions: data.authorities, isGateway: data.principal.isGateway };
+            							permissions: data.authorities, id: data.principal.id };
+            ngNotify.set('Logado!.', { type: 'success', duration: 5000 });
             $localStorage.authDetails = $rootScope.authDetails;
-            $location.path('/');
+            $location.path('/home');
           } else {
             $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
-            ngNotify.set('Email or password that you have entered do not match our records.', { type: 'failure', duration: 5000 });
+            ngNotify.set('Emai ou senha não encontrado.', { type: 'error', duration: 5000 });
           }
         },
         function failure(response) {
           $rootScope.authDetails = { name: '', authenticated: false, permissions: []};
-          ngNotify.set('Email or password that you have entered do not match our records.', { type: 'failure', duration: 5000 });
+           ngNotify.set('Emai ou senha não encontrado.', { type: 'error', duration: 5000 });
         }
       );
     };
@@ -47,7 +48,7 @@ angular.module('homeon')
       $http(requestParams).finally(function success(response) {
         delete $localStorage.authDetails;
         $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
-        $rootScope.statusSidenav = false;
+        $rootScope.statusMenu = false;
         $location.path("/");
       });
     };

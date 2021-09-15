@@ -2,57 +2,74 @@
 <html lang="pt-br" ng-app="homeon">
 <head>
 <meta charset="UTF-8">
-<title>Dashboard</title>
-
+<title>Home On</title>
 <link rel="icon" href="./assets/ico/conn.jpg" type="image/x-icon" />
-
 <meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
-	name='viewport' />
+	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" >
-	<link rel="stylesheet" href="/assets/css/style.css">
-	<link rel="stylesheet" href="/src/home/home.css">
+<!-- Bootstrap -->
+<script src="js/jquery.3.2.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+<script src="js/bootstrap-toggle.min.js"></script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/src/home/home.css">
+<link rel="stylesheet" href="/css/ng-notify.min.css">
+<link rel="stylesheet" href="css/angular-material.css">
+<link rel="stylesheet" href="css/angular-material-icons.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
-	<script src="/assets/js/jquery.3.2.1.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" ></script>
-	<script src="/assets/js/bootstrap-toggle.min.js"></script>
-	<script src="/assets/js/webfont.min.js"></script>
-	<script>
-		WebFont.load({
-			google: {"families":["Open+Sans:300,400,600,700"]},
-			custom: {"families":["Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands"], urls: ['../assets/css/fonts.css']},
-			active: function() {
-				sessionStorage.fonts = true;
-			}
-		});
-	</script>
-
+<!-- <script>
+	WebFont.load({
+		google : { "families" : [ "Open+Sans:300,400,600,700" ]},
+		custom : { "families" : [ "Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands" ],
+			urls : [ '../css/fonts.css' ]
+		},
+		active : function() {
+			sessionStorage.fonts = true;
+		}
+	});
+</script> -->
 </head>
-<body ng-controller="mainController">
 
-	<div class="main" >
+<body layout="row" ng-cloak ng-controller="mainController">
+
+	<!-- Side Nav -->
+	<md-sidenav md-component-id = "left" class = "md-sidenav-left" ng-include="'src/fragments/sidenav.html'" ng-if="statusMenu" layout="vertical" ></md-sidenav>
 	
-		<div class="row">
-			<div ng-include="'src/fragments/navbar.html'" ng-if="navbarMenu" style="height: 57px; background-color: red"></div>
-		</div>
-		
-		<div class="row">	
-			<div class="col-2" ng-if="sidenavMenu">
-				<div id="sidebar" ng-include="'src/fragments/sidenav.html'" ></div>					
-			</div>
-			<div class="col" style="margin-left: .5rem">
-				<div ng-view></div>
-			</div>
-		</div>
+	<div layout="column" flex id="wrapper">
+	
+	    <md-toolbar ng-include="'src/fragments/toolbar-header.html'" ng-if="statusMenu"></md-toolbar>
+	
+	    <md-content id="content" class="page-container" ng-view flex  md-scroll-y></md-content>
 	</div>
 
-	<!-- dependecias:js -->
-	<script src="assets/angularJs/angular.min.js"></script>
-	<script src="assets/angularJs/angular-route.min.js"></script>
-	<script src="assets/angularJs/angular-cookies.min.js"></script>
+<!-- 	<div class="main"> -->
+<!-- 		<div class="row"> -->
+<!-- 			<div ng-include="'src/fragments/navbar.html'" ng-if="navbarMenu" -->
+<!-- 				style="height: 57px; background-color: red"></div> -->
+<!-- 		</div> -->
+
+<!-- 		<div class="row"> -->
+<!-- 			<div class="col-2" ng-if="sidenavMenu"> -->
+<!-- 				<div id="sidebar" ng-include="'src/fragments/sidenav.html'"></div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col" style="margin-left: .5rem"> -->
+<!-- 				<md-content ng-view flex md-scroll-y></md-content> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
+<!-- 	</div> -->
+	
+    <!-- Angular Material Dependencies -->
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-aria.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-messages.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>	
+    
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-cookies.min.js"></script>
 	<script src="assets/angularJs/ngStorage.min.js"></script>
 	<script src="assets/angularJs/skel.min.js"></script>
 	<script src="assets/angularJs/util.js"></script>
@@ -60,69 +77,65 @@
 	<script src="assets/angularJs/ie/respond.min.js"></script>
 	<script src="assets/angularJs/checklist-model.js"></script>
 	<script src="assets/angularJs/ng-notify.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
+	<script src="js/angular-material-icons.min.js"></script>
 
 	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/ng-stomp@0.5.0/src/ng-stomp.min.js"></script>
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 	<!-- inject:js -->
 	<script src="src/app.js"></script>
 	<script src="src/main.js"></script>
 	<script src="src/signin/signin.js"></script>
-	<script src="src/signup/signup.js"></script>
 	<script src="src/home/home.js"></script>
 	<script src="src/service/signin.signout.js"></script>
+	<script src="src/user/dialog/addUserDialogController.js"></script>
+	<script src="src/user/dialog/editUserDialogController.js"></script>
+	<script src="src/account/dialog/accountConfigDialogController.js"></script>
+	
+	<script src="src/profile/profile.js"></script>
+	
 	<script src="src/service/websocket.js"></script>
 	<script src="src/service/interceptor.js"></script>
 	<script src="src/service/httpRequest.js"></script>
 	<script src="src/utils/routers.js"></script>
 	<script src="src/utils/filter.js"></script>
-	
-	<script src="src/profile/profile.js"></script>
+	<script src="src/utils/theme_icons.js"></script>
+
 	<!-- endinject -->
 
-	<style>
-
-	body {
-	    font-family: 'Poppins', sans-serif;
-	    background: #fafafa;
-	}
-
-	p {
-	    font-family: 'Poppins', sans-serif;
-	    font-size: 1.1em;
-	    font-weight: 300;
-	    line-height: 1.7em;
-	    color: #999;
-	}
-
-	a, a:hover, a:focus {
-	    color: inherit;
-	    text-decoration: none;
-	    transition: all 0.3s;
-	}
-
-	#sidebar {
-	    /* don't forget to add all the previously mentioned styles here too */
-	    background: #7386D5;
-	    color: #fff;
-	    transition: all 0.3s;
-	}
-
-#sidebarMyaccount, #sidebar{
-	display: block;
+<style>
+body {
+	font-family: 'Poppins', sans-serif;
+	background: #fafafa;
 }
 
-	</style>
-	<script>
-			$(document).ready(function () {
+p {
+	font-family: 'Poppins', sans-serif;
+	font-size: 1.1em;
+	font-weight: 300;
+	line-height: 1.7em;
+	color: #999;
+}
 
-			$('#sidebarCollapse').on('click', function () {
-					$('#sidebar').toggleClass('active');
-			});
+a, a:hover, a:focus {
+	color: inherit;
+	text-decoration: none;
+	transition: all 0.3s;
+}
 
-		});
-	</script>
+#sidebar {
+	/* don't forget to add all the previously mentioned styles here too */
+	background: #7386D5;
+	color: #fff;
+	transition: all 0.3s;
+}
+
+#sidebarMyaccount, #sidebar {
+	display: block;
+}
+</style>
+
 </body>
 </html>

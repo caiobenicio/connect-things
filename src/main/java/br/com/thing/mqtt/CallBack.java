@@ -4,7 +4,6 @@ import org.eclipse.paho.client.mqttv3.IMqttDeliveryToken;
 import org.eclipse.paho.client.mqttv3.MqttCallback;
 import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.springframework.messaging.Message;
 
 import br.com.thing.utils.TopicConstant;
 import br.com.thing.websocket.WebSocketSenderService;
@@ -30,14 +29,13 @@ public class CallBack implements MqttCallback {
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		try {
 			
-			if(topic.equals(TopicConstant.APPWEB_MQTT)) {
-				
-				new Subscribe(message.toString());
+			System.out.println(topic.split("/")[1]);
+			if(topic.split("/")[1].equals("clientId")) {
 			} else {
 				
 			//	ws.receiveMessage(message);
+				System.out.println("Mensagem recebida: " + message.toString() + " || No topico: " + topic.toString());
 			}
-			System.out.println("Mensagem recebida: " + message.toString() + " || No topico: " + topic.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -47,7 +45,7 @@ public class CallBack implements MqttCallback {
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken token) {
 		try {
-			System.out.println("Recebido da instancia: " + instanceData + "");
+			System.out.println("Recebido da instancia: " + instanceData + ""+"\n mensagem:"+ token.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

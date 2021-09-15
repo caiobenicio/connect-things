@@ -2,16 +2,19 @@ package br.com.thing.security;
 
 import java.security.Principal;
 
+import javax.transaction.Transactional;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.thing.utils.ResourceBase;
-import br.com.thing.utils.ResourcePaths;
+import br.com.thing.utils.ServiceMap;
+import br.com.thing.utils.ServicePaths;
 
 @RestController
-@RequestMapping(ResourcePaths.LOGIN_PATH)
-public class SecurityService implements ResourceBase {
+@RequestMapping(ServicePaths.LOGIN_PATH)
+@Transactional
+public class SecurityService implements ServiceMap {
 
     @RequestMapping(method = { RequestMethod.GET })
     public Principal user(Principal user) {

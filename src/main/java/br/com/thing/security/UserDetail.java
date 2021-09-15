@@ -21,15 +21,20 @@ public class UserDetail implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Client user = this.userRepository.findByEmail(email);
 
-        if (user == null) {
+        if (user == null) 
             throw new UsernameNotFoundException("User with email \"" + email + "\" was not found");
-        }
 
-        LoginDetailBean login = new LoginDetailBean(user.getName(), user.getEmail(), user.getPassword(), user.isGateway());
+        LoginDetailBean login = new LoginDetailBean(user.getId(), user.getName(), user.getEmail(), user.getPassword());
 
         for (Permission permission : user.getPermissions()) {
             login.addRole(permission.getRole());
         }
+        
+//        if (user.getHomes()!= null && !user.getHomes().isEmpty()) {        	
+//        	for (Home home : user.getHomes()) {
+//        		login.set(home.getName());
+//        	}
+//        }
         
         return login;
     }

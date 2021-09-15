@@ -1,17 +1,14 @@
 'use strict';
 
 angular.module('homeon').config(function($routeProvider) {
-	$routeProvider.when('/', {
-		templateUrl : 'src/home/home.html',
-		controller : 'homeCtrl'
-	}).when('/signin', {
+	$routeProvider
+
+	.when('/', {
 		templateUrl : 'src/signin/signin.html',
 		controller : 'signinCtrl'
-	}).when('/signup', {
-		templateUrl : 'src/signup/signup.html',
-		controller : 'signupCtrl'
-	}).when('/confirmCreatedUser', {
-		templateUrl : 'src/signup/confirmCreatedUser.html'
+	}).when('/home', {
+		templateUrl : 'src/home/home.html',
+		controller : 'homeCtrl'
 	}).when('/profile', {
 		templateUrl : 'src/profile/profile.html',
 		controller : 'profileCtrl'

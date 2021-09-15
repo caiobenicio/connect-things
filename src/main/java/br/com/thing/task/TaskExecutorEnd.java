@@ -19,6 +19,6 @@ public class TaskExecutorEnd extends TimerTask {
 	public void run() {
 
 		Publisher p = new Publisher();
-		p.publishOnTopic(schedule.getTopic(), command);
+		p.publishOnTopic("clientWeb", schedule.getTopic(), command);
 	}
 }

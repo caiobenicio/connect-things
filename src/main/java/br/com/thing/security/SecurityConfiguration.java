@@ -28,7 +28,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
-import br.com.thing.utils.ResourcePaths;
+import br.com.thing.utils.ServicePaths;
 
 @Configuration
 @EnableAutoConfiguration
@@ -36,61 +36,68 @@ import br.com.thing.utils.ResourcePaths;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    public static final String AUTH_USER = "USER";
+	public static final String AUTH_USER = "ROLE_USER";
 
-    public static final String AUTH_ADMIN = "ADMIN";
+	public static final String AUTH_ADMIN = "ROLE_ADMIN";
+	
+	public static final String AUTH_SHADOW = "ROLE_SHADOW";
 
-    @Autowired
-    private UserDetailsService userService;
+	@Autowired
+	private UserDetailsService userService;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-    
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(this.userService).passwordEncoder(this.passwordEncoder);
-    }
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.httpBasic().and()
-        	.authorizeRequests()
+	@Override
+	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		auth.userDetailsService(this.userService).passwordEncoder(this.passwordEncoder);
+	}
+
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		
+		http.httpBasic().and().authorizeRequests()
+//		http.csrf().disable().httpBasic().and().authorizeRequests()
 //				//.antMatchers("/ws/**").permitAll()
 
-				.antMatchers("/assets/angularJs/**", "/assets/fonts/**", "/assets/img/**", "/assets/css/**", 
-						     "/assets/js/plugin/webfont/**", "/assets/js/core/**", "/assets/js/**",
-						     "/assets/js/plugin/jquery-ui-1.12.1.custom/**", "/assets/ico/**",
-						     "/src/**").permitAll()
-				
+				.antMatchers("/assets/angularJs/**", "/assets/fonts/**", "/assets/img/**", "/assets/css/**",
+						"/assets/js/plugin/webfont/**", "/assets/js/core/**", "/assets/js/**",
+						"/assets/js/plugin/jquery-ui-1.12.1.custom/**", "/assets/ico/**", "/src/**").permitAll()
+
+				.antMatchers("/css/**", "/js/**").permitAll()
 				.antMatchers("/").permitAll()
 				.antMatchers("index.html").permitAll()
 				// Global Authority to OPTIONS (permit all).
 				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-        		.antMatchers(ResourcePaths.PUBLIC_ROOT_PATH + ResourcePaths.ALL).permitAll()
-        		
-        		// profile Authorities
-        		.antMatchers(HttpMethod.GET, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
-        		.antMatchers(HttpMethod.POST, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
-        		.antMatchers(HttpMethod.PUT, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
-        		.antMatchers(HttpMethod.DELETE, ResourcePaths.PROFILE_PATH + ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
+				.antMatchers(ServicePaths.PUBLIC_ROOT_PATH + ServicePaths.ALL).permitAll()
 
-        		// profile tab/**
-        		.antMatchers(HttpMethod.GET, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
-        		.antMatchers(HttpMethod.POST, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
-        		.antMatchers(HttpMethod.PUT, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
-        		.antMatchers(HttpMethod.DELETE, ResourcePaths.PROFILE_PATH + ResourcePaths.TAB_PATH+ ResourcePaths.ALL).hasAnyAuthority(AUTH_ADMIN,AUTH_USER)
-        		
-        		.anyRequest()
-            	.fullyAuthenticated().and()
+				// profile Authorities
+				.antMatchers(HttpMethod.GET, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
+				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
+				.antMatchers(HttpMethod.POST, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
+				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
+				.antMatchers(HttpMethod.PUT, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
+				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
+				.antMatchers(HttpMethod.DELETE, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
+				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
+
+				// user/**
+				.antMatchers(HttpMethod.GET, ServicePaths.USER_PATH).hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
+				.antMatchers(HttpMethod.GET, ServicePaths.USER_PATH+"findById/*").hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
+				.antMatchers(HttpMethod.PUT, ServicePaths.USER_PATH).permitAll()
+				.antMatchers(HttpMethod.DELETE, ServicePaths.USER_PATH).permitAll()
+				.antMatchers(HttpMethod.POST, ServicePaths.USER_PATH).permitAll()
+
+				.anyRequest().fullyAuthenticated().and()
 				// Logout configuration.
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher(ResourcePaths.LOGOUT_PATH))
+				.logout().logoutRequestMatcher(new AntPathRequestMatcher(ServicePaths.LOGOUT_PATH))				
 				.logoutSuccessHandler(new HeaderHandler()).and()
 				// CSRF configuration.
 				.csrf().csrfTokenRepository(csrfTokenRepository()).and()
-				//.csrf().disable()
+				// .csrf().disable()
 				.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
-    }
-    
+	}
+
 	private CsrfTokenRepository csrfTokenRepository() {
 		HttpSessionCsrfTokenRepository repository = new HttpSessionCsrfTokenRepository();
 		repository.setHeaderName("X-XSRF-TOKEN");
@@ -101,8 +108,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		return new OncePerRequestFilter() {
 
 			@Override
-			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) 
-					throws ServletException, IOException {
+			protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response,
+					FilterChain filterChain) throws ServletException, IOException {
 				CsrfToken csrf = (CsrfToken) request.getAttribute(CsrfToken.class.getName());
 
 				if (csrf != null) {

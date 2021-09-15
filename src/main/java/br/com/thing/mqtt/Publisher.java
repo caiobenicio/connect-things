@@ -7,10 +7,9 @@ import org.eclipse.paho.client.mqttv3.MqttTopic;
 
 public class Publisher {
 
-	public void publishOnTopic(String topic, String msg) {
+	public void publishOnTopic(String clientId, String topic, String msg) {
 		
-		MqttClient myClient = InitMqtt.getinstance().getMyClient();
-		
+		MqttClient myClient = MqttConnection.getInstance().getMyClient(clientId);
 		MqttTopic publishOnTopic = myClient.getTopic(topic);
 		
 		int pubQoS = 0;

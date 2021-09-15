@@ -11,6 +11,10 @@ angular.module('homeon').filter('formatPermission', function() {
 			return 'User';
 			break;
 
+		case 'ROLE_SHADOW':
+			return 'Shadow';
+			break;
+
 		default:
 			return 'Unknown';
 			break;
