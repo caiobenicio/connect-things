@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.entity.Home;
-import br.com.thing.utils.ServicePaths;
 
 @RestController
 @RequestMapping(path = ServicePaths.HOME_PATH)

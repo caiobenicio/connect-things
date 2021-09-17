@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.entity.Schedule;
 import br.com.thing.schedule.ScheduleTask;
-import br.com.thing.utils.ServicePaths;
 
 @RestController
 @RequestMapping(path = ServicePaths.SCHEDULE_PATH)

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.thing.entity.Client;
 import br.com.thing.entity.Permission;
 import br.com.thing.repository.ClientRepository;
-import br.com.thing.utils.ServicePaths;
 
 
 @RestController

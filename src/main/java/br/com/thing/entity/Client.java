@@ -22,6 +22,7 @@ public class Client extends BaseEntity<Long> {
 	private String email;
 	private String password;
 
+	@SuppressWarnings("deprecation")
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	@LazyCollection(LazyCollectionOption.FALSE)

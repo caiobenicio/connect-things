@@ -9,7 +9,6 @@ import javax.persistence.ManyToOne;
 
 @Entity
 public class Sensor extends BaseEntity<Long> {
-    private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)

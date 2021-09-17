@@ -7,16 +7,16 @@ import java.net.UnknownHostException;
 import java.util.Collections;
 import java.util.Enumeration;
 
-public class IpAddress {
+public class IpAddressUtils {
 
 	static String ip = "/10.1.9.168";
 
-	private static IpAddress instance = new IpAddress();
-	public static IpAddress getinstance() {
-		return instance == null ? new IpAddress() : instance;
+	private static IpAddressUtils instance = new IpAddressUtils();
+	public static IpAddressUtils getinstance() {
+		return instance == null ? new IpAddressUtils() : instance;
 	}
 
-	public IpAddress() {
+	public IpAddressUtils() {
 		//findIpExternal();
 	}
 

@@ -11,8 +11,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 public abstract class BaseEntity<ID extends Serializable> extends AbstractPersistable<ID> {
 
-    private static final long serialVersionUID = 201708112303L;
-
     @Override
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);

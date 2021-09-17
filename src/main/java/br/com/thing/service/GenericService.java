@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import br.com.thing.entity.BaseEntity;
 import br.com.thing.model.Message;
-import br.com.thing.utils.ServiceMap;
 
 public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serializable> implements ServiceMap {
 

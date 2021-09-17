@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.thing.utils.ServiceMap;
-import br.com.thing.utils.ServicePaths;
+import br.com.thing.service.ServiceMap;
+import br.com.thing.service.ServicePaths;
 
 @RestController
 @RequestMapping(ServicePaths.LOGIN_PATH)

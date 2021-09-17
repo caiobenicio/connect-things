@@ -1,4 +1,4 @@
-package br.com.thing.utils;
+package br.com.thing.service;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;

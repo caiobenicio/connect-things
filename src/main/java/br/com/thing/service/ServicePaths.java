@@ -1,4 +1,4 @@
-package br.com.thing.utils;
+package br.com.thing.service;
 
 public final class ServicePaths {
 

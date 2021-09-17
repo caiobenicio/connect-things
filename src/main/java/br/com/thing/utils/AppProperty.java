@@ -5,12 +5,12 @@ package br.com.thing.utils;
 
 @Component
 @PropertySource("classpath:application.yml")
-public class ApplicationProperty {
+public class AppProperty {
 
     @Value("${security.password.secret}")
     private String secret;
 
-    public ApplicationProperty() {
+    public AppProperty() {
     }
 
     public String getSecret() {

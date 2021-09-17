@@ -9,9 +9,10 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import br.com.thing.entity.BaseEntity;
 import br.com.thing.utils.BaseBean;
 
-public class LoginDetailBean extends BaseBean implements UserDetails {
+public class LoginDetailBean extends BaseEntity implements UserDetails {
 
 	private static final long serialVersionUID = 1L;
 

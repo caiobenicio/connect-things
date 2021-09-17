@@ -28,7 +28,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
-import br.com.thing.utils.ServicePaths;
+import br.com.thing.service.ServicePaths;
 
 @Configuration
 @EnableAutoConfiguration

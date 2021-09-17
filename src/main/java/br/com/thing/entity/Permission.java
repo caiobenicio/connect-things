@@ -5,7 +5,6 @@ import javax.persistence.Id;
 
 @Entity
 public class Permission extends BaseEntity<Long> {
-    private static final long serialVersionUID = 1L;
 
     @Id
     private Long id;

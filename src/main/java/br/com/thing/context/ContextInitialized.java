@@ -1,4 +1,4 @@
-package br.com.thing.utils;
+package br.com.thing.context;
 
 import java.util.Arrays;
 import java.util.List;
@@ -26,6 +26,8 @@ import br.com.thing.repository.ClientRepository;
 import br.com.thing.repository.PermissionRepository;
 import br.com.thing.repository.ScheduleRepository;
 import br.com.thing.schedule.ScheduleTask;
+import br.com.thing.service.ServicePaths;
+import br.com.thing.utils.AppProperty;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.service.ApiInfo;
@@ -38,7 +40,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableAutoConfiguration
 @ComponentScan(basePackageClasses = AppMain.class)
-public class AppContext {
+public class ContextInitialized {
 
 	@Value("${spring.application.name}")
 	private String appName;
@@ -92,7 +94,7 @@ public class AppContext {
 		this.clientPermissionRepository.save(userPermission);
 		
 		// inicializa mqtt 
-		MqttConnection.getInstance().connect(null, brokerMqtt);
+		//MqttConnection.getInstance().connect(null, brokerMqtt);
 
 		//busca agenda aberta no banco
 		scheduleRepository.buscarAgendasAbertas().stream().forEach(a -> {
@@ -117,8 +119,8 @@ public class AppContext {
 	}
 
 	@Bean
-	public ApplicationProperty getApplicationProperty() {
-		return new ApplicationProperty();
+	public AppProperty getApplicationProperty() {
+		return new AppProperty();
 	}
 
 	@Bean(name = "passwordEncoder")

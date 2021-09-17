@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.entity.Gateway;
 import br.com.thing.repository.GatewayRepository;
-import br.com.thing.utils.ServicePaths;
 
 @RestController
 @RequestMapping(path = ServicePaths.GATEWAY_PATH)

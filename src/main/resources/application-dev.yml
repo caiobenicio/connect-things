@@ -10,9 +10,9 @@ logging:
 # DATABASE
 spring:
   datasource:
-    url: jdbc:postgresql://10.1.8.188:5432/postgres
-    username: web_feeder
-    password: cedro2016
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: 9090
     driverClassName: org.postgresql.Driver
   devtools: 
     restart: 
