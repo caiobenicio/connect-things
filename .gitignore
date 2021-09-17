@@ -31,6 +31,9 @@ hs_err_pid*
 dist/
 bin/
 
+#mqtt
+/paho4-tcp1270011883
+
 # JetBrains IDE
 .idea/
 
