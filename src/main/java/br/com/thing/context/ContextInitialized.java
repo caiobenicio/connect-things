@@ -7,7 +7,6 @@ import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -42,18 +41,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @ComponentScan(basePackageClasses = AppMain.class)
 public class ContextInitialized {
 
-	@Value("${spring.application.name}")
-	private String appName;
-
-	@Value("${spring.application.description}")
-	private String appDescription;
-
-	@Value("${spring.application.version}")
-	private String appVersion;
-
-	@Value("${broker.mqtt}")
-	private String brokerMqtt;
-
 	@Autowired
 	private ScheduleRepository scheduleRepository;
 
@@ -62,47 +49,36 @@ public class ContextInitialized {
 
 	@Autowired
 	private ClientRepository clientRepository;
-	
+
 	@Autowired
 	private ClientPermissionRepository clientPermissionRepository;
-	
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-	
+
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+
+	@Autowired
+	private AppProperty prop;
+
 	@Autowired
 	private ScheduleTask agendador;
 
 	@PostConstruct
 	public void onStartup() throws Exception {
 
-		Permission p1 = new Permission(1L, "ROLE_ADMIN");
-		Permission p2 = new Permission(2L, "ROLE_USER");
-		Permission p3 = new Permission(3L, "ROLE_SHADOW");
-		List<Permission> permissions = Arrays.asList(p1, p2, p3);
-		this.permissionRepository.saveAll(permissions);
+		// cria as permissoes eo usuario
+		creatRoleAndUser();
 
-		Client on = new Client("home on ", "on@hotmail.com", passwordEncoder.encode("123"));
-		on = this.clientRepository.saveAndFlush(on);
-				
-		ClientPermissionKey userPermKey = new ClientPermissionKey();
-		userPermKey.setPermissionId(p2.getId());
-		userPermKey.setClientId(on.getId());
-		
-		ClientPermission userPermission = new ClientPermission();
-		userPermission.setId(userPermKey);
-		
-		this.clientPermissionRepository.save(userPermission);
-		
-		// inicializa mqtt 
-		//MqttConnection.getInstance().connect(null, brokerMqtt);
+		// inicializa o broker mqtt
+		if (prop.getBrokerEnabled())
+			MqttConnection.getInstance().connect();
 
-		//busca agenda aberta no banco
+		// busca os agendamento de comando em aberta no banco
 		scheduleRepository.buscarAgendasAbertas().stream().forEach(a -> {
 			agendador.agendamento(a);
 		});
 
 	}
-	
+
 	@PreDestroy
 	public void onShutdown() {
 		System.out.println("desligou");
@@ -115,17 +91,37 @@ public class ContextInitialized {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfoBuilder().title(appName).description(appDescription).version(appVersion).build();
+		return new ApiInfoBuilder().title(prop.getAppName()).description(prop.getAppDescription()).version("").build();
 	}
 
 	@Bean
 	public AppProperty getApplicationProperty() {
-		return new AppProperty();
+		return AppProperty.getinstance();
 	}
 
 	@Bean(name = "passwordEncoder")
 	public StandardPasswordEncoder getStandardPasswordEncoder() {
 		return new StandardPasswordEncoder(getApplicationProperty().getSecret());
+	}
+
+	public void creatRoleAndUser() {
+		Permission p1 = new Permission(1L, "ROLE_ADMIN");
+		Permission p2 = new Permission(2L, "ROLE_USER");
+		Permission p3 = new Permission(3L, "ROLE_SHADOW");
+		List<Permission> permissions = Arrays.asList(p1, p2, p3);
+		this.permissionRepository.saveAll(permissions);
+
+		Client on = new Client("home on ", "on@hotmail.com", passwordEncoder.encode("123"));
+		on = this.clientRepository.saveAndFlush(on);
+
+		ClientPermissionKey userPermKey = new ClientPermissionKey();
+		userPermKey.setPermissionId(p2.getId());
+		userPermKey.setClientId(on.getId());
+
+		ClientPermission userPermission = new ClientPermission();
+		userPermission.setId(userPermKey);
+
+		this.clientPermissionRepository.save(userPermission);
 	}
 
 }

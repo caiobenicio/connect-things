@@ -54,7 +54,7 @@ public class UserService extends GenericService<Client, Long> {
 	@Override
 	public ResponseEntity<?> update(@RequestBody Client user, Errors errors) {
 		
-		if (!user.getPassword().isEmpty()) 			
+		if (user.getPassword() != null && !user.getPassword().isEmpty()) 			
 			user.setPassword(this.passwordEncoder.encode(user.getPassword()));
 		
 		return super.update(user, errors);

@@ -4,7 +4,7 @@ public final class TopicConstant {
 
 	// DISPOSITIVO
 	
-	public static String DISPOSITIVO_SALA_LUZ = "casa/sala/luz";
+	public static String DISPOSITIVO_SALA_LUZ = "wemos/casa/sala/luz";
 	public static String DISPOSITIVO_SALA_SOM = "casa/sala/som";
 	public static String DISPOSITIVO_SALA_TV = "casa/sala/tv";
 	

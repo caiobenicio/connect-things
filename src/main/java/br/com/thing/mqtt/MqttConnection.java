@@ -7,26 +7,28 @@ import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttConnectOptions;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
+import br.com.thing.utils.AppProperty;
+
 public class MqttConnection {
 	
 	private static MqttConnection instance = new MqttConnection();
 	private Map<String, MqttClient> mapConnection = new ConcurrentHashMap<String, MqttClient>();
 	private MqttConnectOptions connOpt;
 	private MqttClient myClient;
-	private static final String CLIENTID = "clientWeb";	
+	private static final String CLIENTID = "clientweb";	
 	
 	public static MqttConnection getInstance() {
 		return instance;
 	}
 
-	public MqttClient connect(String ipMqtt) {
+	public MqttClient connect() {
 		
 		connOpt = new MqttConnectOptions();
 		connOpt.setCleanSession(true);
 		connOpt.setKeepAliveInterval(30);
 		
 		try {
-			myClient = new MqttClient(ipMqtt, CLIENTID);
+			myClient = new MqttClient(AppProperty.getinstance().getBrokerMqtt(), CLIENTID);
 			
 			myClient.setCallback(new CallBack(CLIENTID));
 			myClient.connect(connOpt);
@@ -44,7 +46,7 @@ public class MqttConnection {
 			System.exit(-1);
 		}
 		
-		System.out.println("Connected to " + ipMqtt + "clientId=" + CLIENTID);
+		//System.out.println("Connected to " + ipMqtt + "clientId=" + CLIENTID);
 		return myClient;
 	}
 	

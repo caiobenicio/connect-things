@@ -28,5 +28,25 @@
     "name": "mqtt.url",
     "type": "java.lang.String",
     "description": "A description for 'mqtt.url'"
+  },
+  {
+    "name": "server.mosquitto.enabled",
+    "type": "java.lang.String",
+    "description": "A description for 'server.mosquitto.enabled'"
+  },
+  {
+    "name": "server.mosquitto.protocol",
+    "type": "java.lang.String",
+    "description": "A description for 'server.mosquitto.protocol'"
+  },
+  {
+    "name": "server.mosquitto.url",
+    "type": "java.lang.String",
+    "description": "A description for 'server.mosquitto.url'"
+  },
+  {
+    "name": "security.password.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'security.password.secret'"
   }
 ]}

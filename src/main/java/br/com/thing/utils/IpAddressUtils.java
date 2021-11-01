@@ -9,7 +9,7 @@ import java.util.Enumeration;
 
 public class IpAddressUtils {
 
-	static String ip = "/10.1.9.168";
+	static String ip = "/127.0.0.1";
 
 	private static IpAddressUtils instance = new IpAddressUtils();
 	public static IpAddressUtils getinstance() {
@@ -17,7 +17,7 @@ public class IpAddressUtils {
 	}
 
 	public IpAddressUtils() {
-		//findIpExternal();
+		findIpExternal();
 	}
 
 	private void findIpExternal() {
@@ -40,7 +40,7 @@ public class IpAddressUtils {
 		for (InetAddress inetAddress : Collections.list(inetAddresses)) {
 
 			if (inetAddress.isSiteLocalAddress() && !inetAddress.equals(InetAddress.getLocalHost())) {
-				System.out.println(inetAddress.toString());
+			//	System.out.println(inetAddress.toString());
 				ip = inetAddress.toString();
 			}
 

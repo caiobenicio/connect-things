@@ -8,10 +8,16 @@ angular.module('homeon').controller('mainController',
 			var mdDialog = $mdDialog;
 			
 			let arrName = $scope.user.name.trim().split(/\b(\s)/)
-			let firstName = arrName[0].substring(0,1).toUpperCase()
-			let lastName = arrName[arrName.length -1]!= undefined? arrName[arrName.length -1].substring(0,1).toUpperCase() : ""
+			let firstName = arrName[0].substring(0,1).toUpperCase();
 			
-			$scope.profileDefault = firstName+lastName
+			if(arrName.length > 1) {
+				let lastName = arrName[arrName.length -1]!= undefined? arrName[arrName.length -1].substring(0,1).toUpperCase() : ""
+				
+				$scope.profileDefault = firstName+lastName
+			} else {
+				$scope.profileDefault = firstName
+			}
+			
 			
 	        $scope.hasAnyPermission = function(authorities) {
 	            var hasPermission = false;

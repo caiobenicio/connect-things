@@ -39,3 +39,9 @@ security:
   password: 
     secret: secret
 
+# SERVER MQTT
+mosquitto: 
+  enabled: true
+  url: tcp://127.0.0.1:1883
+  user: caiosilva
+  password: 506070
