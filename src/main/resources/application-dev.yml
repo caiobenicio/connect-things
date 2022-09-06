@@ -1,6 +1,6 @@
 # LOGGING
 logging:
-  file: target/home-on.log
+  file: log/home-on.log
   level:
     org.home.on: DEBUG
     org.springframework: INFO
@@ -9,6 +9,9 @@ logging:
 
 # DATABASE
 spring:
+  web:
+    resources:
+      static-locations: classpath:/webapp
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
@@ -23,7 +26,7 @@ spring:
       ddl-auto: create-drop
     properties: 
       hibernate:
-        format_sql: false
+        format_sql: true
         temp: 
           use_jdbc_metadata_defaults: false
     database-platform: org.hibernate.dialect.PostgreSQL9Dialect               
@@ -40,8 +43,11 @@ security:
     secret: secret
 
 # SERVER MQTT
-mosquitto: 
+mqtt: 
   enabled: true
-  url: tcp://127.0.0.1:1883
+  url: tcp://broker.mqttdashboard.com:1883
   user: caiosilva
   password: 506070
+  clientMqtt: wemosd1
+  subscribe: /outTopic
+  publish: /inTopic

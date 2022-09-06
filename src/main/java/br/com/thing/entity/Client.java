@@ -31,6 +31,7 @@ public class Client extends BaseEntity<Long> {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
+	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Gateway> gateway = new ArrayList<>();
 
 	@ManyToMany(fetch = FetchType.EAGER)

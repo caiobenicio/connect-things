@@ -28,18 +28,20 @@ public class MqttConnection {
 		connOpt.setKeepAliveInterval(30);
 		
 		try {
-			myClient = new MqttClient(AppProperty.getinstance().getBrokerMqtt(), CLIENTID);
+			myClient = new MqttClient(AppProperty.getinstance().getMqttUrl(), CLIENTID);
 			
-			myClient.setCallback(new CallBack(CLIENTID));
+			myClient.setCallback(new CallBack());
 			myClient.connect(connOpt);
 			
 			mapConnection.put(CLIENTID, myClient);
-			
+						
+			String sub = AppProperty.getinstance().getClientMqtt() + AppProperty.getinstance().getMqttSubscribe(); 
 			Subscribe s = new Subscribe();
-			s.subscribeTopic(CLIENTID);
+			s.subscribeTopic(CLIENTID, AppProperty.getinstance().getClientMqtt(), sub);
 			
-			//Publisher p = new Publisher();
-			//p.publishOnTopic(myClient, topic, msg);
+			String pub = AppProperty.getinstance().getClientMqtt() + AppProperty.getinstance().getMqttPublish();
+			Publisher p = new Publisher();
+			p.publishOnTopic(CLIENTID, pub, "A");
 			
 		} catch (MqttException e) {
 			e.printStackTrace();
@@ -67,7 +69,7 @@ public class MqttConnection {
 			mapConnection.put(clientId, myClient);
 			
 			Subscribe s = new Subscribe();
-			s.subscribeTopic(clientId);
+			//s.subscribeTopic(clientId);
 			
 			Publisher p = new Publisher();
 			p.publishOnTopic(clientId, "appweb/"+clientId+"/home/sala", "ola mqtt");

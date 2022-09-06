@@ -69,7 +69,7 @@ public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serial
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(message);
 		}
 
-		this.genericRepository.saveAndFlush(entityObject);
+		this.genericRepository.save(entityObject);
 
 		message.AddField("mensagem", "Salvo com sucesso");
 

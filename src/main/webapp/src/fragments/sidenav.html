@@ -1,23 +1,21 @@
-<md-sidenav  class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')"  >
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')">
 
-    <md-toolbar class="toolbar-sidernav">
-        <md-icon md-svg-icon="logo" class="logo"></md-icon>
-    </md-toolbar >
-
-    <md-content class="scrollable-nav-content">
-
-        <md-accordion>
-            <md-accordion-group>
-                <md-subheader class="md-no-sticky"></md-subheader>
-                <md-accordion-button    href="#!/home"> <md-icon md-svg-icon="home" class="menu-svg"></md-icon>Home</md-accordion-button>
-                <md-divider ng-show="hasAnyPermission(['ROLE_ADMIN'])" ></md-divider>
-            </md-accordion-group>
-
-        </md-accordion>
-
-    </md-content>
-
-         <md-content>           
-            <md-button ng-click = "toggleSideNav()">Open Left Menu</md-button>
-         </md-content>	
+	<md-toolbar class="toolbar-sidernav">
+		<md-icon md-svg-icon="logo" class="logo"></md-icon> 
+	</md-toolbar> 
+	
+	<md-content	class="scrollable-nav-content"> 
+		<md-accordion>
+			<md-accordion-group> 
+				<md-subheader	class="md-no-sticky"></md-subheader> 
+				<md-accordion-button href="#!/home"> 
+				<md-icon md-svg-icon="home" class="menu-svg"></md-icon>Home</md-accordion-button> 
+				<md-divider ng-show="hasAnyPermission(['ROLE_ADMIN'])"></md-divider> 
+			</md-accordion-group> 
+		</md-accordion> 
+	</md-content>
+	 
+	<md-content>
+		<md-button ng-click="toggleSideNav()">Open Left Menu</md-button> 
+	</md-content> 
 </md-sidenav>

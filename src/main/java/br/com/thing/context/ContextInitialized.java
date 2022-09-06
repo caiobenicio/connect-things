@@ -66,16 +66,35 @@ public class ContextInitialized {
 	public void onStartup() throws Exception {
 
 		// cria as permissoes eo usuario
-		creatRoleAndUser();
+		if(prop.getDdlAuto().equals("create-drop")) {			
+			creatRole();
+			createUser();
+		}
 
 		// inicializa o broker mqtt
-		if (prop.getBrokerEnabled())
+		if (prop.getMqttEnabled())
 			MqttConnection.getInstance().connect();
 
 		// busca os agendamento de comando em aberta no banco
 		scheduleRepository.buscarAgendasAbertas().stream().forEach(a -> {
 			agendador.agendamento(a);
 		});
+
+	}
+
+	private void createUser() {
+		Client on = new Client("home on ", "on@hotmail.com", this.passwordEncoder.encode("123"));
+		on = this.clientRepository.saveAndFlush(on);
+
+		ClientPermissionKey userPermKey = new ClientPermissionKey();
+		Permission p2 = new Permission(2L, "ROLE_USER");
+		userPermKey.setPermissionId(p2.getId());
+		userPermKey.setClientId(on.getId());
+
+		ClientPermission userPermission = new ClientPermission();
+		userPermission.setId(userPermKey);
+
+		this.clientPermissionRepository.save(userPermission);
 
 	}
 
@@ -104,24 +123,12 @@ public class ContextInitialized {
 		return new StandardPasswordEncoder(getApplicationProperty().getSecret());
 	}
 
-	public void creatRoleAndUser() {
+	public void creatRole() {
 		Permission p1 = new Permission(1L, "ROLE_ADMIN");
 		Permission p2 = new Permission(2L, "ROLE_USER");
 		Permission p3 = new Permission(3L, "ROLE_SHADOW");
 		List<Permission> permissions = Arrays.asList(p1, p2, p3);
 		this.permissionRepository.saveAll(permissions);
-
-		Client on = new Client("home on ", "on@hotmail.com", passwordEncoder.encode("123"));
-		on = this.clientRepository.saveAndFlush(on);
-
-		ClientPermissionKey userPermKey = new ClientPermissionKey();
-		userPermKey.setPermissionId(p2.getId());
-		userPermKey.setClientId(on.getId());
-
-		ClientPermission userPermission = new ClientPermission();
-		userPermission.setId(userPermKey);
-
-		this.clientPermissionRepository.save(userPermission);
 	}
 
 }

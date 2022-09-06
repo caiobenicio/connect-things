@@ -22,27 +22,14 @@ public class Subscribe {
 		System.out.println(topic);
 	}
 
-	public void subscribeTopic(String clientId) {
-
+	public void subscribeTopic(String clientId, String clientMqtt, String subscribe) {
 		try {
-
 			myClient = MqttConnection.getInstance().getMyClient(clientId);
-			String topicBase = TopicConstant.APPWEB_MQTT.replace("?", clientId);
 			
-			// topic base para receber o topico que a placa ira disponibilizar
-			myClient.subscribe(topicBase, 1);
+			// topic base para receber os pinos que a placa ira disponibilizar
+			myClient.subscribe(subscribe, 1);
 
-			//myClient.subscribe(TopicConstant.SENSOR_SALA_TEMPERATURA, subQoS);
-		//	myClient.subscribe(TopicConstant.SENSOR_GARAGEM_PRESENCA, 1);
-//			myClient.subscribe(TopicConstant.DISPOSITIVO_SALA_TV, subQoS);
-//			myClient.subscribe(TopicConstant.DISPOSITIVO_QUARTO_LUZ, subQoS);
-//			myClient.subscribe(TopicConstant.DISPOSITIVO_QUARTO_TV, subQoS);
-//			myClient.subscribe(TopicConstant.DISPOSITIVO_BANHEIRO_LUZ, subQoS);
-//			myClient.subscribe(TopicConstant.DISPOSITIVO_VARANDA_LUZ, subQoS);
-//			myClient.subscribe(TopicConstant.DISPOSITIVO_GARANGEM_LUZ, subQoS);
-
-			System.out.println("Topicos subscribe: " + topicBase);
-		//	System.out.println("Topicos subscribe:" + TopicConstant.SENSOR_SALA_TEMPERATURA);
+			System.out.println("Topicos subscribe: " + subscribe);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

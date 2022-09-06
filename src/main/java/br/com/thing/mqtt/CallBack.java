@@ -17,6 +17,10 @@ public class CallBack implements MqttCallback {
 		instanceData = instance;
 	}
 
+	public CallBack() {
+		super();
+	}
+
 	@Override
 	public void connectionLost(Throwable cause) {
 		System.out.println("Connection lost on instance \"" + instanceData + "\" with cause \"" + cause.getMessage()
@@ -29,13 +33,8 @@ public class CallBack implements MqttCallback {
 	public void messageArrived(String topic, MqttMessage message) throws Exception {
 		try {
 			
-			System.out.println(topic.split("/")[1]);
-			if(topic.split("/")[1].equals("clientId")) {
-			} else {
-				
+			System.out.println("Mensagem recebida: " + message.toString() + " || No topico: " + topic.toString());
 			//	ws.receiveMessage(message);
-				System.out.println("Mensagem recebida: " + message.toString() + " || No topico: " + topic.toString());
-			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -45,7 +44,7 @@ public class CallBack implements MqttCallback {
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken token) {
 		try {
-			System.out.println("Recebido da instancia: " + instanceData + ""+"\n mensagem:"+ token.getMessage());
+	//		System.out.println("Recebido da instancia: " + instanceData + ""+"\n mensagem:"+ token.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

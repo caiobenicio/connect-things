@@ -19,7 +19,7 @@ public class AppMain {
 	public static void main(String[] args) throws UnknownHostException, SocketException {
 		ApplicationContext appContext = SpringApplication.run(ContextInitialized.class, args);
 
-		String mqtt = appContext.getEnvironment().getProperty("server.mosquitto.enabled");
+		//String mqtt = appContext.getEnvironment().getProperty("server.mosquitto.enabled");
 		String applicationName = appContext.getEnvironment().getProperty("spring.application.name");
 		String contextPath = appContext.getEnvironment().getProperty("server.servlet.context-path");
 		String port = appContext.getEnvironment().getProperty("server.port");

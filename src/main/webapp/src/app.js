@@ -3,7 +3,8 @@
 var BASE_URL;
 BASE_URL = window.location.origin + '/api';
 
-angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotify', 'ngRoute', 'ngCookies', 'ngStorage', 'ngStomp', 'ui.bootstrap'])
+angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotify', 
+                'ngRoute', 'ngCookies', 'ngStorage', 'ngStomp', 'ui.bootstrap'])
   .constant('SERVICE_PATH', {
     'ROOT_PATH': BASE_URL,
     'PUBLIC_PATH': BASE_URL + '/public',
@@ -27,5 +28,5 @@ angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotif
     });
   }).run(function($rootScope) {
 	    	$rootScope.navbarMenu = false;
-			$rootScope.sidenavMenu = false;
+  			$rootScope.sidenavMenu = false;
   });

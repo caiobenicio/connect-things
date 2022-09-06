@@ -1,6 +1,7 @@
 package br.com.thing.security;
 
 import java.io.IOException;
+import java.util.Collections;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -16,15 +17,17 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
 
@@ -37,10 +40,13 @@ import br.com.thing.service.ServicePaths;
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	public static final String AUTH_USER = "ROLE_USER";
-
 	public static final String AUTH_ADMIN = "ROLE_ADMIN";
-	
 	public static final String AUTH_SHADOW = "ROLE_SHADOW";
+
+	private static final String[] pathArray = new String[] { "index.html", "/css/**", "/js/**", "/assets/angularJs/**",
+			"/assets/fonts/**", "/assets/img/**", "/assets/css/**", "/assets/js/plugin/webfont/**",
+			"/assets/js/core/**", "/assets/js/**", "/assets/js/plugin/jquery-ui-1.12.1.custom/**", "/assets/ico/**",
+			"/src/**"};
 
 	@Autowired
 	private UserDetailsService userService;
@@ -55,21 +61,29 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		
-		http.httpBasic().and().authorizeRequests()
-//		http.csrf().disable().httpBasic().and().authorizeRequests()
-//				//.antMatchers("/ws/**").permitAll()
 
-				.antMatchers("/assets/angularJs/**", "/assets/fonts/**", "/assets/img/**", "/assets/css/**",
-						"/assets/js/plugin/webfont/**", "/assets/js/core/**", "/assets/js/**",
-						"/assets/js/plugin/jquery-ui-1.12.1.custom/**", "/assets/ico/**", "/src/**").permitAll()
+		//http.httpBasic().and().authorizeRequests()
+		http			
+			.httpBasic()
+			.and().cors().configurationSource(new CorsConfigurationSource() {
 
-				.antMatchers("/css/**", "/js/**").permitAll()
-				.antMatchers("/").permitAll()
-				.antMatchers("index.html").permitAll()
-				// Global Authority to OPTIONS (permit all).
-				.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-				.antMatchers(ServicePaths.PUBLIC_ROOT_PATH + ServicePaths.ALL).permitAll()
+		        @Override
+		        public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
+		            CorsConfiguration config = new CorsConfiguration();
+		            config.setAllowedHeaders(Collections.singletonList("*"));
+		            config.setAllowedMethods(Collections.singletonList("*"));
+		            config.addAllowedOrigin("*");
+		            config.setAllowCredentials(true);
+		            return config;
+		        }
+		      }).and()//csrf().disable()
+			.authorizeRequests()
+			//.antMatchers("/ws/**").permitAll()
+			//.antMatchers(pathArray).permitAll()
+			//.antMatchers(ServicePaths.LOGIN_PATH).permitAll()
+			// Global Authority to OPTIONS (permit all).
+			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+			.antMatchers(ServicePaths.PUBLIC_ROOT_PATH + ServicePaths.ALL).permitAll()
 
 				// profile Authorities
 				.antMatchers(HttpMethod.GET, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
@@ -83,19 +97,26 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 				// user/**
 				.antMatchers(HttpMethod.GET, ServicePaths.USER_PATH).hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
-				.antMatchers(HttpMethod.GET, ServicePaths.USER_PATH+"findById/*").hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
-				.antMatchers(HttpMethod.PUT, ServicePaths.USER_PATH).permitAll()
+				.antMatchers(HttpMethod.GET, ServicePaths.USER_PATH + "findById/*")
+				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER).antMatchers(HttpMethod.PUT, ServicePaths.USER_PATH).permitAll()
 				.antMatchers(HttpMethod.DELETE, ServicePaths.USER_PATH).permitAll()
-				.antMatchers(HttpMethod.POST, ServicePaths.USER_PATH).permitAll()
+				.antMatchers(HttpMethod.POST, ServicePaths.USER_PATH).permitAll().and()
 
-				.anyRequest().fullyAuthenticated().and()
+				//.anyRequest().authenticated().and().formLogin().loginPage(ServicePaths.LOGIN_PATH).permitAll().and()
+				// .authenticated() fullyAuthenticated()
 				// Logout configuration.
-				.logout().logoutRequestMatcher(new AntPathRequestMatcher(ServicePaths.LOGOUT_PATH))				
-				.logoutSuccessHandler(new HeaderHandler()).and()
+				.logout().invalidateHttpSession(true).logoutRequestMatcher(new AntPathRequestMatcher(ServicePaths.LOGOUT_PATH))
+				.logoutSuccessHandler(new HeaderHandler());//.and()
 				// CSRF configuration.
-				.csrf().csrfTokenRepository(csrfTokenRepository()).and()
+				//.csrf().csrfTokenRepository(csrfTokenRepository()).and()
 				// .csrf().disable()
-				.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+				//.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+
+	}
+
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		//web.ignoring().antMatchers(pathArray).antMatchers(ServicePaths.LOGIN_PATH);
 	}
 
 	private CsrfTokenRepository csrfTokenRepository() {

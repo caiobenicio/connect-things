@@ -17,19 +17,29 @@ public class AppProperty {
 
 	@Value("${spring.application.version}")
 	private String appVersion;
-
-	@Value("${broker.mqtt}")
-	private String brokerMqtt;
-
-	@Value("${mosquitto.enabled}")
-	private String brokerEnabled;
-
+	
 	@Value("${security.password.secret}")
 	private String secret;
 
-	public AppProperty() {
-
-	}
+	@Value("${spring.jpa.hibernate.ddl-auto}")
+	private String ddlAuto;
+	
+	@Value("${mqtt.enabled}")
+	private String mqttEnabled;
+	
+	@Value("${mqtt.url}")
+	private String mqttUrl;	
+	
+	@Value("${mqtt.subscribe}")
+	private String mqttSubscribe;
+	
+	@Value("${mqtt.publish}")
+	private String mqttPublish;
+	
+	@Value("${mqtt.clientMqtt}")
+	private String clientMqtt;
+	
+	public AppProperty() {}
 
 	public static AppProperty getinstance() {
 		return instance == null ? new AppProperty() : instance;
@@ -39,48 +49,52 @@ public class AppProperty {
 		return appName;
 	}
 
-	public void setAppName(String appName) {
-		this.appName = appName;
-	}
-
 	public String getAppDescription() {
 		return appDescription;
-	}
-
-	public void setAppDescription(String appDescription) {
-		this.appDescription = appDescription;
 	}
 
 	public String getAppVersion() {
 		return appVersion;
 	}
 
-	public void setAppVersion(String appVersion) {
-		this.appVersion = appVersion;
-	}
-
-	public String getBrokerMqtt() {
-		return brokerMqtt;
-	}
-
-	public void setBrokerMqtt(String brokerMqtt) {
-		this.brokerMqtt = brokerMqtt;
-	}
-
 	public String getSecret() {
 		return secret;
 	}
 
-	public Boolean getBrokerEnabled() {
-		return Boolean.valueOf(brokerEnabled);
+	public Boolean getMqttEnabled() {
+		return Boolean.valueOf(mqttEnabled);
 	}
 
-	public void setBrokerEnabled(String brokerEnabled) {
-		this.brokerEnabled = brokerEnabled;
+	public String getMqttUrl() {
+		return mqttUrl;
 	}
 
-	public void setSecret(String secret) {
-		this.secret = secret;
+	public String getDdlAuto() {
+		return ddlAuto;
+	}
+
+	public String getMqttSubscribe() {
+		return mqttSubscribe;
+	}
+
+	public String getMqttPublish() {
+		return mqttPublish;
+	}
+
+	public void setMqttSubscribe(String mqttSubscribe) {
+		this.mqttSubscribe = mqttSubscribe;
+	}
+
+	public void setMqttPublish(String mqttPublish) {
+		this.mqttPublish = mqttPublish;
+	}
+
+	public String getClientMqtt() {
+		return clientMqtt;
+	}
+
+	public void setClientMqtt(String clientMqtt) {
+		this.clientMqtt = clientMqtt;
 	}
 
 }

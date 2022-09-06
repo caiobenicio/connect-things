@@ -33,10 +33,11 @@
 </script> -->
 </head>
 
-<body layout="row" ng-cloak ng-controller="mainController">
+<body layout="row" ng-controller="mainController" ng-cloak>
 
 	<!-- Side Nav -->
-	<md-sidenav md-component-id = "left" class = "md-sidenav-left" ng-include="'src/fragments/sidenav.html'" ng-if="statusMenu" layout="vertical" ></md-sidenav>
+	<md-sidenav md-component-id = "left" class = "md-sidenav-left"
+	 ng-include="'src/fragments/sidenav.html'" ng-if="statusMenu" layout="vertical" ></md-sidenav>
 	
 	<div layout="column" flex id="wrapper">
 	
