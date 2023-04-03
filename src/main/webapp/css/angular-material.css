@@ -699,11 +699,11 @@ button.md-button::-moz-focus-inner {
     box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26); }
   .md-button.md-icon-button {
     margin: 0 6px;
-    height: 40px;
+    height: 38px;
     min-width: 0;
     line-height: 24px;
     padding: 8px;
-    width: 40px;
+    width: 38px;
     border-radius: 50%; }
     .md-button.md-icon-button .md-ripple-container {
       border-radius: 50%;
@@ -4119,7 +4119,7 @@ md-sidenav {
       -ms-flex-direction: column;
           flex-direction: column;
   z-index: 60;
-  width: 320px;
+  width: 260px;
   max-width: 320px;
   bottom: 0;
   overflow: auto;

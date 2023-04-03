@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('homeon').controller('profileCtrl',
-		function($scope, $rootScope, WebSocketService, RestSrv, SERVICE_PATH) {
+		function($scope, $rootScope, RestSrv, SERVICE_PATH) {
 
 			var id = $rootScope.authDetails.id;
 

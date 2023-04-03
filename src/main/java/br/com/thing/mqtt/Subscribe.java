@@ -3,8 +3,6 @@ package br.com.thing.mqtt;
 import org.eclipse.paho.client.mqttv3.MqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
 
-import br.com.thing.utils.TopicConstant;
-
 public class Subscribe {
 
 	private MqttClient myClient;

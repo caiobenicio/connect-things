@@ -6,8 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Timer;
 
-import org.apache.log4j.LogManager;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +20,7 @@ public class ScheduleTask {
 	private static ScheduleTask instance = new ScheduleTask();
 	public static ScheduleTask getInstance() { return instance; }
 
-	private static final Logger LOGGER = LogManager.getLogger(ScheduleTask.class);
+	//private static final Logger LOGGER = LogManager.getLogger(ScheduleTask.class);
 
 	@Autowired
 	private ScheduleRepository agendaRepository;
@@ -71,7 +69,7 @@ public class ScheduleTask {
 			agenda.setEndSchedule(c.getTime());
 
 			timer.schedule(new TaskExecutorStart(agenda, agenda.getCommand()), agenda.getStartSchedule());
-			timer2.schedule(new TaskExecutorEnd(agenda, agenda.getCommand().equalsIgnoreCase("L") ? "D" : "L"),
+			timer2.schedule(new TaskExecutorEnd(agenda, agenda.getCommand().equalsIgnoreCase("1") ? "0" : "1"),
 					agenda.getEndSchedule());
 			
 			countInterval++;

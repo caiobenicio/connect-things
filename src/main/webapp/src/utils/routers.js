@@ -12,6 +12,12 @@ angular.module('homeon').config(function($routeProvider) {
 	}).when('/profile', {
 		templateUrl : 'src/profile/profile.html',
 		controller : 'profileCtrl'
+	}).when('/board', {
+		templateUrl: 'src/board/board.html',
+		controller: 'boardCtrl'
+	}).when('/task', {
+		templateUrl: 'src/task/task.html',
+		controller: 'taskCtrl'
 	}).otherwise({
 		redirectTo : '/'
 	});

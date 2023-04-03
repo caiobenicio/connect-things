@@ -1,9 +1,57 @@
-<div class="container">
-	<div class="addHome" ng-click="openModalCreateHome()">
-		<i class="fas fa-plus-circle" style="font-size: 50px"></i>
-		<label>Adicionar Casa</label>
+<div class="container justify-content-center" style="padding-top: 4rem">
+
+	<div class="d-flex flex-column align-items-center" ng-show="mostrarElemento">
+		<ghw-logo class="ng-star-inserted">
+<!-- 			<img src="https://www.gstatic.com/googlehomeweb/assets/full_home_logo.svg" alt="" class="logo" height="75" width="75"> -->
+			<svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24"><path fill="currentColor" d="M4.5 21q-.625 0-1.063-.438T3 19.5v-1.9l4-3.55V21H4.5ZM8 21v-4h8v4H8Zm9 0v-8.2L12.725 9l3.025-2.675l4.75 4.225q.25.225.375.513t.125.612V19.5q0 .625-.438 1.063T19.5 21H17ZM3 16.25v-4.575q0-.325.125-.625t.375-.5L11 3.9q.2-.2.463-.287T12 3.525q.275 0 .537.088T13 3.9l2 1.775L3 16.25Z"/></svg>
+		</ghw-logo>
+		
+		<h1>Crie uma casa e adicione dispositivos à ela.</h1>
+		
 	</div>
-
+   <div class="container" id="add-home">
+       <div class="col-sm-7">
+           <!-- Input for tasks -->
+           <div class="input-group">
+               <input type="text" ng-model="homeName" class="form-control" placeholder="Add Casa">
+               <div class="input-group-btn">
+                   <button class="btn btn-success" ng-click="saveHome()">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="15" height="13" viewBox="0 0 24 24"><path fill="currentColor" d="M11 19v-6H5v-2h6V5h2v6h6v2h-6v6h-2Z"/></svg> 
+                   </button>
+               </div>
+           </div>
+       </div>
+   </div>		
+	
+	<div class="container" ng-show="!mostrarElemento">
+	    <div class="table-responsive-sm">
+	        <div class="table-wrapper">
+	            <div class="table-title">
+	                <div class="row align-items-center">
+	                    <div class="col-sm-8"><h2>Casas</h2></div>
+	                </div>
+	            </div>
+	            <table class="table table-bordered mt-3">
+	                <thead>
+	                    <tr>
+	                    	<th class="text-center">ID</th>
+	                        <th>Nome</th>
+<!-- 	                        <th>Status</th> -->
+	                        <th class="text-center">Ações</th>
+	                    </tr>
+	                </thead>
+	                <tbody ng-model="homes">
+					  <tr ng-repeat="home in homes">
+					    <td class="text-center">{{ home.id }}</td>
+					    <td>{{ home.name }}</td>
+                        <td>
+                            <a class="edit" title="Edit" data-toggle="tooltip"><i class="material-icons">&#xE254;</i></a>
+                            <a class="delete" title="Delete" ng-click="deleteHome(home, $index)" data-toggle="tooltip"><i class="material-icons">&#xE872;</i></a>
+                        </td>					    
+					  </tr>  
+	                </tbody>
+	            </table>
+	        </div>
+	    </div>
+	</div>  
 </div>
-
-

@@ -23,9 +23,23 @@ angular.module('homeon')
           if (data.name) {
             $rootScope.authDetails = {name: data.name, email: data.principal.email, authenticated: data.authenticated,
             							permissions: data.authorities, id: data.principal.id };
-            ngNotify.set('Logado!.', { type: 'success', duration: 5000 });
+           
             $localStorage.authDetails = $rootScope.authDetails;
+                    
+            let arrName = data.name.trim().split(/\b(\s)/);
+            let firstName = arrName[0].substring(0, 1).toUpperCase();
+        
+            if (arrName.length > 1) {
+              let lastName = arrName[arrName.length - 1] != undefined ? arrName[arrName.length - 1].substring(0, 1).toUpperCase() : ""
+              $rootScope.profileIconName = firstName + lastName;
+            } else {
+              $rootScope.profileIconName = firstName;
+            }
+
+            $localStorage.profileIconName = $rootScope.profileIconName;
             $location.path('/home');
+            $(".main").height("83%");
+            ngNotify.set('Logado!.', { type: 'success', duration: 5000 });
           } else {
             $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
             ngNotify.set('Emai ou senha não encontrado.', { type: 'error', duration: 5000 });
@@ -47,9 +61,11 @@ angular.module('homeon')
 
       $http(requestParams).finally(function success(response) {
         delete $localStorage.authDetails;
+        delete $localStorage.profileIconName;
         $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
         $rootScope.statusMenu = false;
         $location.path("/");
+        $(".main").height("100%");
       });
     };
 
@@ -57,11 +73,6 @@ angular.module('homeon')
       if ($localStorage.authDetails) {
         $rootScope.authDetails = $localStorage.authDetails;
       }
-    };
-
-    serviceFactory.clearStorage = function() {
-        delete $localStorage.authDetails;
-        delete $rootScope.authDetails;
     };
 
     return serviceFactory;

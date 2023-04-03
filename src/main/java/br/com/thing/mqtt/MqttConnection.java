@@ -15,7 +15,7 @@ public class MqttConnection {
 	private Map<String, MqttClient> mapConnection = new ConcurrentHashMap<String, MqttClient>();
 	private MqttConnectOptions connOpt;
 	private MqttClient myClient;
-	private static final String CLIENTID = "clientweb";	
+	public static final String CLIENTID = "clientweb";	
 	
 	public static MqttConnection getInstance() {
 		return instance;

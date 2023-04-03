@@ -1,0 +1,42 @@
+<md-dialog aria-label="Cadastrar Placa" style="overflow:hidden">
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Configurar Controlador</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="gray" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10Zm0-11.414L9.172 7.757L7.757 9.172L10.586 12l-2.829 2.828l1.415 1.415L12 13.414l2.828 2.829l1.415-1.415L13.414 12l2.829-2.828l-1.415-1.415L12 10.586Z"/></svg>
+        </md-button>
+      </div>
+    </md-toolbar>
+  
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <form role="form">
+              <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-gt-xs="">
+                  <label>Nome da Placa</label>
+                  <input ng-model="board.name" size="20" md-placeholder="" required>
+                </md-input-container>
+
+                <md-input-container class="md-block" flex-gt-xs="">
+                  <label>Tópico Base</label>
+                  <input ng-model="board.topicBase" size="20" md-placeholder="" required>
+                </md-input-container>
+              </div>
+              <div layout-gt-xs="row">
+                <md-input-container class="md-block" flex-gt-xs="">
+                  <label>Tópico de Assinar</label>
+                  <input ng-model="board.topicSubscribe" size="20" md-placeholder="" required>
+                </md-input-container>      
+                
+                <md-input-container class="md-block" flex-gt-xs="">
+                  <label>Tópico de Publicar</label>
+                  <input ng-model="board.topicPublish" size="20" md-placeholder="" required>
+                </md-input-container>                    
+              </div>
+              <md-button ng-click="saveBoard(board)" class="md-raised md-primary">Salva</md-button>
+        </form>
+      </div>
+    </md-dialog-content>
+  </md-dialog>
+  

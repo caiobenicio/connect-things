@@ -22,15 +22,14 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
 import org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-import org.springframework.web.cors.CorsConfiguration;
-import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.util.WebUtils;
-
+import org.springframework.security.web.access.channel.ChannelProcessingFilter;
 import br.com.thing.service.ServicePaths;
 
 @Configuration
@@ -54,6 +53,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+    private HeaderHandler headerHandler;
+
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(this.userService).passwordEncoder(this.passwordEncoder);
@@ -62,55 +64,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 
-		//http.httpBasic().and().authorizeRequests()
-		http			
-			.httpBasic()
-			.and().cors().configurationSource(new CorsConfigurationSource() {
-
-		        @Override
-		        public CorsConfiguration getCorsConfiguration(HttpServletRequest request) {
-		            CorsConfiguration config = new CorsConfiguration();
-		            config.setAllowedHeaders(Collections.singletonList("*"));
-		            config.setAllowedMethods(Collections.singletonList("*"));
-		            config.addAllowedOrigin("*");
-		            config.setAllowCredentials(true);
-		            return config;
-		        }
-		      }).and()//csrf().disable()
-			.authorizeRequests()
-			//.antMatchers("/ws/**").permitAll()
-			//.antMatchers(pathArray).permitAll()
-			//.antMatchers(ServicePaths.LOGIN_PATH).permitAll()
-			// Global Authority to OPTIONS (permit all).
-			.antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-			.antMatchers(ServicePaths.PUBLIC_ROOT_PATH + ServicePaths.ALL).permitAll()
-
-				// profile Authorities
-				.antMatchers(HttpMethod.GET, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
-				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
-				.antMatchers(HttpMethod.POST, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
-				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
-				.antMatchers(HttpMethod.PUT, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
-				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
-				.antMatchers(HttpMethod.DELETE, ServicePaths.PROFILE_PATH + ServicePaths.ALL)
-				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
-
-				// user/**
-				.antMatchers(HttpMethod.GET, ServicePaths.USER_PATH).hasAnyAuthority(AUTH_ADMIN, AUTH_USER)
-				.antMatchers(HttpMethod.GET, ServicePaths.USER_PATH + "findById/*")
-				.hasAnyAuthority(AUTH_ADMIN, AUTH_USER).antMatchers(HttpMethod.PUT, ServicePaths.USER_PATH).permitAll()
-				.antMatchers(HttpMethod.DELETE, ServicePaths.USER_PATH).permitAll()
-				.antMatchers(HttpMethod.POST, ServicePaths.USER_PATH).permitAll().and()
-
-				//.anyRequest().authenticated().and().formLogin().loginPage(ServicePaths.LOGIN_PATH).permitAll().and()
-				// .authenticated() fullyAuthenticated()
-				// Logout configuration.
-				.logout().invalidateHttpSession(true).logoutRequestMatcher(new AntPathRequestMatcher(ServicePaths.LOGOUT_PATH))
-				.logoutSuccessHandler(new HeaderHandler());//.and()
-				// CSRF configuration.
-				//.csrf().csrfTokenRepository(csrfTokenRepository()).and()
-				// .csrf().disable()
-				//.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
+        http.httpBasic().and().authorizeRequests()
+				.antMatchers("/css/**", "/js/**", "/fonts/**", "/img/**","/src/**", "assets/**").permitAll()
+				.antMatchers("/").permitAll()
+				.antMatchers("index.html").permitAll()
+                // Global Authority to OPTIONS (permit all).
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                // Public (permit all).
+                //.antMatchers(ServicePaths.PUBLIC_ROOT_PATH + ServicePaths.ALL).permitAll()
+                .antMatchers(ServicePaths.ALL).permitAll()
+                // User Authorities.
+                .antMatchers(HttpMethod.GET, ServicePaths.USER_PATH).hasAnyAuthority(AUTH_ADMIN)
+                .antMatchers(HttpMethod.POST, ServicePaths.USER_PATH).hasAnyAuthority(AUTH_ADMIN)
+                .antMatchers(HttpMethod.PUT, ServicePaths.USER_PATH).hasAnyAuthority(AUTH_ADMIN)
+                .antMatchers(HttpMethod.DELETE, ServicePaths.USER_PATH).hasAnyAuthority(AUTH_ADMIN)
+                // Permission Authorities.
+                .antMatchers(HttpMethod.GET, ServicePaths.PERMISSION_PATH).hasAnyAuthority(AUTH_ADMIN)
+                .anyRequest().fullyAuthenticated().and()
+                // Logout configuration.
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher(ServicePaths.LOGOUT_PATH))
+				.logoutSuccessHandler(headerHandler).and()
+                // CSRF configuration.
+                // .csrf().disable()
+				.csrf().csrfTokenRepository(csrfTokenRepository()).and()
+                // .addFilterAfter(headerHandler, ChannelProcessingFilter.class);
+				.addFilterAfter(csrfHeaderFilter(), CsrfFilter.class);
 
 	}
 

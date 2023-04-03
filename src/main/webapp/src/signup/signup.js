@@ -2,8 +2,7 @@
 
 angular.module('homeon').controller(
 		'signupCtrl',
-		function($scope, RestSrv, SERVICE_PATH, LoginLogoutSrv, $location,
-				$timeout) {
+		function($scope, RestSrv, SERVICE_PATH, $location) {
 			var userUrl = SERVICE_PATH.PUBLIC_PATH + '/signup';
 
 			$scope.disable = 'false';

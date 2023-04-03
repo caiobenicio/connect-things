@@ -1,8 +1,8 @@
 <div class="login">
 	<div class="container">
-		<div class="wrapper wrapper-login"">
+		<div class="wrapper wrapper-login">
 			<div class="container container-login animated fadeIn">
-				<h3 class="text-center" style="padding-bottom: 1em;">Acessar sua conta</h3>
+				<h1 class="text-center text-white" style="padding-bottom: 1em;">Faça seu login</h1>
 				
 				<form method="post" class="login-form" ng-submit="signin(email, password)">
 					<div class="form-group form-floating-label">
@@ -25,7 +25,7 @@
 							<label class="custom-control-label" for="rememberme">Lembrar me</label>
 						</div>
 						
-						<a href="#" class="link float-right" style="padding-left: 5rem; font-size: small;">Esqueceu a senha ?</a>
+						<a href="#" class="link float-right" style="padding-left: 5rem; font-size: small;color: #b7b7b7;">Esqueceu a senha ?</a>
 					</div>
 					<div class="form-action mb-3">
 						<button type="submit" class="btn btn-primary btn-rounded btn-login">Entrar</button>
@@ -33,7 +33,7 @@
 				</form>
 				
 				<div class="login-account">
-					<span class="msg">Nao possui uma conta ?</span>
+					<span class="msg" style="color: #b7b7b7;">Nao possui uma conta ?</span>
 					<button ng-click="addUser($event,null)" id="show-signup" class="btn btn-primary btn-border btn-round btn-xs">Criar Conta</button>
 				</div>
 			</div>	

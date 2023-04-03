@@ -35,7 +35,7 @@ angular.module('homeon')
             .icon('paciente','./css/assets/svg/sidernav/paciente.svg',512)
             .icon('agenda','./css/assets/svg/sidernav/agenda.svg',512)
             .icon('escala','./css/assets/svg/sidernav/escala.svg',512)
-             .icon('escala_atendimento','./css/assets/svg/sidernav/escala_atendimento.svg',512)
+            .icon('escala_atendimento','./css/assets/svg/sidernav/escala_atendimento.svg',512)
             .icon('prontuario','./css/assets/svg/sidernav/prontuario.svg',512)
             .icon('medicamento','./css/assets/svg/sidernav/medicamento.svg',512)
             .icon('home','./css/assets/svg/sidernav/home.svg',512)
@@ -50,19 +50,39 @@ angular.module('homeon')
             .icon('email_form','./css/assets/svg/email_form.svg',24)
             .icon('key_form','./css/assets/svg/key_form.svg',24)
             .icon('group_access_form','./css/assets/svg/group_access_form.svg',24)
-            .icon('bike_icon','./css/assets/svg/bike_icon.svg',24);
+            .icon('bike_icon','./css/assets/svg/bike_icon.svg',24)
+            .icon('close','./css/assets/svg/close.svg',128)
+            .icon('green_circle','./css/assets/svg/green_circle.svg',200)
+            .icon('circle_white','./css/assets/svg/circle_white.svg',200)
+            .icon('red_circle','./assets/svg/red_circle.svg',180);//200);
 
+            $mdThemingProvider.definePalette('amazingDarkPaletteName', {
+                '50': '343a40',
+                '100': 'ffcdd2',
+                '200': 'ef9a9a',
+                '300': 'e57373',
+                '400': 'ef5350',
+                '500': 'f44336',
+                '600': 'e53935',
+                '700': 'd32f2f',
+                '800': 'c62828',
+                '900': 'b71c1c',
+                'A100': 'ff8a80',
+                'A200': 'ff5252',
+                'A400': 'ff1744',
+                'A700': 'd50000',
+                // By default, text (contrast) on this palette should be white with 87% opacity.
+                'contrastDefaultColor': 'light',
+                // By default, for these lighter hues, text (contrast) should be 'dark'.
+                'contrastDarkColors': '50 100 200 300 400 500 600 A100 A200 A400',
+                // By default, for these darker hues, text (contrast) should be white with 100% opacity.
+                'contrastStrongLightColors': '700 800 900 A700'
+              });        
 
-            // For example: raised button text will be black instead of white.
-            var whiteMap = $mdThemingProvider.extendPalette('red', {
-                '500': '#ffffff',
-                'contrastDefaultColor': 'dark'
-            });
-
-            $mdThemingProvider.definePalette('whiteMap', whiteMap);           
-
-        $mdThemingProvider.theme('default')
-            .primaryPalette('whiteMap')
-            .accentPalette('red');
+            $mdThemingProvider.theme('default')
+                //.primaryPalette('amazingDarkPaletteName')
+                .dark();
+                // .primaryPalette('whiteMap')
+                // .accentPalette('blue');
 
     });

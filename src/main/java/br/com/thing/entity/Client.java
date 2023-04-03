@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -22,19 +23,19 @@ public class Client extends BaseEntity<Long> {
 	private String email;
 	private String password;
 
-	@SuppressWarnings("deprecation")
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	@org.hibernate.annotations.Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)    
+	@OrderBy("name ASC")
 	private List<Home> homes= new ArrayList<>();
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "client")
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private List<Gateway> gateway = new ArrayList<>();
+	private List<Board> boards = new ArrayList<>();
 
-	@ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "client_permission", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
 	private List<Permission> permissions;
 
@@ -84,12 +85,20 @@ public class Client extends BaseEntity<Long> {
 		this.permissions = permissions;
 	}
 
-	public List<Home> getHomes() {
-		return this.homes;
-	}
+	public List<Board> getBoards() {
+        return boards;
+    }
 
-	public void setHomes(List<Home> homes) {
-		this.homes = homes;
-	}
+    public void setBoard(List<Board> boards) {
+        this.boards = boards;
+    }
+
+    public List<Home> getHomes() {
+        return homes;
+    }
+
+    public void setHomes(List<Home> homes) {
+        this.homes = homes;
+    }
 
 }

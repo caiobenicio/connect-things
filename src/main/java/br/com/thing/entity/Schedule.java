@@ -4,9 +4,6 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
@@ -16,17 +13,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 @Entity
 public class Schedule extends BaseEntity<Long> {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-
 	@NotNull
 	private String topic;
 
 	@NotNull
 	private String command;
 
-	@NotNull
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT-3")
 	@Temporal(TemporalType.DATE)
 	@Column(name = "date_schedule", nullable = false)
@@ -43,7 +35,6 @@ public class Schedule extends BaseEntity<Long> {
 	@Column(name = "end_schedule", nullable = true)
 	private Date endSchedule;
 
-	@NotNull
 	private boolean repeat;
 	private Integer interval;
 

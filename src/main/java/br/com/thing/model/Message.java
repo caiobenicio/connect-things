@@ -1,38 +1,30 @@
 package br.com.thing.model;
 
-import java.util.HashMap;
-import java.util.Map;
+public class Message {
+    private String from;
+    private String to;
+    private String content;
 
-public class Message<T> {
-	private Map<String, String> atributeMessage = new HashMap<String, String>();
+    public Message () {
+    }
 
-	private T data;
-
-	public void AddField(String name, String value) {
-
-		this.atributeMessage.put(name.toUpperCase(), value.toUpperCase());
-	}
-
-	public String getValue(String name) {
-		String value = this.atributeMessage.get(name);
-
-		return value;
-	}
-
-	public Map<String, String> getAtributeMessage() {
-		return atributeMessage;
-	}
-
-	public void setAtributeMessage(Map<String, String> atributeMessage) {
-		this.atributeMessage = atributeMessage;
-	}
-
-	public T getData() {
-		return data;
-	}
-
-	public void setData(T data) {
-		this.data = data;
-	}
-
+    public String getFrom() {
+        return from;
+    }
+    public void setFrom(String from) {
+        this.from = from;
+    }
+    public String getTo() {
+        return to;
+    }
+    public void setTo(String to) {
+        this.to = to;
+    }
+    public String getContent() {
+        return content;
+    }
+    public void setContent(String content) {
+        this.content = content;
+    }
+       
 }

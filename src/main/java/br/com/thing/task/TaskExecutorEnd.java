@@ -3,10 +3,10 @@ package br.com.thing.task;
 import java.util.TimerTask;
 
 import br.com.thing.entity.Schedule;
+import br.com.thing.mqtt.MqttConnection;
 import br.com.thing.mqtt.Publisher;
 
 public class TaskExecutorEnd extends TimerTask {
-
 	private String command;
 	private Schedule schedule;
 
@@ -17,8 +17,7 @@ public class TaskExecutorEnd extends TimerTask {
 
 	@Override
 	public void run() {
-
 		Publisher p = new Publisher();
-		p.publishOnTopic("clientWeb", schedule.getTopic(), command);
+		p.publishOnTopic(MqttConnection.CLIENTID, schedule.getTopic(), command);
 	}
 }

@@ -1,22 +1,11 @@
 'use strict';
-
 angular.module('homeon').controller('mainController',
-	function($scope, LoginLogoutSrv, $location, $rootScope, WebSocketService, $mdSidenav, 
-		$mdDialog, $mdMenu) {
-
+	function($scope, LoginLogoutSrv, $location, $rootScope, $mdSidenav, 
+		$mdDialog, $mdMedia, $localStorage) {
+		
 		$scope.user = $rootScope.authDetails;
 		$rootScope.statusMenu = true;
-		var mdDialog = $mdDialog;
-
-		let arrName = $scope.user.name.trim().split(/\b(\s)/)
-		let firstName = arrName[0].substring(0, 1).toUpperCase();
-
-		if (arrName.length > 1) {
-			let lastName = arrName[arrName.length - 1] != undefined ? arrName[arrName.length - 1].substring(0, 1).toUpperCase() : ""
-			$scope.profileDefault = firstName + lastName
-		} else {
-			$scope.profileDefault = firstName
-		}
+		$rootScope.profileIconName = $localStorage.profileIconName;
 
 		$scope.hasAnyPermission = function(authorities) {
 			var hasPermission = false;
@@ -32,27 +21,20 @@ angular.module('homeon').controller('mainController',
 			return hasPermission;
 		};
 
-		$rootScope.$on('updateCurrentUserPerfil', function(event, data) {
-
-			$rootScope.authDetails.name = data.user.nome;
-			$rootScope.authDetails.permissions[0].authority = data.user.permissoes[0].role;
-			//$rootScope.authDetails.file = data.user.fileUpload;
-
-			console.log("updateCurrentUser");
-
-		});
-
-		$scope.navbar = function() {
-			return {
-				"display": 'block'
-			};
-		}
-
-		$scope.toggleSideNav = function() {
-			$mdSidenav('left').toggle();
-		};
-
-
+//		$scope.navbar = function() {
+//			return {
+//				"display": 'block'
+//			};
+//		}
+//
+//		$scope.openLeftMenu = function() {
+//			$mdSidenav('left').toggle();
+//		};
+//
+//        $scope.closeLeftMenu = function () {
+//            $mdSidenav('left').close();
+//
+//        };
 		// buscar cadastro placas, mostrar pou-up cadastrar placa. iniciar
 		// mqtt e webscoket.
 
@@ -63,11 +45,30 @@ angular.module('homeon').controller('mainController',
 		$scope.profile = function() {
 			$location.path('/profile');;
 		};
+  		
+		$scope.showDialogNewBoard = function ($event) {
+			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));	
+			$mdDialog.show({
+				templateUrl: 'src/board/dialog/newBoardDialog.html',
+				parent: angular.element(document.body),
+				targetEvent: $event,
+				controller: 'newBoardDialogCtrl',
+				controllerAs: 'ctrl',
+				clickOutsideToClose: true,
+				fullscreen: useFullScreen,
+			});
 
-		$scope.hoverOut = function(){
-			$mdMenu.hide();
 		};
-
-		$scope.$on("$mdMenuClose", function() { $mdMenu.hide(); });
-	});
+		
+		
+	})
+	
+.directive('mydirect', function() {
+    return {
+		scope: true,
+        restrict: 'E',
+        replace: false,
+        templateUrl: '../index.html',
+    };
+});
 

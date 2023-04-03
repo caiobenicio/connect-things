@@ -192,7 +192,7 @@ td {
  font-family:'Open Sans',sans-serif;
 }
 body {
- font-size:13px;
+ font-size:15px;
  color:#575962;
 }
 .h1,
@@ -301,7 +301,7 @@ strong {
  color:#f3545d!important
 }
 label {
- color:#495057!important;
+ color:#495057;
  font-size:12px!important
 }
 .metric-value {
@@ -2586,8 +2586,9 @@ label {
  transform:translate3d(0,-10px,0);
  top:0;
  opacity:1;
- padding:.375rem 0 .75rem;
- font-weight:600
+ padding:.375rem .4rem .75rem;
+ font-weight:600;
+ color: white!important
 }
 .form-floating-label .form-control.filled+.placeholder {
  color:#177dff!important
@@ -2605,7 +2606,7 @@ label {
  color:transparent
 }
 .form-floating-label .input-border-bottom+.placeholder {
- padding:.375rem 0 .75rem
+ padding:.375rem .5rem .75rem
 }
 .form-inline label {
  margin-bottom:0!important
@@ -2719,8 +2720,8 @@ label {
 }
 .input-border-bottom {
  border-width:0 0 1px 0;
- border-radius:0;
- padding:.75rem 0
+ border-radius:6px;
+ padding:.75rem .5rem
 }
 .input-file .form-control,
 .input-file .form-control-file,
@@ -9749,7 +9750,9 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:last-child 
  }
 }
 .login {
- background:#efefee
+   background-color: #090a0c;
+   /* background-repeat: no-repeat; */
+   background-image: url(https://web.plataformafasttrade.com.br/assets/images/svg/register-background.svg);
 }
 .login .wrapper.wrapper-login {
  display:flex;
@@ -9761,13 +9764,13 @@ div.table-responsive>div.dataTables_wrapper>div.row>div[class^=col-]:last-child 
 .login .wrapper.wrapper-login .container-login,
 .login .wrapper.wrapper-login .container-signup {
  width:400px;
- background:#fff;
+ background:#1b1d23;
  padding:60px 25px;
  border-radius:5px;
  -webkit-box-shadow:0 .75rem 1.5rem rgba(18,38,63,.03);
  -moz-box-shadow:0 .75rem 1.5rem rgba(18,38,63,.03);
  box-shadow:0 .75rem 1.5rem rgba(18,38,63,.03);
- border:1px solid #ebecec
+ /* border:1px solid #ebecec */
 }
 .login .wrapper.wrapper-login .container-login h3,
 .login .wrapper.wrapper-login .container-signup h3 {
@@ -9851,9 +9854,9 @@ border-radius: 50%;
 
 
 #User_Profile_icon {
-	width: 2.1rem;
-    height: 2.1rem;
-	background: #1c1d1f;
+	width: 2rem;
+    height: 2rem;
+	 background: #1c1d1f;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -9863,4 +9866,98 @@ border-radius: 50%;
     font-weight: 700;
     line-height: 1.2;
     cursor: pointer;
+}
+
+#sidenav-toolbar-header {
+   margin: 0;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+.dialogdemoBasicUsage #popupContainer {
+   position: relative;
+ }
+ .dialogdemoBasicUsage .footer {
+   width: 100%;
+   text-align: center;
+   margin-left: 20px;
+ }
+ .dialogdemoBasicUsage .footer, .dialogdemoBasicUsage .footer > code {
+   font-size: 0.8em;
+   margin-top: 50px;
+ }
+ .dialogdemoBasicUsage button {
+   width: 200px;
+ }
+ .dialogdemoBasicUsage div#status {
+   color: #c60008;
+ }
+ .dialogdemoBasicUsage .dialog-demo-prerendered md-checkbox {
+   margin-bottom: 0;
+ }
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgb(30 30 30);
+    color: rgba(255,255,255,0.87);
+}md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgb(30 30 30);
+    color: rgba(255,255,255,0.87);
+}
+
+.button-bar {
+	display: flex;
+	height: 35px;
+	align-items: center;
+    margin-left: 1.5rem;
+}
+
+.margin_icon {
+	margin-right: 4px;
+}
+
+.empty-list {
+    width: 100%;
+    height: 100%;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.empty-list .empty-list--content {
+    width: 500px;
+    text-align: center;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    display: flex;
+}
+
+.empty-list .empty-list--content .title {
+    margin: 31px 0 10px;
+}
+
+.arduino-text.bold {
+    font-weight: 700;
+}
+
+.arduino-text.title {
+    letter-spacing: .01em;
+    font-family: Open Sans,Lucida Grande,lucida,verdana,sans-serif;
+    font-size: 1.75rem;
+    font-style: normal;
+}
+
+.empty-list .empty-list--content .h3 {
+    width: 400px;
+}
+
+.arduino-text.h3 {
+    margin-block: 13.5px;
+}
+
+.btn-radius {
+	border-radius: 42px;
+	font-size: 15px;
 }

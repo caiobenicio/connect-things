@@ -1,6 +1,6 @@
 # LOGGING
 logging:
-  file: log/home-on.log
+  file: target/log/home-on.log
   level:
     org.home.on: DEBUG
     org.springframework: INFO
@@ -15,15 +15,15 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: 9090
+    password: postgres
     driverClassName: org.postgresql.Driver
   devtools: 
     restart: 
       trigger-file: .reloadtrigger
   jpa:
-    show-sql: false
+    show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties: 
       hibernate:
         format_sql: true

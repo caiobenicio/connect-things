@@ -22,9 +22,11 @@ public final class ServicePaths {
 	public static final String SENSOR_PATH = PRIVATE_ROOT_PATH + "/sensor";
 	public static final String DISPOSITIVO_PATH = PRIVATE_ROOT_PATH + "/device";
 	public static final String SCHEDULE_PATH = PRIVATE_ROOT_PATH + "/schedule";
-	public static final String GATEWAY_PATH = PRIVATE_ROOT_PATH + "/gateway";
+	public static final String BOARD_PATH = PRIVATE_ROOT_PATH + "/board";
 	public static final String PROFILE_PATH = PRIVATE_ROOT_PATH + "/profile";
 	public static final String TAB_PATH = PRIVATE_ROOT_PATH + "/tab";
+
+	public static final String TASK_PATH = PRIVATE_ROOT_PATH + "/task";
 
 	private ServicePaths() {}
 

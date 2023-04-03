@@ -4,7 +4,7 @@ var BASE_URL;
 BASE_URL = window.location.origin + '/api';
 
 angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotify', 
-                'ngRoute', 'ngCookies', 'ngStorage', 'ngStomp', 'ui.bootstrap'])
+                'ngRoute', 'ngCookies', 'ngStorage', 'ui.bootstrap', 'ui.sortable'])//'ngStomp'
   .constant('SERVICE_PATH', {
     'ROOT_PATH': BASE_URL,
     'PUBLIC_PATH': BASE_URL + '/public',
@@ -13,7 +13,7 @@ angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotif
   .config(function($httpProvider) {
     $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
     $httpProvider.defaults.withCredentials = true;
-    $httpProvider.interceptors.push('httpRequestInterceptor');
+    $httpProvider.interceptors.push('httpRequestInterceptor');   
   })
   .run(function($rootScope, LoginLogoutSrv, $location) {
   	$rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
@@ -24,9 +24,13 @@ angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotif
         if($rootScope.authDetails.authenticated == false){
         	$rootScope.statusMenu = false;
         	$location.path('/');
+        	$(".main").height("100%");
         }
     });
   }).run(function($rootScope) {
-	    	$rootScope.navbarMenu = false;
-  			$rootScope.sidenavMenu = false;
+	    	$rootScope.status = "status_off";
+        $rootScope.profileIconName = "";
+
+
   });
+

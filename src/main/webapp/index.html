@@ -4,8 +4,7 @@
 <meta charset="UTF-8">
 <title>Home On</title>
 <link rel="icon" href="./assets/ico/conn.jpg" type="image/x-icon" />
-<meta
-	content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
 <!-- Bootstrap -->
 <script src="js/jquery.3.2.1.min.js"></script>
@@ -19,48 +18,19 @@
 <link rel="stylesheet" href="css/angular-material.css">
 <link rel="stylesheet" href="css/angular-material-icons.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
-<!-- <script>
-	WebFont.load({
-		google : { "families" : [ "Open+Sans:300,400,600,700" ]},
-		custom : { "families" : [ "Flaticon", "Font Awesome 5 Solid", "Font Awesome 5 Regular", "Font Awesome 5 Brands" ],
-			urls : [ '../css/fonts.css' ]
-		},
-		active : function() {
-			sessionStorage.fonts = true;
-		}
-	});
-</script> -->
 </head>
 
-<body layout="row" ng-controller="mainController" ng-cloak>
+<body ng-controller="mainController" ng-cloak >
 
-	<!-- Side Nav -->
-	<md-sidenav md-component-id = "left" class = "md-sidenav-left"
-	 ng-include="'src/fragments/sidenav.html'" ng-if="statusMenu" layout="vertical" ></md-sidenav>
+	<md-toolbar ng-if="statusMenu" ng-include="'src/fragments/navbar.html'" ></md-toolbar>
 	
-	<div layout="column" flex id="wrapper">
-	
-	    <md-toolbar ng-include="'src/fragments/toolbar-header.html'" ng-if="statusMenu"></md-toolbar>
-	
-	    <md-content id="content" class="page-container" ng-view flex  md-scroll-y></md-content>
+	<div class="main d-flex flex-row">
+		<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('gt-md')" ng-if="statusMenu" ng-include="'src/fragments/sidenav.html'"> </md-sidenav>	
+		  
+		<md-content id="main-content" class="justify-content-center" ng-view flex  md-scroll-y></md-content>
 	</div>
 
-<!-- 	<div class="main"> -->
-<!-- 		<div class="row"> -->
-<!-- 			<div ng-include="'src/fragments/navbar.html'" ng-if="navbarMenu" -->
-<!-- 				style="height: 57px; background-color: red"></div> -->
-<!-- 		</div> -->
-
-<!-- 		<div class="row"> -->
-<!-- 			<div class="col-2" ng-if="sidenavMenu"> -->
-<!-- 				<div id="sidebar" ng-include="'src/fragments/sidenav.html'"></div> -->
-<!-- 			</div> -->
-<!-- 			<div class="col" style="margin-left: .5rem"> -->
-<!-- 				<md-content ng-view flex md-scroll-y></md-content> -->
-<!-- 			</div> -->
-<!-- 		</div> -->
-<!-- 	</div> -->
+   <div id="right" layout="column" layout-align="center center" class="md-padding" style="padding: 1px;"></div>
 	
     <!-- Angular Material Dependencies -->
     <script src="js/angular.min.js"></script>
@@ -68,9 +38,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-aria.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-messages.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script>	
-    
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-route.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-cookies.min.js"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-sortable/0.19.0/sortable.min.js"></script>
+    
 	<script src="assets/angularJs/ngStorage.min.js"></script>
 	<script src="assets/angularJs/skel.min.js"></script>
 	<script src="assets/angularJs/util.js"></script>
@@ -81,9 +53,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
 	<script src="js/angular-material-icons.min.js"></script>
 
-	<script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+	<!-- <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/ng-stomp@0.5.0/src/ng-stomp.min.js"></script>
+
+	<script src="assets/angularJs/ng-websocket.js"></script> -->
+	<!-- <script src="assets/angularJs/angular-websocket.js"></script> -->
 
 	<!-- inject:js -->
 	<script src="src/app.js"></script>
@@ -96,6 +71,7 @@
 	<script src="src/account/dialog/accountConfigDialogController.js"></script>
 	
 	<script src="src/profile/profile.js"></script>
+	<script src="src/board/dialog/newBoardDialog.js"></script>
 	
 	<script src="src/service/websocket.js"></script>
 	<script src="src/service/interceptor.js"></script>
@@ -103,13 +79,19 @@
 	<script src="src/utils/routers.js"></script>
 	<script src="src/utils/filter.js"></script>
 	<script src="src/utils/theme_icons.js"></script>
-
+	
+	<script src="src/board/board.js"></script>
+	<script src="src/task/task.js"></script>
 	<!-- endinject -->
-
 <style>
-body {
-	font-family: 'Poppins', sans-serif;
-	background: #fafafa;
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.main {
+    height: 83%;
+    min-height: 90vh;    
 }
 
 p {

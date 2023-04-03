@@ -6,12 +6,12 @@ import org.eclipse.paho.client.mqttv3.MqttException;
 import org.eclipse.paho.client.mqttv3.MqttMessage;
 
 import br.com.thing.utils.TopicConstant;
-import br.com.thing.websocket.WebSocketSenderService;
+//import br.com.thing.websocket.WebSocketSenderService;
 
 public class CallBack implements MqttCallback {
 	
 	private String instanceData = "";
-	private WebSocketSenderService ws = new WebSocketSenderService();
+	//private WebSocketSenderService ws = new WebSocketSenderService();
 
 	public CallBack(String instance) {
 		instanceData = instance;

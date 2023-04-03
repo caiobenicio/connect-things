@@ -67,9 +67,7 @@ public class UserService extends GenericService<Client, Long> {
 
 		Optional<Client> client = userRepository.findById(id);
 		client.get().setPassword(null);
-		message.AddField("mensagem", "Load User success");
-		message.setData(client.get());
-		return ResponseEntity.status(HttpStatus.OK).body(message);
+		return ResponseEntity.status(HttpStatus.OK).body(client);
 	}
 	
 }

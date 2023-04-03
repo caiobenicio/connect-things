@@ -87,7 +87,7 @@ public class ContextInitialized {
 		on = this.clientRepository.saveAndFlush(on);
 
 		ClientPermissionKey userPermKey = new ClientPermissionKey();
-		Permission p2 = new Permission(2L, "ROLE_USER");
+		Permission p2 = new Permission(2L, "ROLE_ADMIN");
 		userPermKey.setPermissionId(p2.getId());
 		userPermKey.setClientId(on.getId());
 

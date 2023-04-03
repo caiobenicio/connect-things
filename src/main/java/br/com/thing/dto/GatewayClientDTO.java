@@ -2,7 +2,7 @@ package br.com.thing.dto;
 
 import java.util.List;
 
-import br.com.thing.entity.Gateway;
+import br.com.thing.entity.Board;
 
 public class GatewayClientDTO {
 
@@ -10,7 +10,7 @@ public class GatewayClientDTO {
 	private String name;
 	private String email;
 	
-	private List<Gateway> gateway;
+	private List<Board> board;
 
 	public String getId() {
 		return id;
@@ -24,8 +24,8 @@ public class GatewayClientDTO {
 		return email;
 	}
 
-	public List<Gateway> getGateway() {
-		return gateway;
+	public List<Board> getBoard() {
+		return board;
 	}
 
 	public void setId(String id) {
@@ -40,12 +40,12 @@ public class GatewayClientDTO {
 		this.email = email;
 	}
 
-	public void setGateway(List<Gateway> gateway) {
-		this.gateway = gateway;
+	public void setBoard(List<Board> board) {
+		this.board = board;
 	}
 
 	@Override
 	public String toString() {
-		return "GatewayClientDTO [id=" + id + ", name=" + name + ", email=" + email + ", gateway=" + gateway + "]";
+		return "GatewayClientDTO [id=" + id + ", name=" + name + ", email=" + email + ", board=" + board + "]";
 	}
 }
