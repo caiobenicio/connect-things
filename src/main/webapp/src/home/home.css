@@ -119,3 +119,21 @@ a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover
 .foot {
 	text-align: center;
 }
+
+.input-home input[type=text] {
+  width: 80%;
+  padding: 6px 20px;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+input[type=text]:focus {
+  border: 2px solid lightblue;
+}
+
+nav {
+	width: 100%;
+}

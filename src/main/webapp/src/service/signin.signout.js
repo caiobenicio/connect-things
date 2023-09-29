@@ -21,8 +21,14 @@ angular.module('homeon')
           var data = response.data;
 
           if (data.name) {
-            $rootScope.authDetails = {name: data.name, email: data.principal.email, authenticated: data.authenticated,
-            							permissions: data.authorities, id: data.principal.id };
+            $rootScope.authDetails = {
+				name: data.name, 
+				email: data.principal.email, 
+				authenticated: data.authenticated,
+				permissions: data.authorities, 
+				id: data.principal.id,
+				boards: []
+			};
            
             $localStorage.authDetails = $rootScope.authDetails;
                     
@@ -41,12 +47,12 @@ angular.module('homeon')
             $(".main").height("83%");
             ngNotify.set('Logado!.', { type: 'success', duration: 5000 });
           } else {
-            $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
+            $rootScope.authDetails = { name: '', authenticated: false, permissions: [], boards: [] };
             ngNotify.set('Emai ou senha não encontrado.', { type: 'error', duration: 5000 });
           }
         },
         function failure(response) {
-          $rootScope.authDetails = { name: '', authenticated: false, permissions: []};
+          $rootScope.authDetails = { name: '', authenticated: false, permissions: [], boards: []};
            ngNotify.set('Emai ou senha não encontrado.', { type: 'error', duration: 5000 });
         }
       );
@@ -62,7 +68,7 @@ angular.module('homeon')
       $http(requestParams).finally(function success(response) {
         delete $localStorage.authDetails;
         delete $localStorage.profileIconName;
-        $rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
+        $rootScope.authDetails = { name: '', authenticated: false, permissions: [], boards: [] };
         $rootScope.statusMenu = false;
         $location.path("/");
         $(".main").height("100%");

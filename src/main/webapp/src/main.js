@@ -1,11 +1,13 @@
 'use strict';
+
 angular.module('homeon').controller('mainController',
-	function($scope, LoginLogoutSrv, $location, $rootScope, $mdSidenav, 
-		$mdDialog, $mdMedia, $localStorage) {
-		
+	function($scope, LoginLogoutSrv, $location, $rootScope, $localStorage, WebSocketService) {
+
 		$scope.user = $rootScope.authDetails;
 		$rootScope.statusMenu = true;
 		$rootScope.profileIconName = $localStorage.profileIconName;
+
+		$scope.WebSocketService = WebSocketService;
 
 		$scope.hasAnyPermission = function(authorities) {
 			var hasPermission = false;
@@ -21,20 +23,6 @@ angular.module('homeon').controller('mainController',
 			return hasPermission;
 		};
 
-//		$scope.navbar = function() {
-//			return {
-//				"display": 'block'
-//			};
-//		}
-//
-//		$scope.openLeftMenu = function() {
-//			$mdSidenav('left').toggle();
-//		};
-//
-//        $scope.closeLeftMenu = function () {
-//            $mdSidenav('left').close();
-//
-//        };
 		// buscar cadastro placas, mostrar pou-up cadastrar placa. iniciar
 		// mqtt e webscoket.
 
@@ -45,30 +33,33 @@ angular.module('homeon').controller('mainController',
 		$scope.profile = function() {
 			$location.path('/profile');;
 		};
-  		
-		$scope.showDialogNewBoard = function ($event) {
-			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));	
-			$mdDialog.show({
-				templateUrl: 'src/board/dialog/newBoardDialog.html',
-				parent: angular.element(document.body),
-				targetEvent: $event,
-				controller: 'newBoardDialogCtrl',
-				controllerAs: 'ctrl',
-				clickOutsideToClose: true,
-				fullscreen: useFullScreen,
-			});
 
-		};
+		$scope.isObjectEmpty = function(obj) {
+			return Object.keys(obj).length === 0;
+		}
+
+//		WebSocketService.onMessage(function(message) {
+//			$scope.received = angular.fromJson(message);
+//
+//			angular.forEach($scope.received.pinsIn, function(value, key) {
+//				var port = {
+//					port: value,
+//					type: "IN"
+//				};
+//
+//				$scope.ports.push(port);
+//			});
+//
+//			angular.forEach($scope.received.pinsOut, function(value, key) {
+//				var port = {
+//					port: value,
+//					type: "OUT"
+//				};
+//
+//				$scope.ports.push(port);
+//			});
+//
+//		});
 		
-		
-	})
-	
-.directive('mydirect', function() {
-    return {
-		scope: true,
-        restrict: 'E',
-        replace: false,
-        templateUrl: '../index.html',
-    };
-});
+	});
 

@@ -60,7 +60,6 @@ public class UserService extends GenericService<Client, Long> {
 		return super.update(user, errors);
 	}
 
-	@SuppressWarnings("unchecked")
 	@Transactional
 	@RequestMapping(value = "/findById/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> findById(@PathVariable("id") Long id) {

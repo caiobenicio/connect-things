@@ -16,8 +16,3 @@ server:
     context-path: /
   port: 8081
     
-# SERVER MQTT   
-#broker:
-# mqtt: tcp://127.0.0.1:1883
-# user: caiosilva
-# password: 506070

@@ -1,42 +1,60 @@
 <md-dialog aria-label="Cadastrar Placa" style="overflow:hidden">
-    <md-toolbar>
-      <div class="md-toolbar-tools">
-        <h2>Configurar Controlador</h2>
-        <span flex></span>
-        <md-button class="md-icon-button" ng-click="cancel()">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="gray" d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10Zm0-11.414L9.172 7.757L7.757 9.172L10.586 12l-2.829 2.828l1.415 1.415L12 13.414l2.828 2.829l1.415-1.415L13.414 12l2.829-2.828l-1.415-1.415L12 10.586Z"/></svg>
-        </md-button>
-      </div>
-    </md-toolbar>
-  
-    <md-dialog-content>
-      <div class="md-dialog-content">
-        <form role="form">
-              <div layout-gt-xs="row">
-                <md-input-container class="md-block" flex-gt-xs="">
-                  <label>Nome da Placa</label>
-                  <input ng-model="board.name" size="20" md-placeholder="" required>
-                </md-input-container>
+	<md-toolbar>
+	<div class="md-toolbar-tools" style="display: flex; justify-content: center;">
+		<h3>Configurar Controlador</h3>
+		<md-button arial-label="board" class="md-icon-button" ng-click="cancel()" style="display: flex!important; right: 0px; position: fixed!important;"> <svg
+			xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+			viewBox="0 0 24 24">
+			<path fill="gray"
+				d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10Zm0-11.414L9.172 7.757L7.757 9.172L10.586 12l-2.829 2.828l1.415 1.415L12 13.414l2.828 2.829l1.415-1.415L13.414 12l2.829-2.828l-1.415-1.415L12 10.586Z" /></svg>
+		</md-button>
+	</div>
+	</md-toolbar> 
+	<md-dialog-content>
+		<div class="md-dialog-content">
+			<div layout="row" layout-wrap><h2>Selecione o tipo de dispositivo e modelo que voc&ecirc; deseja configurar</h2></div>
+			<form class="md-inline-form">
+			
+				<div layout="row" layout-wrap>
+					<md-radio-group ng-model="board.type"> 
+						<md-radio-button  value="ESP8266">ESP8266</md-radio-button> 
+						<md-radio-button value="ESP32">ESP32</md-radio-button> 
+						<md-radio-button value="LoRaWAN">LoRaWAN</md-radio-button> 
+						<md-radio-button value="OTHER">Outro</md-radio-button>
+					</md-radio-group>
+				</div>
+				<div layout="row" layout-wrap ng-if="board.type == 'ESP8266' || board.type == 'ESP32' " class="mt-1">
+			      <md-input-container>
+			        <label>Modelo</label>
+			        <md-select ng-model="board.model">
+			          <md-option ng-if="board.type == 'ESP8266'" ng-repeat="typeESP8266 in typesESP8266" value="{{typeESP8266.abbrev}}"> {{typeESP8266.abbrev}} </md-option>
+			          <md-option ng-if="board.type== 'ESP32'" ng-repeat="typeESP32 in typesESP32" value="{{typeESP32.abbrev}}"> {{typeESP32.abbrev}} </md-option>
+			        </md-select>
+			      </md-input-container>		
+				</div>
+				
+				<div layout="row" layout-wrap class="mt-4">
+			      <md-input-container>
+			        <label>Nome</label>
+			        <input type="text" ng-model="board.name" required="required">
+			      </md-input-container>				
+				</div>
+				<div layout="row" layout-wrap>
+			      <md-input-container>
+			        <label>Topico Assinar</label>
+			        <input type="text" ng-model="board.topicSubscribe" >
+			      </md-input-container>		
+			      <md-input-container>
+			        <label>Topico Publicar</label>
+			        <input type="text" ng-model="board.topicPublish" >
+			      </md-input-container>				      		
+				</div>	
+				
+				<div class="button d-flex justify-content-center">
+					<button type="button" class="btn btn-primary btn-sm btn-radius" ng-click="saveBoard(board)">Salvar Dispositivo</button>
+				</div>							
+			</form>
+		</div>
+	</md-dialog-content> 
 
-                <md-input-container class="md-block" flex-gt-xs="">
-                  <label>Tópico Base</label>
-                  <input ng-model="board.topicBase" size="20" md-placeholder="" required>
-                </md-input-container>
-              </div>
-              <div layout-gt-xs="row">
-                <md-input-container class="md-block" flex-gt-xs="">
-                  <label>Tópico de Assinar</label>
-                  <input ng-model="board.topicSubscribe" size="20" md-placeholder="" required>
-                </md-input-container>      
-                
-                <md-input-container class="md-block" flex-gt-xs="">
-                  <label>Tópico de Publicar</label>
-                  <input ng-model="board.topicPublish" size="20" md-placeholder="" required>
-                </md-input-container>                    
-              </div>
-              <md-button ng-click="saveBoard(board)" class="md-raised md-primary">Salva</md-button>
-        </form>
-      </div>
-    </md-dialog-content>
-  </md-dialog>
-  
+</md-dialog>

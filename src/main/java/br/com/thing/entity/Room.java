@@ -3,9 +3,6 @@ package br.com.thing.entity;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -13,10 +10,7 @@ import javax.persistence.OneToMany;
 @Entity
 public class Room extends BaseEntity<Long> {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
-    private String nome;
+    private String name;
     
     @ManyToOne
     @JoinColumn(name="home_id")
@@ -32,28 +26,18 @@ public class Room extends BaseEntity<Long> {
 		super();
 	}
 
-	public Room(Long id, String nome, Home home) {
+	public Room(String name, Home home) {
 		super();
-		this.id = id;
-		this.nome = nome;
+		this.name = name;
 		this.home = home;
 	}
-	
 
-	public Long getId() {
-		return id;
+	public String getName() {
+		return name;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public Home getHome() {

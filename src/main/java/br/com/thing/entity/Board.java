@@ -1,109 +1,132 @@
 package br.com.thing.entity;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import br.com.thing.enums.DeviceType;
 
 @Entity
 public class Board extends BaseEntity<Long> {
 
-    private String name;
-    private String model;
+	private String name;
+	private String model;
 
-//	@Column(name = "topic_base", length = 20)
-//	private String topicBase;
+	@Column(name = "topic_subscribe", length = 40)
+	private String topicSubscribe;
 
-    @Column(name = "topic_subscribe", length = 40)
-    private String topicSubscribe;
+	@Column(name = "topic_publish", length = 40)
+	private String topicPublish;
 
-    @Column(name = "topic_publish", length = 40)
-    private String topicPublish;
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
 
-    @Column(name = "quantity_doors_io", length = 11, nullable = true)
-    private Integer quantityDoorsIO;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "type", length = 10)
+	private DeviceType type;
 
-    @Column(name = "input_tension", length = 11, nullable = true)
-    private Double inputTesion;
+	private boolean status;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private Set<Port> ports;
+//	private String serialNumber;
+//	private String lastActivity;
+	// private Set<String> connectivityTypes = new HashSet<>();
+	//  private Double inputTesion;
+	//  private Integer quantityDoorsIO;
 
-    // @ElementCollection
-    // @CollectionTable(name = "connectivity_types")
-    // private Set<String> connectivityTypes = new HashSet<>();
+	public Board() {}
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;
+	public Board(String name, String model, Client client) {
+		this.name = name;
+		this.model = model;
+		this.client = client;
+	}
 
-    public Board() {
-        super();
-    }
+	public Long getId() {
+		return super.getId();
+	}
 
-    public Board(String name, String model, Integer quantityDoorsIO, Double inputTesion, Client client) {
-        super();
-        this.name = name;
-        this.model = model;
-        this.quantityDoorsIO = quantityDoorsIO;
-        this.inputTesion = inputTesion;
-        this.client = client;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public Long getId() {
-        return super.getId();
-    }
+	public String getModel() {
+		return model;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public Client getClient() {
+		return client;
+	}
 
-    public String getModel() {
-        return model;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public Integer getQuantityDoorsIO() {
-        return quantityDoorsIO;
-    }
+	public void setModel(String model) {
+		this.model = model;
+	}
 
-    public Double getInputTesion() {
-        return inputTesion;
-    }
+	public void setClient(Client client) {
+		this.client = client;
+	}
 
-    public Client getClient() {
-        return client;
-    }
+	public String getTopicSubscribe() {
+		return topicSubscribe;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public void setTopicSubscribe(String topicSubscribe) {
+		this.topicSubscribe = topicSubscribe;
+	}
 
-    public void setModel(String model) {
-        this.model = model;
-    }
+	public String getTopicPublish() {
+		return topicPublish;
+	}
 
-    public void setQuantityDoorsIO(Integer quantityDoorsIO) {
-        this.quantityDoorsIO = quantityDoorsIO;
-    }
+	public void setTopicPublish(String topicPublish) {
+		this.topicPublish = topicPublish;
+	}
 
-    public void setInputTesion(Double inputTesion) {
-        this.inputTesion = inputTesion;
-    }
+	public DeviceType getType() {
+		return type;
+	}
 
-    public void setClient(Client client) {
-        this.client = client;
-    }
+	public void setType(DeviceType deviceType) {
+		this.type = deviceType;
+	}
 
-    public String getTopicSubscribe() {
-        return topicSubscribe;
-    }
+	public boolean isStatus() {
+		return status;
+	}
 
-    public void setTopicSubscribe(String topicSubscribe) {
-        this.topicSubscribe = topicSubscribe;
-    }
+	public void setStatus(boolean status) {
+		this.status = status;
+	}
 
-    public String getTopicPublish() {
-        return topicPublish;
-    }
+	public Set<Port> getPorts() {
+		return ports;
+	}
 
-    public void setTopicPublish(String topicPublish) {
-        this.topicPublish = topicPublish;
-    }
+	public void setPorts(Set<Port> ports) {
+		if (this.ports == null) {
+			this.ports = ports;
+		} else {
+	        this.ports.addAll(ports);
+	    }		
+	}
 }

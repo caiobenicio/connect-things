@@ -13,6 +13,7 @@ public final class ServicePaths {
 	public static final String LOGIN_PATH = PUBLIC_ROOT_PATH + "/login";
 	public static final String SIGNUP_PATH = PUBLIC_ROOT_PATH + "/signup";
 	public static final String LOGOUT_PATH = PUBLIC_ROOT_PATH + "/logout";
+	public static final String CHANGE_PASSWORD_PATH = PUBLIC_ROOT_PATH + "/change-password";
 
 	// PRIVATE PATHS
 	public static final String USER_PATH = PRIVATE_ROOT_PATH + "/user";
@@ -27,6 +28,8 @@ public final class ServicePaths {
 	public static final String TAB_PATH = PRIVATE_ROOT_PATH + "/tab";
 
 	public static final String TASK_PATH = PRIVATE_ROOT_PATH + "/task";
+	public static final String PORT_PATH = PRIVATE_ROOT_PATH + "/port";
+	public static final String PORT_DEVICE_PATH = PRIVATE_ROOT_PATH + "/port-device";
 
 	private ServicePaths() {}
 

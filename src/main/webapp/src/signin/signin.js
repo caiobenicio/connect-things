@@ -19,7 +19,6 @@ angular.module('homeon').controller('signinCtrl',
 			};
 		
 	        $scope.addUser = function($event,user_aux) {
-	        	
 	            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
 	            if(user_aux != null){
 	                $scope.user = user_aux;
@@ -37,9 +36,20 @@ angular.module('homeon').controller('signinCtrl',
 	                    _addUser: $scope.addUser,
 	                    _user_aux: user_aux
 	                }
-
 	            });
-
 	        };
 
+	        $scope.changePass= function($event) {
+	            var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+	            
+	            mdDialog.show({
+	                templateUrl: 'src/user/dialog/changePassword.html',
+	                parent: angular.element(document.body),
+	                targetEvent: $event,
+	                controller: 'changePasswordCtrl',
+	                controllerAs: 'ctrl',
+	                clickOutsideToClose: true,
+	                fullscreen: useFullScreen,
+	            });
+	        };
 		});

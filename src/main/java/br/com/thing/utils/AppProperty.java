@@ -30,15 +30,6 @@ public class AppProperty {
 	@Value("${mqtt.url}")
 	private String mqttUrl;	
 	
-	@Value("${mqtt.subscribe}")
-	private String mqttSubscribe;
-	
-	@Value("${mqtt.publish}")
-	private String mqttPublish;
-	
-	@Value("${mqtt.clientMqtt}")
-	private String clientMqtt;
-	
 	public AppProperty() {}
 
 	public static AppProperty getinstance() {
@@ -71,30 +62,6 @@ public class AppProperty {
 
 	public String getDdlAuto() {
 		return ddlAuto;
-	}
-
-	public String getMqttSubscribe() {
-		return mqttSubscribe;
-	}
-
-	public String getMqttPublish() {
-		return mqttPublish;
-	}
-
-	public void setMqttSubscribe(String mqttSubscribe) {
-		this.mqttSubscribe = mqttSubscribe;
-	}
-
-	public void setMqttPublish(String mqttPublish) {
-		this.mqttPublish = mqttPublish;
-	}
-
-	public String getClientMqtt() {
-		return clientMqtt;
-	}
-
-	public void setClientMqtt(String clientMqtt) {
-		this.clientMqtt = clientMqtt;
 	}
 
 }

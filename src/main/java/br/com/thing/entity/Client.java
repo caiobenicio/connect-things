@@ -24,9 +24,9 @@ public class Client extends BaseEntity<Long> {
 	private String password;
 
 	@JsonIgnore
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", orphanRemoval=true)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	@org.hibernate.annotations.Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)    
+	//@org.hibernate.annotations.Cascade(org.hibernate.annotations.CascadeType.DELETE_ORPHAN)    
 	@OrderBy("name ASC")
 	private List<Home> homes= new ArrayList<>();
 

@@ -1,0 +1,45 @@
+<md-dialog aria-label="Cadastrar Dispositio" style="overflow:hidden">
+	<md-toolbar>
+	<div class="md-toolbar-tools" style="display: flex; justify-content: center;">
+		<h3 style="margin-right: 2rem;">Cadastrar Dispositivo</h3>
+		<md-button arial-label="board" class="md-icon-button" ng-click="cancel()" style="display: flex!important; right: 0px; position: fixed!important;"> <svg
+			xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+			viewBox="0 0 24 24">
+			<path fill="gray"
+				d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10Zm0-11.414L9.172 7.757L7.757 9.172L10.586 12l-2.829 2.828l1.415 1.415L12 13.414l2.828 2.829l1.415-1.415L13.414 12l2.829-2.828l-1.415-1.415L12 10.586Z" /></svg>
+		</md-button>
+	</div>
+	</md-toolbar> 
+	<md-dialog-content>
+		<div class="md-dialog-content">
+<!-- 			<div layout="row" layout-wrap><h2>Selecione o tipo de dispositivo e modelo que voc&ecirc; deseja configurar</h2></div> -->
+			<form class="md-inline-form">
+				
+				<div layout="row" layout-wrap class="mt-4">
+			      <md-input-container>
+			        <label>Nome</label>
+			        <input type="text" ng-model="device.name" required="required">
+			      </md-input-container>				
+				</div>
+
+				<div layout="row" layout-wrap class="mt-4">
+			      <md-input-container>
+			        <label>Descri&ccedil;&atilde;o</label>
+			        <input type="text" ng-model="device.description" >
+			      </md-input-container>				
+				</div>
+				
+				<div layout="row" layout-wrap class="mt-4">
+			      <md-input-container>
+					<md-switch md-invert ng-disabled="true" ng-model="device.active" aria-label="Ativo" >Ativo&nbsp;&nbsp;</md-switch>			        
+			      </md-input-container>				
+				</div>				
+				
+				<div class="button d-flex justify-content-center">
+					<button type="button" class="btn btn-primary btn-sm btn-radius" ng-click="saveDevice(device)">Salvar Dispositivo</button>
+				</div>							
+			</form>
+		</div>
+	</md-dialog-content> 
+
+</md-dialog>

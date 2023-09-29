@@ -1,21 +1,20 @@
 package br.com.thing.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Device extends BaseEntity<Long> {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
     private String name;
+    private String iconPath;
     private String description;
     private Boolean active;
+    
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;
     
     @ManyToOne
     @JoinColumn(name="room_id")
@@ -26,21 +25,13 @@ public class Device extends BaseEntity<Long> {
 		super();
 	}
 
-	public Device(Long id, String name, String description, Boolean active, Room room) {
+	public Device(String name, String description, Boolean active, Client client, Room room) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.active = active;
+		this.client = client;
 		this.room = room;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {
@@ -81,6 +72,22 @@ public class Device extends BaseEntity<Long> {
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public String getIconPath() {
+		return iconPath;
+	}
+
+	public void setIconPath(String iconPath) {
+		this.iconPath = iconPath;
 	}
    	
 }

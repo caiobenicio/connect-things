@@ -71,14 +71,15 @@ public class ContextInitialized {
 			createUser();
 		}
 
-		// inicializa o broker mqtt
-		if (prop.getMqttEnabled())
-			MqttConnection.getInstance().connect();
-
 		// busca os agendamento de comando em aberta no banco
 		scheduleRepository.buscarAgendasAbertas().stream().forEach(a -> {
 			agendador.agendamento(a);
 		});
+		
+		// inicializa o broker mqtt
+		if (prop.getMqttEnabled())
+			MqttConnection.getInstance().connect(prop.getMqttUrl(), "clientweb/outTopic", "clientweb/inTopic");
+
 
 	}
 

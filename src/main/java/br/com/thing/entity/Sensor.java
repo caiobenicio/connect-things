@@ -1,18 +1,12 @@
 package br.com.thing.entity;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
 public class Sensor extends BaseEntity<Long> {
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
     private String name;
     private String description;
     private Boolean active;
@@ -26,22 +20,12 @@ public class Sensor extends BaseEntity<Long> {
 		super();
 	}
 
-	public Sensor(Long id, String name, String description, Boolean active, Room room) {
+	public Sensor(String name, String description, Boolean active, Room room) {
 		super();
-		this.id = id;
 		this.name = name;
 		this.description = description;
 		this.active = active;
 		this.room = room;
-	}
-
-	
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
 	public String getName() {

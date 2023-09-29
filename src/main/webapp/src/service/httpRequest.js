@@ -11,7 +11,11 @@ angular.module('homeon')
       };
       $http(requestParams).then(
     	        function successCallback(response) {
-    	            callback('ok',response.data);
+					var httpStatus = 'ok';
+					if (response.status === 204) {
+						httpStatus = response.status;
+					}
+    	            callback(httpStatus, response.data);
     	        },
     	        function errorCallback(response) {
     	            if(response.data !== null){
@@ -37,7 +41,7 @@ angular.module('homeon')
         new HttpRequestSrv(url, 'GET', {}, callback);
     };
     
-    // Aadd a new data.
+    // Add a new data.
     restFactory.add = function(url, data, callback){
       HttpRequestSrv(url, 'POST', data, callback);
     };

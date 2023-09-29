@@ -19,7 +19,7 @@ public class TaskExecutorStart extends TimerTask {
 	@Override
 	public void run() {
 		Publisher p = new Publisher();
-		p.publishOnTopic(MqttConnection.CLIENTID, schedule.getTopic(), command);
+		//p.publishOnTopic(MqttConnection.CLIENTID, schedule.getTopic(), command);
 
 		ScheduleTask s = new ScheduleTask();
 		s.novoAgendamento(schedule);

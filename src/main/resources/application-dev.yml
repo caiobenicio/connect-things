@@ -15,7 +15,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/postgres
     username: postgres
-    password: postgres
+    password: 9090
     driverClassName: org.postgresql.Driver
   devtools: 
     restart: 
@@ -23,7 +23,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     properties: 
       hibernate:
         format_sql: true
@@ -44,10 +44,9 @@ security:
 
 # SERVER MQTT
 mqtt: 
-  enabled: true
-  url: tcp://broker.mqttdashboard.com:1883
+  enabled: true 
+  url: tcp://broker.mqtt-dashboard.com
+#  url: tcp://broker.mqttdashboard.com:1883
+#  url: tcp://mqtt-dashboard.com:8884
   user: caiosilva
   password: 506070
-  clientMqtt: wemosd1
-  subscribe: /outTopic
-  publish: /inTopic

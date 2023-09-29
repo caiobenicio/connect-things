@@ -2,7 +2,8 @@
 	<div class="container">
 		<div class="wrapper wrapper-login">
 			<div class="container container-login animated fadeIn">
-				<h1 class="text-center text-white" style="padding-bottom: 1em;">FaÃ§a seu login</h1>
+				<h1 class="text-center text-white" style="padding-bottom: 1em;">Fa&ccedil;a seu login</h1>
+				<div class="col-12 form-title ng-star-inserted"> Faça seu login </div>
 				
 				<form method="post" class="login-form" ng-submit="signin(email, password)">
 					<div class="form-group form-floating-label">
@@ -25,7 +26,7 @@
 							<label class="custom-control-label" for="rememberme">Lembrar me</label>
 						</div>
 						
-						<a href="#" class="link float-right" style="padding-left: 5rem; font-size: small;color: #b7b7b7;">Esqueceu a senha ?</a>
+						<button type="button" ng-click="changePass($event)" class="link float-right" style="font-size: small;color: #b7b7b7; background-color: transparent;">Esqueceu a senha ?</button>
 					</div>
 					<div class="form-action mb-3">
 						<button type="submit" class="btn btn-primary btn-rounded btn-login">Entrar</button>

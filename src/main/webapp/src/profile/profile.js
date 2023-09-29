@@ -24,7 +24,7 @@ angular.module('homeon').controller('profileCtrl',
 			if (id != "" && id != undefined) {
 				var userFindId = userUrl + '/findById/' + id;
 				RestSrv.find(userFindId, function(status, data) {
-					$scope.user = data.data;
+					$scope.user = data;
 					$scope.userCopy = angular.copy($scope.user);
 				});
 			}

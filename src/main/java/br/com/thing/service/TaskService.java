@@ -20,9 +20,8 @@ public class TaskService {
      * @return
      */
     @PostMapping()
-    public ResponseEntity<?> publishTopic(@RequestParam(name = "topic") String topic, @RequestParam(name = "command") String command) {
-        Publisher p = new Publisher();
-		p.publishOnTopic(MqttConnection.CLIENTID, topic, command);
+    public ResponseEntity<?> publishTopic(@RequestParam(name = "command") String command) {
+        new Publisher(MqttConnection.CLIENT_ID, "clientweb/inTopic", command);
         return ResponseEntity.status(HttpStatus.OK).body("Comando enviado!");
     }
 }
