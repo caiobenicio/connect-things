@@ -2,7 +2,8 @@ package br.com.thing.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Sensor extends BaseEntity<Long> {
@@ -11,21 +12,24 @@ public class Sensor extends BaseEntity<Long> {
     private String description;
     private Boolean active;
     
-    @ManyToOne
-    @JoinColumn(name="room_id")
-    private Room room;
-
+    @OneToOne
+    @MapsId
+    @JoinColumn(name = "port_id")
+    public Port port;
+    
+//    @ManyToOne
+//    @JoinColumn(name="room_id")
+//    private Room room;
     
 	public Sensor() {
 		super();
 	}
 
-	public Sensor(String name, String description, Boolean active, Room room) {
+	public Sensor(String name, String description, Boolean active) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.active = active;
-		this.room = room;
 	}
 
 	public String getName() {
@@ -60,13 +64,12 @@ public class Sensor extends BaseEntity<Long> {
 		this.active = active;
 	}
 
-	public Room getRoom() {
-		return room;
+	public Port getPort() {
+		return port;
 	}
 
-	public void setRoom(Room room) {
-		this.room = room;
+	public void setPort(Port port) {
+		this.port = port;
 	}
 
 }
-

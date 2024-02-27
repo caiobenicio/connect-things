@@ -8,5 +8,5 @@ import br.com.thing.entity.Device;
 
 public interface DeviceRepository extends JpaRepository<Device, Long> {
 
-	List<Device> findByClientId(Long clientId);
+	//List<Device> findByClientId(Long clientId);
 }
