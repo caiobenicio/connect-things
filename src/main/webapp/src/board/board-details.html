@@ -67,12 +67,9 @@
 			</fieldset>
 		</form>
 				
-		<form class="md-inline-form board-details-port ml-4"
-			ng-show="ports.length > 0">
+		<form class="md-inline-form board-details-port ml-4" >
 			<fieldset>
-				<legend>
-					Porta/Pino
-					<svg data-toggle="tooltip" data-placement="bottom"
+				<legend> Portas / Pinos	<svg data-toggle="tooltip" data-placement="bottom"
 						title="Tooltip on bottom" fill="#ffffff" width="22px"
 						height="22px" viewBox="0 0 1920 1920"
 						xmlns="http://www.w3.org/2000/svg">
@@ -84,7 +81,7 @@
 							fill-rule="evenodd"></path> </g></svg>
 				</legend>
 
-				<div layout="row" layout-wrap>
+				<div layout="row" layout-wrap ng-show="ports.length > 0">
 					<div class="col-sm-12">
 						<div class="list-group list-group-dark">
 							<table class="datatable">
@@ -92,31 +89,33 @@
 									<tr>
 										<th class="text-center" >Porta</th>
 										<th class="text-center" >Tipo</th>								
-										<th>Device Vinc.</th>	
+<!-- 										<th>Device Vinc.</th>	 -->
 									</tr>
 								</thead>
 								<tbody ng-model="ports">
 									<tr ng-cloak ng-repeat="pin in ports" class="items-table--row ports">
 										<td class="text-center" >{{ pin.port }}</td>
 										<td class="text-center" >{{ pin.type }}</td>									
-										<td><span class="thing-column--create-thing h5">
-											<a href="#!/device" class="thing-column--create-thing-button">
-												Vincular Dispositivo
-											</a></span>
-										</td>
+<!-- 										<td><span class="thing-column--create-thing h5"> -->
+<!-- 											<a href="#!/device" class="thing-column--create-thing-button"> -->
+<!-- 												Vincular Dispositivo -->
+<!-- 											</a></span> -->
+<!-- 										</td> -->
 									</tr>
 								</tbody>
 							</table>	
 						</div>
 						
+						<div class="row d-flex justify-content-center mt-3">
+							<button type="button" class="btn btn-info btn-sm btn-radius" ng-click="savePorts(ports)">Salvar Portas</button>
+						</div>					
 					</div>
+					
 				</div>
 
-				<div class="row d-flex justify-content-center mt-3">
-					<button type="button" class="btn btn-info btn-sm btn-radius"
-						ng-click="savePorts(ports)">Salvar Portas</button>
+				<div class="row d-flex justify-content-center mt-3" ng-hide="ports.length > 0" >
+					<button type="button" class="btn btn-info btn-sm btn-radius" ng-click="getPort(board.id)">Buscar Portas</button>
 				</div>
-
 
 			</fieldset>
 		</form>

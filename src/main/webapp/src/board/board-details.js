@@ -21,8 +21,8 @@ angular.module('homeon').controller('boardDetailsCtrl',
 			if (data != null && data != []) {
 				$scope.ports = data;
 			}
-		});		
-
+		});
+		
 		$scope.editBoard = function(board) {
 			$scope.board.client = $rootScope.authDetails;
 			RestSrv.edit(boardUrl, board, function(status, data) {
@@ -96,4 +96,11 @@ angular.module('homeon').controller('boardDetailsCtrl',
 			});
 		};
 
+		$scope.getPort = function(id) {
+			RestSrv.find(portUrl+"/findByPorts/"+id, function(status, data) {
+				if (data != null && data != []) {
+					$scope.ports = data;
+				}
+			});	
+		};		
 	});

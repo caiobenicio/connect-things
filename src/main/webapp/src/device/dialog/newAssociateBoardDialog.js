@@ -3,7 +3,7 @@
 angular.module('homeon').controller('newAssociateBoardDialogCtrl',
 	function($scope, RestSrv, SERVICE_PATH, $mdDialog, ngNotify, $rootScope, dataToPass, $mdMedia, $location) {
 		$scope.dataLoaded = true;
-		$scope.dataEmpty = false;
+		$scope.dataEmpty = true;
 		$scope.name = dataToPass;
 		var id = $rootScope.authDetails.id;
 		$scope.boards = [];
@@ -17,7 +17,7 @@ angular.module('homeon').controller('newAssociateBoardDialogCtrl',
 			if (data != null) {
 				$scope.boards = data;
 				$scope.dataLoaded = false;
-				$scope.dataEmpty = true;
+				$scope.dataEmpty = false;
 			}
 		});
 

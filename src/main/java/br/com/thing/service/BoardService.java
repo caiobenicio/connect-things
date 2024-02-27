@@ -17,7 +17,6 @@ import br.com.thing.entity.Board;
 import br.com.thing.entity.Client;
 import br.com.thing.mqtt.MqttConnection;
 import br.com.thing.mqtt.Publisher;
-import br.com.thing.mqtt.Subscribe;
 import br.com.thing.repository.BoardRepository;
 import br.com.thing.repository.ClientRepository;
 
@@ -63,19 +62,19 @@ public class BoardService extends GenericService<Board, Long> {
     	super.update(board, errors);
     	
     	
-    	if (!board.isStatus()) {
-    		status = HttpStatus.NO_CONTENT;
-    		Subscribe x = new Subscribe();
-    		x.unsubscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
-    	} else {
-    		new Subscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
-    	}
+//    	if (!board.isStatus()) {
+//    		status = HttpStatus.NO_CONTENT;
+//    		Subscribe x = new Subscribe();
+//    		x.unsubscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
+//    	} else {
+//    		new Subscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
+//    	}
 
     	return ResponseEntity.status(status).body(null);
 	}
 
-    @GetMapping(value = "/findByPorts")
-    public ResponseEntity<?> findByPorts() {
+    @GetMapping(value = "/findByPorts/{id}")
+    public ResponseEntity<?> findByPorts(@PathVariable("id") Long id) {
         new Publisher(MqttConnection.CLIENT_ID, "clientweb/inTopic", "P");
         return ResponseEntity.status(HttpStatus.OK).body("Comando enviado!");
     }
