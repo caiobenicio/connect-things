@@ -1,4 +1,4 @@
-package br.com.thing.service;
+package br.com.thing.service.impl;
 
 import java.util.List;
 
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import br.com.thing.entity.Port;
 import br.com.thing.repository.PortRepository;
+import br.com.thing.service.PortService;
 
 @Service
 public class PortServiceImpl implements PortService {
