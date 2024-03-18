@@ -33,15 +33,10 @@ public abstract class GenericService<T extends BaseEntity<ID>, ID extends Serial
 
 	@RequestMapping(method = RequestMethod.POST)
 	public T insert(@RequestBody T entity) {
-		// if (this.LOGGER.isDebugEnabled()) {
-		// 	this.LOGGER.debug(String.format("Saving the entity [%s].", entity));
-		// }
-
-		entity.setId(null);
-		
+		entity.setId(null);		
 		return this.genericRepository.save(entity);
 	}
-
+	
 //	@RequestMapping(method = RequestMethod.PUT)
 //	public void update(@RequestBody T entity) {
 //		this.LOGGER.debug(String.format("Request to update the record [%s].", entity));
