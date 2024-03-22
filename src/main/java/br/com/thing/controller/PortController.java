@@ -1,5 +1,6 @@
 package br.com.thing.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class PortController extends GenericService<Port, Long> {
     @GetMapping(value = "/findByPorts/{id}")
     public ResponseEntity<?> findByPorts(@PathVariable("id") Long id) {
         new Publisher(MqttConnection.CLIENT_ID, "clientweb/inTopic", "P");
-        return ResponseEntity.status(HttpStatus.OK).body("Comando enviado!");
+        return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
     }
     
 	@GetMapping(value = "/findByBoardId/{id}")

@@ -1,14 +1,12 @@
 'use strict';
 
 angular.module('homeon').controller('mainController',
-	function($scope, LoginLogoutSrv, $location, $rootScope, $localStorage, WebSocketService) {
+	function($scope, $location, $rootScope, $localStorage) {
 
 		$scope.user = $rootScope.authDetails;
-		$rootScope.statusMenu = true;
 		$rootScope.profileIconName = $localStorage.profileIconName;
-
-		$scope.WebSocketService = WebSocketService;
-
+		$rootScope.statusMenu = false;
+		
 		$scope.hasAnyPermission = function(authorities) {
 			var hasPermission = false;
 
@@ -23,11 +21,8 @@ angular.module('homeon').controller('mainController',
 			return hasPermission;
 		};
 
-		// buscar cadastro placas, mostrar pou-up cadastrar placa. iniciar
-		// mqtt e webscoket.
-
 		$scope.logout = function() {
-			LoginLogoutSrv.logout();
+			//LoginLogoutSrv.logout();
 		};
 
 		$scope.profile = function() {
@@ -37,29 +32,5 @@ angular.module('homeon').controller('mainController',
 		$scope.isObjectEmpty = function(obj) {
 			return Object.keys(obj).length === 0;
 		}
-
-//		WebSocketService.onMessage(function(message) {
-//			$scope.received = angular.fromJson(message);
-//
-//			angular.forEach($scope.received.pinsIn, function(value, key) {
-//				var port = {
-//					port: value,
-//					type: "IN"
-//				};
-//
-//				$scope.ports.push(port);
-//			});
-//
-//			angular.forEach($scope.received.pinsOut, function(value, key) {
-//				var port = {
-//					port: value,
-//					type: "OUT"
-//				};
-//
-//				$scope.ports.push(port);
-//			});
-//
-//		});
 		
 	});
-

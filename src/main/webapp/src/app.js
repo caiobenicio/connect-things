@@ -5,8 +5,7 @@ var BASE_WS_URL;
 BASE_URL = window.location.origin + '/api';
 BASE_WS_URL = 'ws://' + window.location.origin.replace(/https?:\/\//i, "");
 
-angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotify',
-	'ngRoute', 'ngCookies', 'ngStorage', 'ui.bootstrap', 'ui.sortable', 'ngWebSocket'])//'ngStomp'
+angular.module('homeon', ['ngRoute', 'ngCookies', 'ngStorage', 'ngMaterial', 'ngNotify', 'ngMdIcons'])
 	.constant('SERVICE_PATH', {
 		'ROOT_PATH': BASE_URL,
 		'PUBLIC_PATH': BASE_URL + '/public',
@@ -18,17 +17,14 @@ angular.module('homeon', ['ngMaterial', 'ngMdIcons', 'checklist-model', 'ngNotif
 		$httpProvider.defaults.withCredentials = true;
 		$httpProvider.interceptors.push('httpRequestInterceptor');
 	})
-	.run(function($rootScope, LoginLogoutSrv, $location) {
-		$(".main").height("100%");
+	.run(function($rootScope, $location, SigninSignoutSrv) {
 		$rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
-		LoginLogoutSrv.verifyAuth();
+		SigninSignoutSrv.verifyAuth();
 
 		$rootScope.$on('$locationChangeStart', function() {
-			var url = $location.url();
 			if ($rootScope.authDetails.authenticated == false) {
-				$rootScope.statusMenu = false;
+				$rootScope.statusMenu = true;
 				$location.path('/');
-				$(".main").height("100%");
 			}
 		});
 	});
