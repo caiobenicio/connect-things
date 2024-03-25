@@ -50,7 +50,7 @@ angular.module('homeon')
 						ngNotify.set('Emai ou senha não encontrado.', { type: 'error', duration: 5000 });
 					}
 				},
-				function failure(response) {
+				function failure() {
 					$rootScope.authDetails = { name: '', authenticated: false, permissions: [], boards: [] };
 					ngNotify.set('Emai ou senha não encontrado.', { type: 'error', duration: 5000 });
 				}
@@ -64,7 +64,7 @@ angular.module('homeon')
 				headers: { 'Content-Type': 'application/json' }
 			};
 
-			$http(requestParams).finally(function success(response) {
+			$http(requestParams).finally(function success() {
 				delete $localStorage.authDetails;
 				delete $localStorage.profileIconName;
 				$rootScope.authDetails = { name: '', authenticated: false, permissions: [], boards: [] };

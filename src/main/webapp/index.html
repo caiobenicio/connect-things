@@ -8,7 +8,8 @@
 
 <link rel="stylesheet" href="/assets/css/angular-material.min.css">
 <link rel="stylesheet" href="/assets/css/ng-notify.min.css">
-<link rel="stylesheet" href="assets/css/angular-material-icons.css">
+<link rel="stylesheet" href="/assets/css/angular-material-icons.css">
+<link rel="stylesheet" href="/assets/css/app.css">
 </head>
 
 <body ng-app="homeon">
@@ -22,7 +23,7 @@
 				md-is-locked-open="$mdMedia('min-width: 700px')" ng-if="statusMenu"
 				ng-include="'src/fragments/sidenav.html'"> </md-sidenav>
 
-			<md-content id="main-content" class="justify-content-center" ng-view flex md-scroll-y></md-content>
+			<div class="justify-content-center" ng-view flex md-scroll-y></div>
 		</div>
 
 		<div id="right" layout="column" layout-align="center center" class="md-padding" style="padding: 1px;"></div>
@@ -37,7 +38,7 @@
     <script src="/assets/js/angular-aria.min.js"></script>
     <script src="/assets/js/angular-material.min.js"></script>	
     <script src="/assets/js/ng-notify.min.js"></script>
-    <script src="assets/js/angular-material-icons.min.js"></script>
+    <script src="/assets/js/angular-material-icons.min.js"></script>
 
 	<script src="src/app.js"></script>
 	<script src="src/main.js"></script>
@@ -46,6 +47,7 @@
 	<script src="src/service/httpRequest.js"></script>
 	
 	<script src="src/signin/signin.js"></script>
+	<script src="src/home/home.js"></script>
 	<script src="src/service/signin.signout.js"></script>
 
 </body>

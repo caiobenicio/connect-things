@@ -9,15 +9,17 @@ angular.module('homeon').controller('signinCtrl',
 		});
 
 		$rootScope.statusMenu = false;
+		$scope.email = "";
+		$scope.password = "";
 
 		$scope.user = {};
 		var mdDialog = $mdDialog;
 
-		$scope.signin = function(email, password) {
-			SigninSignoutSrv.login(email, password);
+		$scope.signin = function() {
+			SigninSignoutSrv.login($scope.email, $scope.password);
 		};
 
-		$scope.addUser = function($event, user_aux) {
+		$scope.createAccount = function($event, user_aux) {
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
 			if (user_aux != null) {
 				$scope.user = user_aux;
@@ -38,7 +40,7 @@ angular.module('homeon').controller('signinCtrl',
 			});
 		};
 
-		$scope.changePass = function($event) {
+		$scope.forgotPassword = function($event) {
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
 
 			mdDialog.show({

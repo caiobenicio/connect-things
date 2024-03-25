@@ -1,30 +1,28 @@
-<div layout="column" layout-padding="" ng-cloak="" class="inputdemoIcons">
-
-  <br>
-	<md-content class="md-no-momentum">
-	
-	  <md-input-container class="md-block">
-	<!-- 	  <md-icon class="email" aria-label="email"></md-icon> -->
-	    <input ng-model="email" id="email" type="email" placeholder="Email" ng-required="true" aria-label="Email">
-	  </md-input-container>
-	
-	  <md-input-container class="md-block">
-	<!-- 	  <md-icon class="password" aria-label="password"></md-icon> -->
-	    <input ng-model="password" id="password" type="password" placeholder="Senha" ng-required="true" aria-label="Senha">
-	  </md-input-container>
-	
-	</md-content>
-
-	<div class="row form-sub m-0" style="padding-bottom: 1em;">
-		<div class="custom-control custom-checkbox">
-			<input type="checkbox" class="custom-control-input" id="rememberme">
-			<label class="custom-control-label" for="rememberme">Lembrar me</label>
-		</div>
+<div layout="column" layout-align="center center" style="height: 98vh;" class="login">
+	<md-content layout="column" layout-align="center center" class="wrapper wrapper-login">
+	 
+		<h1 class="center white">Fa&ccedil;a seu login</h1>
 		
-		<button type="button" ng-click="changePass($event)" class="link float-right" style="font-size: small;color: #b7b7b7; background-color: transparent;">Esqueceu a senha ?</button>
-	</div>
-	
-	<div class="form-action mb-3">
-		<button type="submit" class="btn btn-primary btn-rounded btn-login">Entrar</button>
-	</div>	
+		<md-input-container>
+		  <label>Email</label>
+		  <input ng-model="email" type="email" id="email" name="email" class="size-input" ng-required="true">
+		</md-input-container>
+	  
+		<md-input-container>
+		  <label>Password</label>
+		  <input ng-model="password" type="password" id="showPassword" class="size-input" ng-required="true">
+		</md-input-container>
+		
+		<div class="p-b1">	
+			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+			<button type="button" ng-click="forgotPassword($event)" class="small-gray">Esqueceu a senha ?</button>
+		</div>	
+
+		<md-button class="md-raised md-primary m-b3 btn-round" ng-click="signin()">Entrar</md-button>
+
+		<div class="m-b3">
+			<span class="small-gray">Nao possui uma conta ?</span>
+			<button ng-click="createAccount($event,null)" class="btn-border">Criar Conta</button>
+		</div>
+	</md-content>
 </div>

@@ -1,0 +1,43 @@
+<md-dialog aria-label="Cadastrar Dispositio" style="overflow:hidden">
+	<md-toolbar>
+	<div class="md-toolbar-tools" style="display: flex; justify-content: center;">
+		<h3 style="margin-right: 2rem;">Associar Placa Controladora</h3>
+		<md-button arial-label="board" class="md-icon-button" ng-click="cancel()" style="display: flex!important; right: 0px; position: fixed!important;"> <svg
+			xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+			viewBox="0 0 24 24">
+			<path fill="gray"
+				d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10s-4.477 10-10 10Zm0-11.414L9.172 7.757L7.757 9.172L10.586 12l-2.829 2.828l1.415 1.415L12 13.414l2.828 2.829l1.415-1.415L13.414 12l2.829-2.828l-1.415-1.415L12 10.586Z" /></svg>
+		</md-button>
+	</div>
+	</md-toolbar> 
+	<md-dialog-content>
+		<div class="md-dialog-content">
+			<div layout="row" layout-wrap><h2>Escolha a Placa a associar a {{ name }}</h2></div>
+	
+			<div ng-if="dataLoaded" layout="row" layout-sm="column" layout-align="space-around">
+			  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+			</div>
+	   
+			<md-card ng-if="!dataLoaded" ng-repeat="card in boards" md-theme="{{ 'default' }}" style="cursor: pointer;" md-theme-watch>
+				<md-card-title>
+				  <md-card-title-text ng-click="savePortDevice(card.id)">
+				    <span class="md-headline">{{ card.name }}</span>
+				    <span class="md-subhead">{{ card.description }}</span>
+				  </md-card-title-text>
+				  
+				  <md-card-title-media style="padding-left: .5rem">
+				          <div class="md-media-sm card-media"><img ng-src="../../assets/svg/corrente.svg" class="md-card-image" alt="Luz"></div>
+				        </md-card-title-media>
+				</md-card-title>					    
+			</md-card>
+	     		    
+			<div ng-if="dataEmpty" layout="row" layout-sm="column" layout-align="space-around" class="mt-5">
+			  <span class="mb-5 md-headline">Nenhuma Placa encontrada</span>
+			</div>
+	       
+	       <md-button ng-click="showDialogNewBoardAssociate($event)">Cadastrar Nova Placa</md-button>
+			    		      
+		</div>
+	</md-dialog-content> 
+
+</md-dialog>

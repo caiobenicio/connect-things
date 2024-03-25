@@ -1,0 +1,70 @@
+<div class="row">
+	<div class="container-fluid">
+		<h2 class="m-3">Informa&ccedil;&otilde;es do Dispositivo</h2>
+	</div>
+</div>
+
+<div class="row">
+	<div class="container d-flex">
+
+		<form class="md-inline-form board-details ml-4">
+			<fieldset>
+				<legend>Dispositivo</legend>
+
+				<div layout="row" layout-wrap>
+					<div class="col-sm-6">
+						<md-input-container> <label>Nome</label> <input
+							type="text" ng-model="device.name" required="required"> </md-input-container>
+					</div>
+
+					<div class="col-sm-6">
+						<div class="d-flex flex-column">
+							<label style="color: #cbc4c4; margin-left: 0.6rem;">Status</label>
+							<label class="switch"> <input type="checkbox"
+								ng-model="device.active"> <span class="slider"></span> <span
+								class="labels" data-on="ON" data-off="OFF"></span>
+							</label>
+						</div>
+					</div>
+				</div>
+
+				<div layout="row" layout-wrap>
+					<div class="col-sm-6">
+						<md-input-container> <label>Descri&ccedil;&atilde;o</label>
+						<input type="text" ng-model="device.description"> </md-input-container>
+					</div>
+				</div>
+
+				<div layout="row" layout-wrap>
+					<div class="col-sm-6">
+						<md-input-container> <label>Comodo da
+							casa</label> <input type="text" ng-model="device.room_id" disabled>
+						</md-input-container>
+					</div>
+				</div>
+
+				<div class="row d-flex justify-content-center">
+					<div class="button">
+						<button type="button" class="btn btn-primary btn-sm btn-radius"
+							ng-click="editDevice(device)">Salvar Dispositivo</button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+		<div class="ml-3">
+			<h1>Associar Placa Controladora</h1>
+
+			<h5>Selecione a placa de controle que deseja usar ou configure um novo.</h5>
+			
+			<div class="button-with-label">
+				<md-button class="md-accent md-raised" ng-click="showDialogAssociateBoard($event, device.name)">
+				  <md-icon md-svg-icon="../../assets/svg/corrente-black.svg"></md-icon>
+				</md-button>
+				<span class="arduino-text button-with-label--text small">Select Device</span>
+			</div>
+			
+		</div>
+
+	</div>
+</div>

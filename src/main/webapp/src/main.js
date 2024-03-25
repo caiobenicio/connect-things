@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeon').controller('mainController',
-	function($scope, $location, $rootScope, $localStorage) {
+	function($scope, $location, $rootScope, $localStorage, SigninSignoutSrv) {
 
 		$scope.user = $rootScope.authDetails;
 		$rootScope.profileIconName = $localStorage.profileIconName;
@@ -22,7 +22,7 @@ angular.module('homeon').controller('mainController',
 		};
 
 		$scope.logout = function() {
-			//LoginLogoutSrv.logout();
+			SigninSignoutSrv.logout();
 		};
 
 		$scope.profile = function() {
