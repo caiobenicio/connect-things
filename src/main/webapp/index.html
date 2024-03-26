@@ -18,12 +18,11 @@
 		<md-toolbar ng-if="statusMenu" ng-include="'src/fragments/navbar.html'"></md-toolbar>
 
 		<div class="d-flex">
-			<md-sidenav style="height: 599px"
-				class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
-				md-is-locked-open="$mdMedia('min-width: 700px')" ng-if="statusMenu"
-				ng-include="'src/fragments/sidenav.html'"> </md-sidenav>
+			<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
+				md-is-locked-open="$mdMedia('min-width: 700px')" ng-if="statusMenu" ng-include="'src/fragments/sidenav.html'"> 
+			</md-sidenav>
 
-			<div class="justify-content-center" ng-view flex md-scroll-y></div>
+			<div id="main" class="justify-content-center" ng-view flex md-scroll-y></div>
 		</div>
 
 		<div id="right" layout="column" layout-align="center center" class="md-padding" style="padding: 1px;"></div>
@@ -45,10 +44,11 @@
 	<script src="src/utils/routers.js"></script>
 	<script src="src/service/interceptor.js"></script>
 	<script src="src/service/httpRequest.js"></script>
+	<script src="src/service/signin.signout.js"></script>
 	
 	<script src="src/signin/signin.js"></script>
 	<script src="src/home/home.js"></script>
-	<script src="src/service/signin.signout.js"></script>
+	<script src="src/profile/profile.js"></script>
 
 </body>
 </html>

@@ -1,0 +1,28 @@
+<md-card class="profile-card" layout="column">
+
+	<h4 style="margin-bottom: 0px; text-align: center;color: gainsboro;">Perfil do Usu&aacute;rio</h4>
+	<md-card-title>
+		<md-card-title-text>
+		  <span class="md-headline white">{{user.name}}</span>
+		  <span class="md-subhead white">{{user.email}}</span>
+		</md-card-title-text>
+	</md-card-title>
+	
+	<md-card-content>
+		<md-input-container>
+		  <label>Nome</label>
+		  <input ng-model="user.name" type="text">
+		</md-input-container>
+	  
+		<md-input-container>
+		  <label>Senha</label>
+		  <input ng-model="user.password" type="password">
+		</md-input-container>
+	</md-card-content>
+	
+	<md-card-actions layout="row" layout-align="center center">
+		<md-button class="md-raised md-primary" ng-click="saveUser(user)">Salvar Alterações</md-button>
+		<md-button class="md-raised md-warn" ng-click="deleteUser(user)">Excluir Conta</md-button>
+	</md-card-actions>
+	
+ </md-card>

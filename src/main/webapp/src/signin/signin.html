@@ -8,7 +8,7 @@
 		  <input ng-model="email" type="email" id="email" name="email" class="size-input" ng-required="true">
 		</md-input-container>
 	  
-		<md-input-container>
+		<md-input-container style="margin-bottom: 0px;">
 		  <label>Password</label>
 		  <input ng-model="password" type="password" id="showPassword" class="size-input" ng-required="true">
 		</md-input-container>
@@ -18,11 +18,11 @@
 			<button type="button" ng-click="forgotPassword($event)" class="small-gray">Esqueceu a senha ?</button>
 		</div>	
 
-		<md-button class="md-raised md-primary m-b3 btn-round" ng-click="signin()">Entrar</md-button>
+		<md-button class="btn m-b3" ng-click="signin()">Entrar</md-button>
 
 		<div class="m-b3">
 			<span class="small-gray">Nao possui uma conta ?</span>
-			<button ng-click="createAccount($event,null)" class="btn-border">Criar Conta</button>
+			<md-button class="white" ng-click="createAccount($event,null)">Criar Conta</md-button>
 		</div>
 	</md-content>
 </div>
