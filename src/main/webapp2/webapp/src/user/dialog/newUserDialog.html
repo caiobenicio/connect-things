@@ -1,0 +1,149 @@
+<div class="login" >
+	<div class="container">
+		<div class="wrapper wrapper-login">
+			<div class="container container-signup animated fadeIn">
+				<h3 class="text-center">Inscrever-se</h3>
+				<form method="post" class="login-form">
+					<div class="form-group form-floating-label">
+						<input ng-model="user.name" name="fullname" type="text"
+							class="form-control input-border-bottom" required> <label
+							for="fullname" class="placeholder">Nome</label>
+					</div>
+					<div class="form-group form-floating-label">
+						<input ng-model="user.email" name="email" type="email"
+							class="form-control input-border-bottom" required> <label
+							for="email" class="placeholder">E-mail</label>
+					</div>
+					<div class="form-group form-floating-label">
+						<input ng-model="user.password" name="password" type="new-password"
+							class="form-control input-border-bottom" id="showPassword1"
+							required> <label for="password" class="placeholder">Senha</label>
+						<div onclick="showPassword1()" class="show-password">
+							<i class="flaticon-interface"></i>
+						</div>
+					</div>
+					<div class="form-group form-floating-label">
+						<input ng-model="user.confirmPassword" name="confirmPassword"
+							type="new-password" class="form-control input-border-bottom"
+							id="showPassword2" required> <label for="password"
+							class="placeholder">Confirmar Senha</label>
+						<div onclick="showPassword2()" class="show-password">
+							<i class="flaticon-interface"></i>
+						</div>
+					</div>
+					<span ng-show="disable == 'true'"
+						style="justify-content: flex-end; display: flex; color: red; font-size: 16px;">
+						A senha deve ser igual. </span>
+
+<!-- 					<div class="form-group form-floating-label" -->
+<!-- 						style="padding-top: 0.5em"> -->
+<!-- 						<label class="switch">  -->
+<!-- 						<input type="checkbox" ng-model="user.isGateway">  -->
+<!-- 						<span class="slider round"></span> -->
+<!-- 						</label> <label for="gateway" class="placeholder1">Possui gateway?</label> -->
+<!-- 					</div> -->
+
+				</form>
+				<div class="form-action">
+					<button type="button" ng-click="cancelar()" id="show-signin" class="btn btn-danger btn-rounded btn-login mr-3">Cancelar</button>
+					<button type="button" ng-click="salvar(user)" class="btn btn-primary btn-rounded btn-login">Cadastrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<style>
+.form-floating-label .placeholder1 {
+	padding: .375rem .75rem;
+	transition: all .2s;
+	opacity: .8;
+	margin-bottom: 0 !important;
+	font-size: 13px !important;
+	font-weight: 400;
+	top: 12px;
+}
+
+.switch {
+	position: relative;
+	display: inline-block;
+	width: 50px;
+	height: 24px;
+}
+
+.switch input {
+	opacity: 0;
+	width: 0;
+	height: 0;
+}
+
+.slider {
+	position: absolute;
+	cursor: pointer;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: #ccc;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+.slider:before {
+	position: absolute;
+	content: "";
+	height: 16px;
+	width: 16px;
+	left: 4px;
+	bottom: 4px;
+	background-color: white;
+	-webkit-transition: .4s;
+	transition: .4s;
+}
+
+input:checked+.slider {
+	background-color: #2196F3;
+}
+
+input:focus+.slider {
+	box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked+.slider:before {
+	-webkit-transform: translateX(26px);
+	-ms-transform: translateX(26px);
+	transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+	border-radius: 34px;
+}
+
+.slider.round:before {
+	border-radius: 50%;
+}
+</style>
+
+<script>
+	function showPassword1() {
+	  var x = document.getElementById("showPassword1");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+ 	 }
+} 
+
+	function showPassword2() {
+	  var x = document.getElementById("showPassword2");
+	  if (x.type === "password") {
+	    x.type = "text";
+	  } else {
+	    x.type = "password";
+ 	 }
+} 
+	
+
+</script>
+

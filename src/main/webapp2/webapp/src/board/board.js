@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('homeon').controller('boardCtrl',
-	function($scope, RestSrv, SERVICE_PATH, $mdDialog, $rootScope, $mdMedia, $location) {
-		$rootScope.statusMenu = true;
+	function($scope, RestSrv, SERVICE_PATH, $mdDialog, ngNotify, $rootScope, $mdMedia, $location) {
 		var boardUrl = SERVICE_PATH.PRIVATE_PATH + '/board';
 		$scope.boards = [];
 //		$scope.board = {};

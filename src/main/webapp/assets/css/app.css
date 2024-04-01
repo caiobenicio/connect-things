@@ -1,9 +1,3 @@
-md-content {
-	width: 100%;
-	display: flex;
-	justify-content: flex-start;
-}
-
 .p-t1 {
 	padding-top: 1em;
 }
@@ -14,22 +8,6 @@ md-content {
 
 .m-b3 {
 	margin-bottom: 3em;
-}
-
-.mt-1 {
-	margin-top: 1rem
-}
-
-.justify-content-center {
-	display: flex;
-	flex-direction: row;
-	justify-content: center
-}
-
-.d-flex-column {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
 }
 
 .btn-round {
@@ -117,19 +95,6 @@ input, label {
 	color: #999;
 }
 
-.btn-x {
-	width: 300px;
-	height: 40px;
-	/* 	background: none; */
-	outline: none;
-	border: 2px solid #999;
-	text-transform: uppercase;
-	font-size: 18px;
-	font-weight: 400;
-	margin: 20px 0;
-	color: #999;
-}
-
 .btn:hover {
 	background: #999;
 }
@@ -155,10 +120,9 @@ md-menu-content {
 	align-items: center;
 }
 
-md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar)
-	{
-	background-color: rgb(20, 20, 20);
-	color: rgb(255, 255, 255);
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+    background-color: rgb(20, 20, 20);
+    color: rgb(255, 255, 255);
 }
 
 md-sidenav, md-sidenav md-content {
@@ -166,7 +130,7 @@ md-sidenav, md-sidenav md-content {
 }
 
 md-content.md-default-theme, md-content {
-	color: white;
+    color: white;
 }
 
 #main {
@@ -179,33 +143,4 @@ md-content.md-default-theme, md-content {
 
 .txt-center {
 	text-align: center
-}
-
-md-dialog {
-	background-color: #292929;
-}
-
-md-radio-group {
-	color: white
-}
-
-md-select.md-default-theme .md-select-value.md-select-placeholder,
-	md-select .md-select-value.md-select-placeholder {
-	color: white;
-}
-
-.md-select-icon {
-	color: white;
-}
-
-.md-select-value .md-select-icon:after {
-	color: white;
-}
-
-.md-select-value>span:not(.md-select-icon) .md-text {
-	color: white;
-}
-
-md-radio-button.md-default-theme .md-off, md-radio-button .md-off {
-    border-color: white
 }
