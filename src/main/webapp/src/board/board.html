@@ -1,0 +1,56 @@
+<md-content layout="column" layout-align="center center" > 
+
+	<div layout="row" ng-cloak ng-if="boards.length">
+		<span class="arduino-text bold no-margin page-title h1">Placas Controladoras</span>
+		
+		<md-button class="btn-x m-b3" ng-click="showDialogNewBoard($event)">Adicionar Placa</md-button>
+	</div>
+	
+	<div layout="row" ng-cloak ng-if="boards.length">
+		<div class="datatable-container">
+			<!-- ======= Table ======= -->
+			<table class="datatable">
+				<thead>
+					<tr>
+						<th class="text-center">#</th>
+						<th>Nome</th>
+						<th>Status</th>
+						<th>Disp. Vinculado</th>
+						<th>Tipo</th>
+						<th>Modelo</th>
+					</tr>
+				</thead>
+				<tbody ng-cloak ng-model="boards">
+					<tr ng-cloak ng-repeat="board in boards"
+						class="items-table--row devices">
+						<td class="text-center"><a ng-href="#!/board/{{ board.id }}"
+							class="thing-column--create-thing-button">{{ board.id }}</a></td>
+						<td ng-click="boardDetails(board.id)" style="cursor: pointer;">{{
+							board.name }}</td>
+						<td ng-if="board.status" ng-click="boardDetails(board.id)"
+							style="cursor: pointer;"><span class="available"> </span></td>
+						<td ng-if="!board.status" ng-click="boardDetails(board.id)"
+							style="cursor: pointer;"><span class="offline"></span></td>
+						<td><span class="thing-column--create-thing h5"> <a
+								href="#!/device" class="thing-column--create-thing-button">
+									CREATE THING </a></span></td>
+						<td>{{ board.type }}</td>
+						<td>{{ board.model }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>	
+	
+	<div layout="row" ng-cloak ng-if="!boards.length">
+		<div class="d-flex-column" >
+			<img src="../../assets/ico/devices-empty-state.60e0e589.svg" style="width: 400px">
+			<h2 style="color: white; margin-top: 1rem">Gerencie suas Placas Controladoras!</h2>
+		
+			<md-button class="btn-x m-b3" ng-click="showDialogNewBoard($event)">Adicionar Placa</md-button>		
+		</div>
+	</div>			
+
+</md-content>
+
+

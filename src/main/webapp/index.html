@@ -22,7 +22,8 @@
 				md-is-locked-open="$mdMedia('min-width: 700px')" ng-if="statusMenu" ng-include="'src/fragments/sidenav.html'"> 
 			</md-sidenav>
 
-			<div id="main" class="justify-content-center" ng-view flex md-scroll-y></div>
+			<ng-view md-scroll-y></ng-view>
+<!-- 			<div id="main" class="justify-content-center" ng-view flex md-scroll-y></div> -->
 		</div>
 
 		<div id="right" layout="column" layout-align="center center" class="md-padding" style="padding: 1px;"></div>
@@ -49,6 +50,10 @@
 	<script src="src/signin/signin.js"></script>
 	<script src="src/home/home.js"></script>
 	<script src="src/profile/profile.js"></script>
+
+	<script src="src/board/board.js"></script>
+	<script src="src/board/board-details.js"></script>
+	<script src="src/board/dialog/newBoardDialog.js"></script>
 
 </body>
 </html>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeon').controller('boardDetailsCtrl',
-	function($scope, RestSrv, SERVICE_PATH, $routeParams, $rootScope, ngNotify, $mdDialog, WebSocketService) {
+	function($scope, RestSrv, SERVICE_PATH, $routeParams, $rootScope, ngNotify) {
 		$scope.params = $routeParams;
 
 		var boardUrl = SERVICE_PATH.PRIVATE_PATH + '/board';
@@ -73,25 +73,27 @@ angular.module('homeon').controller('boardDetailsCtrl',
 
 		$scope.savePorts = function(ports) {
 
+			$scope.portList = [];
+
 			angular.forEach(ports, function(value, key) {
 				var port = {
 					port: value.port,
 					type: value.type,
 					board: $scope.board
 				};
-				
-				RestSrv.add(portUrl, port, function(status, data) {
-					if (status === 'ok') {
-						ngNotify.set('Porta(s) Cadastradas com Sucesso!.', { type: 'success' });
-						return;
-					} else {
-						ngNotify.set('Porta(s) não cadastrada!.', { type: 'error', duration: 5000 });
-						return;
-					}
-				});
-							
+
+				$scope.portList.push(port);
 			});
 
+			RestSrv.add(portUrl, $scope.portList, function(status, data) {
+				if (status === 'ok') {
+					ngNotify.set('Porta(s) Cadastradas com Sucesso!.', { type: 'success' });
+					return;
+				} else {
+					ngNotify.set('Porta(s) não cadastrada!.', { type: 'error', duration: 5000 });
+					return;
+				}
+			});
 		};
 
 		$scope.getPort = function(id) {

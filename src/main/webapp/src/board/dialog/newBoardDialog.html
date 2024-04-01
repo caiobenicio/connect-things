@@ -1,7 +1,7 @@
 <md-dialog aria-label="Cadastrar Placa" style="overflow:hidden">
 	<md-toolbar>
 	<div class="md-toolbar-tools" style="display: flex; justify-content: center;">
-		<h3>Configurar Controlador</h3>
+		<h3>Adicionar Placa Controladora</h3>
 		<md-button arial-label="board" class="md-icon-button" ng-click="cancel()" style="display: flex!important; right: 0px; position: fixed!important;"> <svg
 			xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 			viewBox="0 0 24 24">
@@ -12,14 +12,15 @@
 	</md-toolbar> 
 	<md-dialog-content>
 		<div class="md-dialog-content">
-			<div layout="row" layout-wrap><h2>Selecione o tipo de dispositivo e modelo que voc&ecirc; deseja configurar</h2></div>
-			<form class="md-inline-form">
+<!-- 			<div layout="row" layout-wrap><h2>Selecione o tipo de dispositivo e modelo que voc&ecirc; deseja configurar</h2></div> -->
 			
-				<div layout="row" layout-wrap>
+			<form class="md-inline-form">
+				
+				<div layout="column" layout-wrap>					
+					<span class="white">Selecione o tipo de Placa e o Modelo</span>
 					<md-radio-group ng-model="board.type"> 
 						<md-radio-button  value="ESP8266">ESP8266</md-radio-button> 
 						<md-radio-button value="ESP32">ESP32</md-radio-button> 
-						<md-radio-button value="LoRaWAN">LoRaWAN</md-radio-button> 
 						<md-radio-button value="OTHER">Outro</md-radio-button>
 					</md-radio-group>
 				</div>
@@ -36,7 +37,7 @@
 				<div layout="row" layout-wrap class="mt-4">
 			      <md-input-container>
 			        <label>Nome</label>
-			        <input type="text" ng-model="board.name" required="required">
+			        <input type="text" ng-model="board.name" ng-required="true">
 			      </md-input-container>				
 				</div>
 				<div layout="row" layout-wrap>
@@ -51,7 +52,7 @@
 				</div>	
 				
 				<div class="button d-flex justify-content-center">
-					<button type="button" class="btn btn-primary btn-sm btn-radius" ng-click="saveBoard(board)">Salvar Dispositivo</button>
+					<md-button class="btn-x m-b3" ng-click="saveBoard(board)">Salvar Placa</md-button>
 				</div>							
 			</form>
 		</div>
