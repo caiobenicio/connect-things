@@ -1,8 +1,8 @@
 package br.com.thing.entity;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -13,22 +13,11 @@ public class Device extends BaseEntity<Long> {
     private String description;
     private Boolean active;
         
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "port_id")
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "port_id")    
     public Port port;
     
-//    @ManyToOne
-//    @JoinColumn(name="room_id")
-//    private Room room;
-
-//    @ManyToOne
-//    @JoinColumn(name = "client_id")
-//    private Client client;
-    
-	public Device() {
-		super();
-	}
+	public Device() {}
 
 	public Device(String name, String description, Boolean active) {
 		super();

@@ -1,0 +1,70 @@
+<md-content layout="column" >
+	 <div class="space-between" layout="row">
+		<span class="margin"><strong>Informa&ccedil;&otilde;es da Placa de Controle</strong></span>		
+	</div>
+	
+	<div layout="row" >
+		<div layout="column" ng-cloak class="md-inline-form widht-50" layout-padding>
+		    <div class="padding-left-50">
+		      <form >
+			  
+		        <div layout-gt-sm="row">
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Nome</label>
+		            <input type="text" ng-model="board.name">
+		          </md-input-container>
+				  
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label class="label-switch">Status</label>
+		           	<md-switch ng-model="board.status" aria-label="Status"></md-switch>	
+		          </md-input-container>	
+		          	          	  
+		        </div>
+				
+		        <div layout-gt-sm="row">
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Tipo</label>
+		            <input type="text" ng-model="board.type" disabled>
+		          </md-input-container>
+				  
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Modelo</label>
+		            <input type="text" ng-model="board.model" disabled>
+		          </md-input-container>		  
+		        </div>	
+		
+		        <div layout-gt-sm="row">
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Assinar Topico MQTT</label>
+		            <input type="text" ng-model="board.topicSubscribe" >
+		          </md-input-container>
+				  
+		          <md-input-container class="md-block" flex-gt-sm>
+		            <label>Publicar Topico MQTT</label>
+		            <input type="text" ng-model="board.topicPublish" >
+		          </md-input-container>		  
+		        </div>	
+		        
+		        <md-button class="btn-x " ng-click="editBoard(board)">Salvar Placa</md-button>		
+				
+		      </form>
+		    </div>
+		</div>
+		
+		<div layout="column" class="widht-50">
+		
+			<div class="dflex-center">
+				<span><strong>Portas Disponiveis</strong></span>
+				
+				<md-list ng-cloak> 
+				  <md-list-item ng-repeat="pin in todos" ng-click="goToPerson(person.name, $event)">
+				    <p>{{ pin.port }}</p>
+					<p>{{ pin.type }}</p>
+				  </md-list-item>
+				</md-list>			
+			</div>	
+			
+		</div>
+			
+	</div>	
+</md-content>	

@@ -1,0 +1,42 @@
+<md-content layout="column" >
+	 <div class="space-between" layout="row" ng-cloak ng-if="boards.length">
+		<p class="margin"><strong>Placas Controladoras</strong></p>
+		<md-button class="btn btn-round " ng-click="showDialogNewBoard($event)" aria-label="Adicionar Placa"><strong>+</strong> Placa</md-button>
+	</div>
+	
+	<div layout="row" ng-cloak ng-if="boards.length">
+		<div class="datatable-container">
+			<!-- ======= Table ======= -->
+			<table class="datatable">
+				<thead>
+					<tr>
+						<th style="text-align: center">ID</th>
+						<th>Nome</th>
+						<th>Status</th>
+						<th>Disp. Vinculado</th>
+						<th>Tipo</th>
+						<th>Modelo</th>
+					</tr>
+				</thead>
+				<tbody  ng-cloak ng-model="boards">
+					<tr ng-cloak ng-repeat="board in boards" class="items-table--row devices">
+						<td class="center"><a ng-href="#!/board/{{ board.id }}" class="white">{{ board.id }}</a> </td>
+						<td ng-click="boardDetails(board.id)" style="cursor: pointer;">{{ board.name }}</td>
+						<td ng-if="board.status" ng-click="boardDetails(board.id)" style="cursor: pointer;"><span class="available"> </span></td>
+						<td ng-if="!board.status" ng-click="boardDetails(board.id)" style="cursor: pointer;"><span class="offline"></span></td>
+						<td><a href="#!/device" class="white"> CREATE THING </a></td>
+						<td>{{ board.type }}</td>
+						<td>{{ board.model }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+	</div>	
+	
+	<div class="d-flex-column mt-3" layout-align="center center" layout="row" ng-cloak ng-if="!boards.length">
+		<img src="../../assets/ico/devices-empty-state.60e0e589.svg" style="width: 400px">
+		
+		<md-button class="btn-x mt-3" ng-click="showDialogNewBoard($event)" aria-label="Adicionar Placa">Adicionar Placa</md-button>
+	</div>
+	
+</md-content>

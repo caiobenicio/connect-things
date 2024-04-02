@@ -6,13 +6,15 @@
 <link rel="icon" href="./assets/ico/conn.jpg" type="image/x-icon" />
 <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
+<script src="/assets/js/jquery.3.2.1.min.js"></script>
 <link rel="stylesheet" href="/assets/css/angular-material.min.css">
 <link rel="stylesheet" href="/assets/css/ng-notify.min.css">
 <link rel="stylesheet" href="/assets/css/angular-material-icons.css">
 <link rel="stylesheet" href="/assets/css/app.css">
+<link rel="stylesheet" href="/assets/css/table.css">
 </head>
 
-<body ng-app="homeon">
+<body ng-app="homeon" >
 	<div ng-controller="mainController" ng-cloak>
 
 		<md-toolbar ng-if="statusMenu" ng-include="'src/fragments/navbar.html'"></md-toolbar>
@@ -22,7 +24,7 @@
 				md-is-locked-open="$mdMedia('min-width: 700px')" ng-if="statusMenu" ng-include="'src/fragments/sidenav.html'"> 
 			</md-sidenav>
 
-			<div id="main" class="justify-content-center" ng-view flex md-scroll-y></div>
+			<ng-view flex md-scroll-y> </ng-view>	
 		</div>
 
 		<div id="right" layout="column" layout-align="center center" class="md-padding" style="padding: 1px;"></div>
@@ -49,6 +51,10 @@
 	<script src="src/signin/signin.js"></script>
 	<script src="src/home/home.js"></script>
 	<script src="src/profile/profile.js"></script>
+	
+	<script src="src/board/board.js"></script>
+	<script src="src/board/board-details.js"></script>
+	<script src="src/board/dialog/newBoardDialog.js"></script>	
 
 </body>
 </html>
