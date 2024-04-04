@@ -193,3 +193,15 @@
     flex: 1;
     font-weight: 700;
 }
+
+md-list.list-port {
+  width: 150px;
+}
+
+md-list-item, md-list-item .md-list-item-inner {
+  min-height: 35px;
+  height: 35px;
+  background-color: #484747;
+  border-radius: 8px;  
+  margin-bottom: 2px;
+}

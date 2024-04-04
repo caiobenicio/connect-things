@@ -6,7 +6,7 @@
 	<div layout="row" >
 		<div layout="column" ng-cloak class="md-inline-form widht-50" layout-padding>
 		    <div class="padding-left-50">
-		      <form >
+		      <form id="form-board">
 			  
 		        <div layout-gt-sm="row">
 		          <md-input-container class="md-block" flex-gt-sm>
@@ -15,10 +15,10 @@
 		          </md-input-container>
 				  
 		          <md-input-container class="md-block" flex-gt-sm>
-		            <label class="label-switch">Status</label>
+		            <label class="label-switch" >Status</label>
 		           	<md-switch ng-model="board.status" aria-label="Status"></md-switch>	
 		          </md-input-container>	
-		          	          	  
+
 		        </div>
 				
 		        <div layout-gt-sm="row">
@@ -56,8 +56,8 @@
 			<div class="dflex-center">
 				<span><strong>Portas Disponiveis</strong></span>
 				
-				<md-list ng-cloak> 
-				  <md-list-item ng-repeat="pin in todos" ng-click="goToPerson(person.name, $event)">
+				<md-list class="list-port" ng-cloak> 
+				  <md-list-item ng-repeat="pin in todos" ng-click="associateBoard(pin.port, $event)">
 				    <p>{{ pin.port }}</p>
 					<p>{{ pin.type }}</p>
 				  </md-list-item>

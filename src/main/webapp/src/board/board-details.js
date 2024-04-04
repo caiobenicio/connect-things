@@ -7,7 +7,7 @@ angular.module('homeon').controller('boardDetailsCtrl',
 
 		var boardUrl = SERVICE_PATH.PRIVATE_PATH + '/board';
 		$scope.board = {};
-		$scope.todos = [{port:'P12', type:'I'}, {port:'P11', type:'O'}, {port:'P11', type:'O'}];
+		$scope.todos = [{port:'P12', type:'I'}, {port:'P11', type:'O'}, {port:'P10', type:'O'}];
 
 		var portUrl = SERVICE_PATH.PRIVATE_PATH + '/port';
 		$scope.ports = [];
@@ -75,4 +75,8 @@ angular.module('homeon').controller('boardDetailsCtrl',
 				}
 			});
 		};
+
+		$scope.associateBoard = function(port, event) {
+			console.log(port);
+		};		
 	});
