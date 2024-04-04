@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.entity.Port;
@@ -27,9 +28,15 @@ public class PortController extends GenericService<Port, Long> {
 	@Autowired
 	private PortRepository portRepository;  
 	
-    @GetMapping(value = "/findByPorts/{id}")
-    public ResponseEntity<?> findByPorts(@PathVariable("id") Long id) {
-        new Publisher(MqttConnection.CLIENT_ID, "clientweb/inTopic", "P");
+    //public ResponseEntity<?> publishTopic(@RequestParam(name = "command") String command) {
+    //public ResponseEntity<?> findByPorts(@PathVariable("id") Long id, @PathVariable("topic") String topic) {
+    @GetMapping(value = "/findByPorts")
+    public ResponseEntity<?> findByPorts(@RequestParam(name = "id") Long id
+    , @RequestParam(name = "topic") String topic) {
+        if (topic == "null") {
+            topic = "clientweb/inTopic";
+        }
+        new Publisher(MqttConnection.CLIENT_ID, topic, "P");
         return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
     }
     

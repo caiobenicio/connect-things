@@ -7,7 +7,7 @@ angular.module('homeon').controller('boardDetailsCtrl',
 
 		var boardUrl = SERVICE_PATH.PRIVATE_PATH + '/board';
 		$scope.board = {};
-		$scope.todos = [{port:'P12', type:'I'}, {port:'P11', type:'O'}];
+		$scope.todos = [{port:'P12', type:'I'}, {port:'P11', type:'O'}, {port:'P11', type:'O'}];
 
 		var portUrl = SERVICE_PATH.PRIVATE_PATH + '/port';
 		$scope.ports = [];
@@ -16,6 +16,9 @@ angular.module('homeon').controller('boardDetailsCtrl',
 		RestSrv.find(boardFindId, function(status, data) {
 			if (data != null) {
 				$scope.board = data;
+				if (data.ports === undefined) {
+					$scope.getPort(data.id, data.topicPublish)
+				}
 			}
 		});
 
@@ -29,7 +32,7 @@ angular.module('homeon').controller('boardDetailsCtrl',
 			$scope.board.client = $rootScope.authDetails;
 			RestSrv.edit(boardUrl, board, function(status, data) {
 				if (status === 'ok') {
-					$scope.sendWebSocket();
+					//$scope.sendWebSocket();
 					ngNotify.set('Placa Atualizada com Sucesso!.', { type: 'success' });
 					return;
 				} else if (status == 204) {
@@ -65,8 +68,8 @@ angular.module('homeon').controller('boardDetailsCtrl',
 
 		};
 
-		$scope.getPort = function(id) {
-			RestSrv.find(portUrl + "/findByPorts/" + id, function(status, data) {
+		$scope.getPort = function(id, topicPublish) {
+			RestSrv.find(portUrl + "/findByPorts?id=" + id + "&topic=" + topicPublish, function(status, data) {
 				if (data != null && data != []) {
 					$scope.ports = data;
 				}
