@@ -2,6 +2,7 @@
 
 angular.module('homeon').controller('deviceDetailsCtrl',
 	function($scope, RestSrv, SERVICE_PATH, $routeParams, $rootScope, ngNotify, $mdDialog, $mdMedia) {
+		$rootScope.statusMenu = true;
 		$scope.params = $routeParams;
 
 		var deviceUrl = SERVICE_PATH.PRIVATE_PATH + '/device';

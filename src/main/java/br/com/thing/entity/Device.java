@@ -3,6 +3,7 @@ package br.com.thing.entity;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -16,6 +17,10 @@ public class Device extends BaseEntity<Long> {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "port_id")    
     public Port port;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;	
     
 	public Device() {}
 
@@ -72,6 +77,14 @@ public class Device extends BaseEntity<Long> {
 
 	public void setPort(Port port) {
 		this.port = port;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public void setClient(Client client) {
+		this.client = client;
 	}
    	
 }

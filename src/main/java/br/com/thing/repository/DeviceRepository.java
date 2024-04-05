@@ -8,5 +8,6 @@ import br.com.thing.entity.Device;
 
 public interface DeviceRepository extends JpaRepository<Device, Long> {
 
-	//List<Device> findByClientId(Long clientId);
+	//@Query("SELECT a FROM Device as d WHERE d.client_id = ?1")
+	List<Device> findByClientId(Long clientId);
 }

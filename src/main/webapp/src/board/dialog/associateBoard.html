@@ -1,8 +1,8 @@
-<md-dialog aria-label="Cadastrar Dispositio" style="overflow:hidden">
+<md-dialog aria-label="Associar Porta a o Dispositivo" style="overflow:hidden">
 	<md-toolbar>
 	<div class="md-toolbar-tools" style="display: flex; justify-content: center;">
-		<h3 style="margin-right: 2rem;">Associar Placa Controladora</h3>
-		<md-button arial-label="board" class="md-icon-button" ng-click="cancel()" style="display: flex!important; right: 0px; position: fixed!important;"> <svg
+		<h3 style="margin-right: 2rem;">Associar Porta a o Dispositivo</h3>
+		<md-button arial-label="cancel" class="md-icon-button" ng-click="cancel()" style="display: flex!important; right: 0px; position: fixed!important;"> <svg 
 			xmlns="http://www.w3.org/2000/svg" width="24" height="24"
 			viewBox="0 0 24 24">
 			<path fill="gray"
@@ -12,13 +12,11 @@
 	</md-toolbar> 
 	<md-dialog-content>
 		<div class="md-dialog-content">
-			<div layout="row" layout-wrap><h2>Escolha a Placa a associar a {{ name }}</h2></div>
-	
-			<div ng-if="dataLoaded" layout="row" layout-sm="column" layout-align="space-around">
-			  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+			<div layout="row" layout-wrap ng-if="!emptyDevices">
+				<h4 class="white">Escolha o Dispositivo que ira Associar a Porta</h4>
 			</div>
 	   
-			<md-card ng-if="!dataLoaded" ng-repeat="card in boards" md-theme="{{ 'default' }}" style="cursor: pointer;" md-theme-watch>
+			<md-card ng-if="!emptyDevices" ng-repeat="card in devices" style="cursor: pointer;">
 				<md-card-title>
 				  <md-card-title-text ng-click="savePortDevice(card.id)">
 				    <span class="md-headline">{{ card.name }}</span>
@@ -26,16 +24,14 @@
 				  </md-card-title-text>
 				  
 				  <md-card-title-media style="padding-left: .5rem">
-				          <div class="md-media-sm card-media"><img ng-src="../../assets/svg/corrente.svg" class="md-card-image" alt="Luz"></div>
-				        </md-card-title-media>
+				          <div class="md-media-sm card-media"><img ng-src='{{ card.iconPath }}' class="md-card-image" ></div>
+				  </md-card-title-media>
 				</md-card-title>					    
 			</md-card>
 	     		    
-			<div ng-if="dataEmpty" layout="row" layout-sm="column" layout-align="space-around" class="mt-5">
-			  <span class="mb-5 md-headline">Nenhuma Placa encontrada</span>
+			<div ng-if="emptyDevices" layout="row" layout-sm="column" layout-align="space-around" class="mt-5">
+			  <span class="mb-5 md-headline white">Nenhum Dispositivo encontrado!</span>
 			</div>
-	       
-	       <md-button ng-click="showDialogNewBoardAssociate($event)">Cadastrar Nova Placa</md-button>
 			    		      
 		</div>
 	</md-dialog-content> 

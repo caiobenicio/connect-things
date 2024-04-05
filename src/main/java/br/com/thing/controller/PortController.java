@@ -28,8 +28,6 @@ public class PortController extends GenericService<Port, Long> {
 	@Autowired
 	private PortRepository portRepository;  
 	
-    //public ResponseEntity<?> publishTopic(@RequestParam(name = "command") String command) {
-    //public ResponseEntity<?> findByPorts(@PathVariable("id") Long id, @PathVariable("topic") String topic) {
     @GetMapping(value = "/findByPorts")
     public ResponseEntity<?> findByPorts(@RequestParam(name = "id") Long id
     , @RequestParam(name = "topic") String topic) {

@@ -1,38 +1,37 @@
 'use strict';
 
 angular.module('homeon').controller('deviceCtrl',
-	function($scope, RestSrv, SERVICE_PATH, $mdDialog, ngNotify, $rootScope, $location, $mdMedia) {
+	function ($scope, RestSrv, SERVICE_PATH, $mdDialog, ngNotify, $rootScope, $location, $mdMedia) {
 		$rootScope.statusMenu = true;
 		var deviceUrl = SERVICE_PATH.PRIVATE_PATH + '/device';
 		$scope.devices = [];
-		
+
 		var id = $rootScope.authDetails.id;
 		var deviceFindId = deviceUrl + '/findByClientId/' + id;
 
-		$scope.card = { name: "Luz", description: "Luz do quarto", active: false, iconPath: "../../assets/svg/lamp.svg"};
+		$scope.card = { name: "Luz", description: "Luz do quarto", active: false, iconPath: "../../assets/ico/lamp.ico" };
 		$scope.divEmptyList = true;
-		
-		RestSrv.find(deviceFindId, function(status, data) {
-			if (data != null && data.length >0) {
+
+		RestSrv.find(deviceFindId, function (status, data) {
+			if (data != null && data.length > 0) {
 				$scope.devices = data;
 				$scope.divEmptyList = false;
-				//$rootScope.authDetails.devices = $scope.devices;
 			} else {
 				$scope.devices.push($scope.card);
 			}
 		});
 
-		$scope.deviceDetails = function(id) {
+		$scope.deviceDetails = function (id) {
 			$location.path('/device/' + id);
 		}
-		
-		$scope.removeItem = function(index) {
+
+		$scope.removeItem = function (index) {
 			$scope.arrayOfCards.splice(index, 1);
 		}
-		
-		$scope.save = function(device) {
+
+		$scope.save = function (device) {
 			device.client = $rootScope.authDetails;
-			RestSrv.add(deviceUrl, device, function(status, data) {
+			RestSrv.add(deviceUrl, device, function (status, data) {
 				if (status === 'ok') {
 					data.client = null;
 					$scope.devices = [];
@@ -45,9 +44,9 @@ angular.module('homeon').controller('deviceCtrl',
 					return;
 				}
 			});
-		};		
+		};
 
-		$scope.showDialogNewDevice = function($event) {
+		$scope.showDialogNewDevice = function ($event) {
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
 			$mdDialog.show({
 				templateUrl: 'src/device/dialog/newDeviceDialog.html',
@@ -57,10 +56,10 @@ angular.module('homeon').controller('deviceCtrl',
 				controllerAs: 'ctrl',
 				clickOutsideToClose: true,
 				fullscreen: useFullScreen,
-			}).then(function(data) {
-					$scope.devices.push(data);
-				}, function() {
-
+			}).then(function (data) {
+				$scope.devices = [];
+				$scope.devices.push(data);
+			}, function () {
 			});
 		};
 	});

@@ -35,7 +35,7 @@ public class DeviceController extends GenericService<Device, Long> {
     
     @GetMapping(value = "/findByClientId/{id}")
     public ResponseEntity<?> findByClientId(@PathVariable("id") Long id) {
-    	List<Device> deviceList = null;//deviceRepository.findByClientId(id);
+    	List<Device> deviceList = deviceRepository.findByClientId(id);
     	
         return ResponseEntity.status(HttpStatus.OK).body(deviceList);
     }
