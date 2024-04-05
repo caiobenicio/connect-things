@@ -245,7 +245,7 @@ md-content {
 
 .label-switch {
     font-size: 13px;
-    padding-bottom: 19px;
+    padding-bottom: 24px;
     padding-left: 14px!important;	
 }
 
@@ -266,3 +266,11 @@ md-content {
  .md-button { 
 	min-height: 35px;
  }
+
+ md-switch {
+	height: 1px;
+ }
+
+ md-switch:last-of-type {
+	margin-left: 14px;
+  }

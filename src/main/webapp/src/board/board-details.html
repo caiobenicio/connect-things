@@ -57,7 +57,7 @@
 				<span><strong>Portas Disponiveis</strong></span>
 				
 				<md-list class="list-port" ng-cloak> 
-				  <md-list-item ng-repeat="pin in todos" ng-click="associateBoard(pin.port, $event)">
+				  <md-list-item ng-repeat="pin in todos" ng-click="showDialogassociateBoard(pin.port, $event)">
 				    <p>{{ pin.port }}</p>
 					<p>{{ pin.type }}</p>
 				  </md-list-item>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeon').controller('boardDetailsCtrl',
-	function($scope, RestSrv, SERVICE_PATH, $routeParams, $rootScope, ngNotify) {
+	function($scope, RestSrv, SERVICE_PATH, $routeParams, $rootScope, ngNotify, $mdMedia, $mdDialog) {
 		$rootScope.statusMenu = true;
 		$scope.params = $routeParams;
 
@@ -76,7 +76,20 @@ angular.module('homeon').controller('boardDetailsCtrl',
 			});
 		};
 
-		$scope.associateBoard = function(port, event) {
-			console.log(port);
+		$scope.showDialogassociateBoard = function(port, $event) {
+			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+			$mdDialog.show({
+				templateUrl: 'src/board/dialog/associateBoard.html',
+				parent: angular.element(document.body),
+				targetEvent: $event,
+				controller: 'associateBoardCtrl',
+				controllerAs: 'ctrl',
+				clickOutsideToClose: true,
+				fullscreen: useFullScreen,
+			})
+			.then(function(data) {
+				//$scope.boards.push(data);
+			}, function() {
+			});
 		};		
 	});

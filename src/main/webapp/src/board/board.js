@@ -32,11 +32,10 @@ angular.module('homeon').controller('boardCtrl',
 				clickOutsideToClose: true,
 				fullscreen: useFullScreen,
 			})
-				.then(function(data) {
-					$scope.boards.push(data);
-				}, function() {
-
-				});
+			.then(function(data) {
+				$scope.boards.push(data);
+			}, function() {
+			});
 		};
 
 		$scope.boardDetails = function(id) {
