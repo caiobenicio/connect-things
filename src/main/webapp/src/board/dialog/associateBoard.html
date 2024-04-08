@@ -18,7 +18,7 @@
 	   
 			<md-card ng-if="!emptyDevices" ng-repeat="card in devices" style="cursor: pointer;">
 				<md-card-title>
-				  <md-card-title-text ng-click="savePortDevice(card.id)">
+				  <md-card-title-text ng-click="savePortDevice(card)">
 				    <span class="md-headline">{{ card.name }}</span>
 				    <span class="md-subhead">{{ card.description }}</span>
 				  </md-card-title-text>

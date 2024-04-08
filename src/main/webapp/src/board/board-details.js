@@ -7,7 +7,7 @@ angular.module('homeon').controller('boardDetailsCtrl',
 
 		var boardUrl = SERVICE_PATH.PRIVATE_PATH + '/board';
 		$scope.board = {};
-		$scope.todos = [{port:'P12', type:'I'}, {port:'P11', type:'O'}, {port:'P10', type:'O'}];
+		$scope.todos = [{name:'P12', type:'I'}, {name:'P11', type:'O'}, {name:'P10', type:'O'}];
 
 		var portUrl = SERVICE_PATH.PRIVATE_PATH + '/port';
 		$scope.ports = [];
@@ -76,7 +76,8 @@ angular.module('homeon').controller('boardDetailsCtrl',
 			});
 		};
 
-		$scope.showDialogassociateBoard = function(port, $event) {
+		$scope.showDialogassociateBoard = function(board, port, $event) {
+			var objBoard = { board: board, port: port };
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
 			$mdDialog.show({
 				templateUrl: 'src/board/dialog/associateBoard.html',
@@ -86,6 +87,7 @@ angular.module('homeon').controller('boardDetailsCtrl',
 				controllerAs: 'ctrl',
 				clickOutsideToClose: true,
 				fullscreen: useFullScreen,
+				locals:{dataToPass: objBoard},
 			})
 			.then(function(data) {
 				//$scope.boards.push(data);

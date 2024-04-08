@@ -44,6 +44,11 @@ public class PortController extends GenericService<Port, Long> {
 
         return ResponseEntity.status(HttpStatus.OK).body(portList);
     }  
+
+    @Override
+    public Port insert(@RequestBody Port port) {
+        return super.insert(port);
+    }        
 	
     @Override
 	public ResponseEntity<?> update(@RequestBody Port port, Errors errors) {

@@ -56,45 +56,42 @@ public class CallBack implements MqttCallback {
 						session.sendMessage(new TextMessage(message.toString()));
 					}
 
-//			    	Optional<Client> client = userRepository.findById(msg.getUser());
-//			    	List<Port> portList = new ArrayList<>();
-//			        if(client.isPresent() && client.get().getBoards().size() == 1) {
-//			        	Client user = client.get();
-//			        	for (String item : msg.getPinsIn()) {
-//							Port p = new Port();
-//							p.setPort(item);
-//							p.setType(PortType.I);
-//							portList.add(p);
-//						}
-//			        	
-//			        	for (String out : msg.getPinsOut()) {
-//							Port p = new Port();
-//							p.setPort(out);
-//							p.setType(PortType.O);
-//							portList.add(p);
-//						}	
-//			        	
-//			        	user.getBoards().get(0).setPorts(portList);
-//			        	Client update = userRepository.save(user);
-//			        	System.out.println(update);
-//			        }					
+					// Optional<Client> client = userRepository.findById(msg.getUser());
+					// List<Port> portList = new ArrayList<>();
+					// if(client.isPresent() && client.get().getBoards().size() == 1) {
+					// Client user = client.get();
+					// for (String item : msg.getPinsIn()) {
+					// Port p = new Port();
+					// p.setPort(item);
+					// p.setType(PortType.I);
+					// portList.add(p);
+					// }
+					//
+					// for (String out : msg.getPinsOut()) {
+					// Port p = new Port();
+					// p.setPort(out);
+					// p.setType(PortType.O);
+					// portList.add(p);
+					// }
+					//
+					// user.getBoards().get(0).setPorts(portList);
+					// Client update = userRepository.save(user);
+					// System.out.println(update);
+					// }
 				}
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
 
 	@Override
 	public void deliveryComplete(IMqttDeliveryToken token) {
 		try {
-//			System.out.println("Recebido da instancia: " + instanceData + ""+"\n mensagem:"+ token.getMessage());
+			// System.out.println("Recebido da instancia: " + instanceData + ""+"\n mensagem:"+ token.getMessage());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
 	}
-
 }

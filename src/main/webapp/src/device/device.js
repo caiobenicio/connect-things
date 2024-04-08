@@ -57,7 +57,10 @@ angular.module('homeon').controller('deviceCtrl',
 				clickOutsideToClose: true,
 				fullscreen: useFullScreen,
 			}).then(function (data) {
-				$scope.devices = [];
+
+				if ($scope.devices[0].id === undefined) {					
+					$scope.devices = [];
+				}
 				$scope.devices.push(data);
 			}, function () {
 			});

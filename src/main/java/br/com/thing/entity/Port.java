@@ -13,7 +13,7 @@ import br.com.thing.enums.PortType;
 @Entity
 public class Port extends BaseEntity<Long> {
 
-	private String port;
+	private String name;
 
 	@Enumerated(EnumType.STRING)
 	@Column(name = "type", length = 5)
@@ -26,16 +26,16 @@ public class Port extends BaseEntity<Long> {
     @OneToOne(mappedBy = "port")
     private Device device;	
 
-	public String getPort() {
-		return port;
+	public String getName() {
+		return name;
 	}
 
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 	public PortType getType() {
 		return type;
-	}
-
-	public void setPort(String port) {
-		this.port = port;
 	}
 
 	public void setType(PortType type) {
