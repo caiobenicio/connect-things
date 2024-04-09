@@ -33,7 +33,7 @@ public class FileUtils {
 
 			if (file.exists() && isUpdateFile) {
 
-//				WSLog.INFO("core", "Update file: " + file.getPath() + " json: " + json);
+				// WSLog.INFO("core", "Update file: " + file.getPath() + " json: " + json);
 
 				StringBuilder builder = new StringBuilder();
 				BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file)));
@@ -56,7 +56,7 @@ public class FileUtils {
 				fos.close();
 
 			} else {
-	//			WSLog.INFO("core", "Create file: " + file.getPath() + " json: " + json);
+				// WSLog.INFO("core", "Create file: " + file.getPath() + " json: " + json);
 
 				FileOutputStream fos = new FileOutputStream(file);
 				fos.write(json.getBytes("UTF-8"));
@@ -68,7 +68,7 @@ public class FileUtils {
 			return file.exists();
 
 		} catch (Throwable t) {
-		//	WSLog.ERROR("core", "createOrUpdateFile " + t.getLocalizedMessage(), t);
+			// WSLog.ERROR("core", "createOrUpdateFile " + t.getLocalizedMessage(), t);
 		}
 
 		return false;
@@ -82,12 +82,12 @@ public class FileUtils {
 
 			if (file.exists()) {
 
-			//	WSLog.INFO("core", "Remove file: " + file.getPath());
+				// WSLog.INFO("core", "Remove file: " + file.getPath());
 
 				return file.delete();
 			}
 		} catch (Throwable t) {
-			//WSLog.ERROR("core", "removeFile " + t.getLocalizedMessage(), t);
+			// WSLog.ERROR("core", "removeFile " + t.getLocalizedMessage(), t);
 		}
 
 		return false;
@@ -104,7 +104,7 @@ public class FileUtils {
 
 			if (files != null && files.length > 0) {
 				for (File file : files) {
-				//	WSLog.INFO("core", "Read file: " + file.getPath());
+					// WSLog.INFO("core", "Read file: " + file.getPath());
 					StringBuilder builder = new StringBuilder();
 					BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF8"));
 					String line = null;
@@ -113,55 +113,49 @@ public class FileUtils {
 						list.add(line);
 					}
 					String json = builder.toString();
-					//WSLog.INFO("core", "Read file: " + file.getPath() + " json: " + json);
+					// WSLog.INFO("core", "Read file: " + file.getPath() + " json: " + json);
 
 					br.close();
 				}
 			}
 		} catch (Throwable t) {
-			//WSLog.ERROR("core", "readFiles " + t.getLocalizedMessage(), t);
+			// WSLog.ERROR("core", "readFiles " + t.getLocalizedMessage(), t);
 		}
 		return list;
 	}
 
-//	public static Properties propertiesFromClasspath(String filename) throws IOException {
-//		InputStream file = classloader().getResourceAsStream(filename);
-//		Properties props = new Properties();
-//		props.load(file);
-//		return props;
-//	}
-//
-//	private static ClassLoader classloader() {
-//		return Thread.currentThread().getContextClassLoader();
-//	}
-//
-//	public static File file(String fileName) {
-//		File file = new File(fileName);	
-//		return (file == null || !file.exists() ? null : file);
-//	}
-//	
-//	public static String fileFromClasspath(String fileName) {
-//		String file = classloader().getResource(fileName).getFile();
-////		File file = new File(classloader().getResource(fileName).getFile());
-//		return (file == null ? null : fileName);
-//	}
-//	
-//	public static Properties readPropertiesFile(String fileName) {
-//		Properties prop = null;
-//		try {
-//			prop = new Properties();
-//			prop.load(classloader().getResourceAsStream(fileName));
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//		return prop;
-//	}
+	// public static Properties propertiesFromClasspath(String filename) throws
+	// IOException {
+	// InputStream file = classloader().getResourceAsStream(filename);
+	// Properties props = new Properties();
+	// props.load(file);
+	// return props;
+	// }
+	//
+	// private static ClassLoader classloader() {
+	// return Thread.currentThread().getContextClassLoader();
+	// }
+	//
+	// public static File file(String fileName) {
+	// File file = new File(fileName);
+	// return (file == null || !file.exists() ? null : file);
+	// }
+	//
+	// public static String fileFromClasspath(String fileName) {
+	// String file = classloader().getResource(fileName).getFile();
+	//// File file = new File(classloader().getResource(fileName).getFile());
+	// return (file == null ? null : fileName);
+	// }
+	//
+	// public static Properties readPropertiesFile(String fileName) {
+	// Properties prop = null;
+	// try {
+	// prop = new Properties();
+	// prop.load(classloader().getResourceAsStream(fileName));
+	// } catch (IOException e) {
+	// e.printStackTrace();
+	// }
+	// return prop;
+	// }
 
-	public static void main(String[] args) {
-		FileUtils.createOrUpdateFile("teste_arquivo",
-				"inserindo escrita no arquivo gerado",
-				FileUtils.ORDER_FI_FOLDER, false);
-
-		FileUtils.readFiles(FileUtils.ORDER_FI_FOLDER);
-	}
 }

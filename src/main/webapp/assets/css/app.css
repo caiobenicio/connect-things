@@ -37,6 +37,11 @@ ng-view {
 	padding-bottom: 1em;
 }
 
+.margin-h {
+	margin-bottom: 6px;
+	margin-top: 0px;
+}
+
 .mt-3 {
 	margin-top: 3em;
 }
@@ -158,7 +163,7 @@ input:-webkit-autofill {
 }
 
 .d-flex {
-	height: calc(100vh - 76px);
+	height: calc(100vh - 68px);
 	display: flex;
 	flex-direction: row;
 }
@@ -174,6 +179,13 @@ input:-webkit-autofill {
 	justify-content: center	
 }
 
+.align-items-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+}
+
 md-menu-content {
 	display: flex;
 	align-items: center;
@@ -182,10 +194,14 @@ md-menu-content {
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
     background-color: rgb(20, 20, 20);
     color: rgb(255, 255, 255);
+    border-bottom: 1px solid rgba(255, 255, 255, .15);	
+	min-height: 61px;
 }
 
 md-sidenav, md-sidenav md-content {
 	background-color: rgb(20, 20, 20);
+    border-right: 1px solid rgba(255, 255, 255, .15);
+    box-sizing: border-box;	
 }
 
 md-content.md-default-theme, md-content {
@@ -287,4 +303,19 @@ md-content {
 md-card-title-media {
     height: 80px;
     width: 80px;	
+}
+
+.svg-icon-margin {
+	padding: 5px;
+    margin-right: 10px;	
+}
+
+.hover {
+	padding: 5px;
+}
+
+.hover:hover {
+	background: #474747;
+	padding: 5px;
+	border-radius: 5px;
 }
