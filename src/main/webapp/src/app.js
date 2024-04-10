@@ -5,7 +5,7 @@ var BASE_WS_URL;
 BASE_URL = window.location.origin + '/api';
 BASE_WS_URL = 'ws://' + window.location.origin.replace(/https?:\/\//i, "");
 
-angular.module('homeon', ['ngRoute', 'ngCookies', 'ngStorage', 'ngMaterial', 'ngNotify', 'ngMdIcons'])
+angular.module('homeon', ['ngRoute', 'ngCookies', 'ngStorage', 'ngMaterial', 'ngNotify', 'ngMdIcons', 'ngWebSocket'])
 	.constant('SERVICE_PATH', {
 		'ROOT_PATH': BASE_URL,
 		'PUBLIC_PATH': BASE_URL + '/public',

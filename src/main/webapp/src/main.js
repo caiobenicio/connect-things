@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeon').controller('mainController',
-	function($scope, $location, $rootScope, $localStorage, SigninSignoutSrv) {
+	function($scope, $location, $rootScope, $localStorage, SigninSignoutSrv, WebSocketService) {
 
 		$scope.user = $rootScope.authDetails;
 		$rootScope.profileIconName = $localStorage.profileIconName;

@@ -1,0 +1,21 @@
+<md-content layout="column" >
+	<div class="space-between" layout="row" ng-cloak ng-if="devices.length">
+	   <p class="margin"><strong>Configurações</strong></p>
+   </div>
+   
+   <div class="md-padding padding-left-50" layout="row" layout-wrap>
+		<md-card>
+            <md-button ng-click="conectWebsocket()">Conectar</md-button>
+            <md-button class="md-warn" ng-click="desconectWebsocket()">Desconctar</md-button>	
+        </md-card>
+	</div>	
+
+   <div class="md-padding padding-left-50" layout="row" layout-wrap>
+		<md-card>
+            <ul ng-repeat="data in MyData.collection track by $index" >
+                <li> {{ data }} </li>
+              </ul>
+        </md-card>
+	</div>	
+   
+</md-content>

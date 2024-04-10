@@ -23,9 +23,9 @@ angular.module('homeon').config(function($routeProvider) {
 		}).when('/device/:id', {
 			templateUrl: 'src/device/device-details.html',
 			controller: 'deviceDetailsCtrl'
-		}).when('/schedule', {
-			templateUrl: 'src/schedule/schedule.html',
-			controller: 'scheduleCtrl'
+		}).when('/config', {
+			templateUrl: 'src/config/config.html',
+			controller: 'configCtrl'
 		}).otherwise({
 			redirectTo: '/'
 		});
