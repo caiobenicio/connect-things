@@ -34,20 +34,20 @@ public class SocketTextHandler extends TextWebSocketHandler {
 	public void handleTextMessage(WebSocketSession session, TextMessage message)
 			throws InterruptedException, IOException {
 
+		String msgType = null;
 		String payload = message.getPayload();
 		JSONObject jsonObject = new JSONObject(payload);
 
 		Long user = Long.valueOf(jsonObject.get("user").toString());
-		String msgType = null;
-
-		if (jsonObject.get("msgType").toString().length() == 1) {
-			msgType = jsonObject.get("msgType").toString();
-		}
-
 		SessionUser.getInstance().getUserSession().put(user, session.getId());
 
-		new Publisher(MqttConnection.CLIENT_ID, jsonObject.get("topic").toString(),
-				new MessageMqtt(user, null, msgType));
+		if (!jsonObject.isNull("msgType") && jsonObject.get("msgType").toString().length() == 1) {
+			msgType = jsonObject.get("msgType").toString();
+
+			new Publisher(MqttConnection.CLIENT_ID, jsonObject.get("topic").toString(),
+					new MessageMqtt(user, null, msgType));
+		}
+
 	}
 
 //	protected void broadcast(String data) {

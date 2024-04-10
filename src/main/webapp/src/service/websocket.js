@@ -8,10 +8,6 @@ angular.module('homeon')
 		var dataStream = $websocket(url);
 		var collection = [];
 
-		dataStream.onMessage(function(message) {
-			collection.push(JSON.parse(message.data));
-		});
-
 		var methods = {
 			onMessage: function(callback) {
 				dataStream.onMessage(function(event) {
@@ -24,9 +20,7 @@ angular.module('homeon')
 				dataStream.send(JSON.stringify(message));
 			},
 			onOpen: function (event) {
-				dataStream.send(
-				  '{"user":'+id+'}',
-				);
+				dataStream.send('{"user":'+id+'}',);
 			  },		
 			onClose: function() {
 				dataStream.onClose(function() {

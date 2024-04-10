@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.entity.Board;
 import br.com.thing.entity.Client;
+import br.com.thing.mqtt.MqttConnection;
+import br.com.thing.mqtt.Subscribe;
 import br.com.thing.repository.BoardRepository;
 import br.com.thing.repository.ClientRepository;
 
@@ -59,13 +61,13 @@ public class BoardService extends GenericService<Board, Long> {
     	HttpStatus status = HttpStatus.OK;
     	super.update(board, errors);
     	   	
-//    	if (!board.isStatus()) {
-//    		status = HttpStatus.NO_CONTENT;
-//    		Subscribe x = new Subscribe();
-//    		x.unsubscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
-//    	} else {
-//    		new Subscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
-//    	}
+   	if (!board.isStatus()) {
+   		status = HttpStatus.NO_CONTENT;
+   		Subscribe x = new Subscribe();
+   		x.unsubscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
+   	} else {
+   		new Subscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());
+   	}
 
     	return ResponseEntity.status(status).body(null);
 	}

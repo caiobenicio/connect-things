@@ -20,7 +20,7 @@ angular.module('homeon', ['ngRoute', 'ngCookies', 'ngStorage', 'ngMaterial', 'ng
 	.run(function($rootScope, $location, SigninSignoutSrv) {
 		$rootScope.authDetails = { name: '', authenticated: false, permissions: [] };
 		SigninSignoutSrv.verifyAuth();
-
+		
 		$rootScope.$on('$locationChangeStart', function() {
 			if ($rootScope.authDetails.authenticated == false) {
 				$rootScope.statusMenu = true;

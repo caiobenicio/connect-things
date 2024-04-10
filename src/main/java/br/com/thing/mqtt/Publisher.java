@@ -63,7 +63,6 @@ public class Publisher {
 			message.setQos(pubQoS);
 			message.setRetained(false);
 		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

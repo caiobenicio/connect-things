@@ -5,8 +5,9 @@ angular.module('homeon').controller('mainController',
 
 		$scope.user = $rootScope.authDetails;
 		$rootScope.profileIconName = $localStorage.profileIconName;
+		$rootScope.connectWS = $localStorage.authDetails.websocket;
 		$rootScope.statusMenu = false;
-		
+				
 		$scope.hasAnyPermission = function(authorities) {
 			var hasPermission = false;
 
@@ -32,5 +33,10 @@ angular.module('homeon').controller('mainController',
 		$scope.isObjectEmpty = function(obj) {
 			return Object.keys(obj).length === 0;
 		}
+
+		WebSocketService.onMessage(function(event) {
+			var data = JSON.parse(event);
+			console.log(data);
+		});		
 		
 	});

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeon').controller('configCtrl',
-    function ($scope, $rootScope, WebSocketService) {
+    function ($scope, $rootScope, $localStorage, WebSocketService) {
 
         $rootScope.statusMenu = true;
         $scope.user = $rootScope.authDetails;
@@ -23,9 +23,13 @@ angular.module('homeon').controller('configCtrl',
 
         $scope.conectWebsocket = function() {
 			WebSocketService.onOpen();
+            $localStorage.authDetails.websocket = true;
+            $rootScope.connectWS = true;
 		}
 
         $scope.desconectWebsocket = function() {
 			WebSocketService.onClose();
+            $localStorage.authDetails.websocket = false;
+            $rootScope.connectWS = false;
 		}
     });

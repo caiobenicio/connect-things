@@ -319,3 +319,20 @@ md-card-title-media {
 	padding: 5px;
 	border-radius: 5px;
 }
+
+.rounded-full {
+    border-radius: 9999px;
+}
+
+.\!bg-\[\#1DA086\] {
+    --tw-bg-opacity: 1 !important;
+    background-color: rgb(29 160 134/var(--tw-bg-opacity))!important;
+}
+
+.w-3\.5 {
+    width: .875rem;
+}
+
+.h-3\.5 {
+    height: .875rem;
+}

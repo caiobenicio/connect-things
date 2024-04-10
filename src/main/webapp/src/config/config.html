@@ -1,5 +1,5 @@
 <md-content layout="column" >
-	<div class="space-between" layout="row" ng-cloak ng-if="devices.length">
+	<div class="space-between" layout="row" >
 	   <p class="margin"><strong>Configurações</strong></p>
    </div>
    
@@ -10,9 +10,11 @@
         </md-card>
 	</div>	
 
+      
+
    <div class="md-padding padding-left-50" layout="row" layout-wrap>
 		<md-card>
-            <ul ng-repeat="data in MyData.collection track by $index" >
+            <ul ng-repeat="data in MyData.collection" >
                 <li> {{ data }} </li>
               </ul>
         </md-card>
