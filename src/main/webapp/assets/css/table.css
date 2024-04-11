@@ -205,3 +205,7 @@ md-list-item, md-list-item .md-list-item-inner {
   border-radius: 8px;  
   margin-bottom: 2px;
 }
+
+.md-list-config {
+  min-height: 50px;
+}

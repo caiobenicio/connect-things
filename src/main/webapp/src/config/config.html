@@ -1,23 +1,20 @@
-<md-content layout="column" >
-	<div class="space-between" layout="row" >
-	   <p class="margin"><strong>Configurações</strong></p>
-   </div>
-   
-   <div class="md-padding padding-left-50" layout="row" layout-wrap>
-		<md-card>
-            <md-button ng-click="conectWebsocket()">Conectar</md-button>
-            <md-button class="md-warn" ng-click="desconectWebsocket()">Desconctar</md-button>	
-        </md-card>
-	</div>	
+<md-content layout="column">
+      <div class="space-between" layout="row">
+            <p class="margin"><strong>Configurações</strong></p>
+      </div>
 
-      
+      <md-list ng-cloak>
 
-   <div class="md-padding padding-left-50" layout="row" layout-wrap>
-		<md-card>
-            <ul ng-repeat="data in MyData.collection" >
-                <li> {{ data }} </li>
-              </ul>
-        </md-card>
-	</div>	
-   
+            <md-subheader class="md-no-sticky">
+                  Habilitar WebSocket (<span class="font-size-small">Receber dados em Tempo Real</span>)
+            </md-subheader>
+            <md-list-item class="md-list-config" ng-click="changeWebSocket()">
+                  <p> WebSocket </p>
+                  <md-switch class="md-secondary" ng-model="authDetails.connectWebSocket" ng-change="changeWebSocket()"></md-switch>
+            </md-list-item>
+
+            <md-divider></md-divider>
+
+      </md-list>
+
 </md-content>

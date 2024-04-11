@@ -3,10 +3,13 @@
 angular.module('homeon').controller('mainController',
 	function($scope, $location, $rootScope, $localStorage, SigninSignoutSrv, WebSocketService) {
 
-		$scope.user = $rootScope.authDetails;
-		$rootScope.profileIconName = $localStorage.profileIconName;
-		$rootScope.connectWS = $localStorage.authDetails.websocket;
 		$rootScope.statusMenu = false;
+		$scope.user = $rootScope.authDetails;
+		
+		if ($localStorage.authDetails != undefined) {
+			$rootScope.profileIconName = $localStorage.profileIconName;
+			$rootScope.connectWebSocket = $localStorage.authDetails.connectWebSocket;
+		}
 				
 		$scope.hasAnyPermission = function(authorities) {
 			var hasPermission = false;
@@ -27,7 +30,7 @@ angular.module('homeon').controller('mainController',
 		};
 
 		$scope.profile = function() {
-			$location.path('/profile');;
+			$location.path('/profile');
 		};
 
 		$scope.isObjectEmpty = function(obj) {

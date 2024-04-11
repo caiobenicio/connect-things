@@ -61,7 +61,7 @@ public class BoardService extends GenericService<Board, Long> {
     	HttpStatus status = HttpStatus.OK;
     	super.update(board, errors);
     	   	
-   	if (!board.isStatus()) {
+   	if (!board.isStatus() && board.getTopicSubscribe() != null) {
    		status = HttpStatus.NO_CONTENT;
    		Subscribe x = new Subscribe();
    		x.unsubscribe(MqttConnection.getInstance().getMapConnection().get(MqttConnection.CLIENT_ID), board.getTopicSubscribe());

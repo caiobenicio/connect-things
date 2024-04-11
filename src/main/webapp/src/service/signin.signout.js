@@ -27,7 +27,8 @@ angular.module('homeon')
 							authenticated: data.authenticated,
 							permissions: data.authorities,
 							id: data.principal.id,
-							boards: []
+							boards: [],
+							connectWebSocket: false
 						};
 
 						$localStorage.authDetails = $rootScope.authDetails;
@@ -67,7 +68,7 @@ angular.module('homeon')
 			$http(requestParams).finally(function success() {
 				delete $localStorage.authDetails;
 				delete $localStorage.profileIconName;
-				$rootScope.authDetails = { name: '', authenticated: false, permissions: [], boards: [] };
+				$rootScope.authDetails = { name: '', authenticated: false, permissions: [], boards: [], connectWebSocket: false};
 				$rootScope.statusMenu = false;
 				$location.path("/");
 			});

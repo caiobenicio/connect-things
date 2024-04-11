@@ -1,26 +1,26 @@
 :root {
-  --primary-color: white;
-  --secondary-color: rgb(61, 68, 73);
-  --highlight-color: #3282b8;
-  --dt-status-available-color: greenyellow;
-  --dt-status-away-color: lightsalmon;
-  --dt-status-offline-color: lightgray;
-  --dt-padding: 12px;
-  --dt-padding-s: 6px;
-  --dt-padding-xs: 2px;
-  --dt-border-radius: 3px;
-  --dt-background-color-container: #2a3338;
-  --dt-border-color: var(--secondary-color);
-  --dt-bg-color: var(--highlight-color);
-  --dt-text-color: var(--primary-color);
-  --dt-bg-active-button: var(--highlight-color);
-  --dt-text-color-button: var(--primary-color);
-  --dt-text-color-active-button: var(--primary-color);
-  --dt-hover-cell-color: var(--highlight-color);
-  --dt-even-row-color: var(--secondary-color);
-  --dt-focus-color: var(--highlight-color);
-  --dt-input-background-color: var(--secondary-color);
-  --dt-input-color: var(--primary-color);
+	--primary-color: white;
+	--secondary-color: rgb(61, 68, 73);
+	--highlight-color: #3282b8;
+	--dt-status-available-color: greenyellow;
+	--dt-status-away-color: lightsalmon;
+	--dt-status-offline-color: lightgray;
+	--dt-padding: 12px;
+	--dt-padding-s: 6px;
+	--dt-padding-xs: 2px;
+	--dt-border-radius: 3px;
+	--dt-background-color-container: #2a3338;
+	--dt-border-color: var(--secondary-color);
+	--dt-bg-color: var(--highlight-color);
+	--dt-text-color: var(--primary-color);
+	--dt-bg-active-button: var(--highlight-color);
+	--dt-text-color-button: var(--primary-color);
+	--dt-text-color-active-button: var(--primary-color);
+	--dt-hover-cell-color: var(--highlight-color);
+	--dt-even-row-color: var(--secondary-color);
+	--dt-focus-color: var(--highlight-color);
+	--dt-input-background-color: var(--secondary-color);
+	--dt-input-color: var(--primary-color);
 }
 
 
@@ -51,7 +51,8 @@ ng-view {
 }
 
 .btn-round {
-	border-radius: 20px; /* Raio da borda arredondada */
+	border-radius: 20px;
+	/* Raio da borda arredondada */
 }
 
 .btn-border {
@@ -62,7 +63,8 @@ ng-view {
 }
 
 .btn-border:hover {
-	background-color: #3f51b5; /* Altere a cor de fundo ao passar o mouse */
+	background-color: #3f51b5;
+	/* Altere a cor de fundo ao passar o mouse */
 	border-color: transparent;
 	color: white;
 }
@@ -108,17 +110,19 @@ ng-view {
 	box-shadow: 0 .75rem 1.5rem rgba(18, 38, 63, .03);
 }
 
-md-input-container.md-default-theme .md-placeholder, md-input-container .md-placeholder,
-	md-input-container.md-default-theme label, md-input-container label {
+md-input-container.md-default-theme .md-placeholder,
+md-input-container .md-placeholder,
+md-input-container.md-default-theme label,
+md-input-container label {
 	color: white;
 }
 
-md-input-container:not(.md-input-has-value):not(.md-input-has-placeholder) input:not(:focus)
-	{
+md-input-container:not(.md-input-has-value):not(.md-input-has-placeholder) input:not(:focus) {
 	border-color: white;
 }
 
-input, label {
+input,
+label {
 	color: white !important;
 }
 
@@ -176,7 +180,7 @@ input:-webkit-autofill {
 .justify-content-center {
 	display: flex;
 	flex-direction: row;
-	justify-content: center	
+	justify-content: center
 }
 
 .align-items-center {
@@ -191,21 +195,24 @@ md-menu-content {
 	align-items: center;
 }
 
-md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-    background-color: rgb(20, 20, 20);
-    color: rgb(255, 255, 255);
-    border-bottom: 1px solid rgba(255, 255, 255, .15);	
+md-toolbar.md-default-theme:not(.md-menu-toolbar),
+md-toolbar:not(.md-menu-toolbar) {
+	background-color: rgb(20, 20, 20);
+	color: rgb(255, 255, 255);
+	border-bottom: 1px solid rgba(255, 255, 255, .15);
 	min-height: 61px;
 }
 
-md-sidenav, md-sidenav md-content {
+md-sidenav,
+md-sidenav md-content {
 	background-color: rgb(20, 20, 20);
-    border-right: 1px solid rgba(255, 255, 255, .15);
-    box-sizing: border-box;	
+	border-right: 1px solid rgba(255, 255, 255, .15);
+	box-sizing: border-box;
 }
 
-md-content.md-default-theme, md-content {
-    color: white;
+md-content.md-default-theme,
+md-content {
+	color: white;
 }
 
 .profile-card {
@@ -225,7 +232,7 @@ md-radio-group {
 }
 
 md-select.md-default-theme .md-select-value.md-select-placeholder,
-	md-select .md-select-value.md-select-placeholder {
+md-select .md-select-value.md-select-placeholder {
 	color: white;
 }
 
@@ -241,8 +248,9 @@ md-select.md-default-theme .md-select-value.md-select-placeholder,
 	color: white;
 }
 
-md-radio-button.md-default-theme .md-off, md-radio-button .md-off {
-    border-color: white
+md-radio-button.md-default-theme .md-off,
+md-radio-button .md-off {
+	border-color: white
 }
 
 md-content {
@@ -260,9 +268,9 @@ md-content {
 }
 
 .label-switch {
-    font-size: 13px;
-    padding-bottom: 24px;
-    padding-left: 14px!important;	
+	font-size: 13px;
+	padding-bottom: 24px;
+	padding-left: 14px !important;
 }
 
 .padding-left-50 {
@@ -275,25 +283,25 @@ md-content {
 
 .dflex-center {
 	display: flex;
-    flex-direction: column;
-    align-items: center; 
- }
+	flex-direction: column;
+	align-items: center;
+}
 
- .md-button { 
+.md-button {
 	min-height: 35px;
- }
+}
 
- md-switch {
+md-switch {
 	height: 1px;
- }
+}
 
- md-switch:last-of-type {
+md-switch:last-of-type {
 	margin-left: 14px;
-  }
+}
 
 .md-toolbar-tools>.md-button:last-child {
-    margin-right: 0px;
-}  
+	margin-right: 0px;
+}
 
 .md-card-image {
 	width: 50px;
@@ -301,13 +309,13 @@ md-content {
 }
 
 md-card-title-media {
-    height: 80px;
-    width: 80px;	
+	height: 80px;
+	width: 80px;
 }
 
 .svg-icon-margin {
 	padding: 5px;
-    margin-right: 10px;	
+	margin-right: 10px;
 }
 
 .hover {
@@ -321,18 +329,38 @@ md-card-title-media {
 }
 
 .rounded-full {
-    border-radius: 9999px;
+	border-radius: 9999px;
 }
 
 .\!bg-\[\#1DA086\] {
-    --tw-bg-opacity: 1 !important;
-    background-color: rgb(29 160 134/var(--tw-bg-opacity))!important;
+	--tw-bg-opacity: 1 !important;
+	background-color: rgb(29 160 134/var(--tw-bg-opacity)) !important;
 }
 
 .w-3\.5 {
-    width: .875rem;
+	width: .875rem;
 }
 
 .h-3\.5 {
-    height: .875rem;
+	height: .875rem;
+}
+
+md-divider {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+
+md-list {
+	padding: 0 2rem ;
+	width: 50%;
+}
+
+.font-size-small {
+	font-size: 12px;
+}
+
+.home-details {
+	width: 150px;
+    height: 50px;
+	cursor: pointer;
 }

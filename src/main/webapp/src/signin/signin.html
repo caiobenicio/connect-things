@@ -1,28 +1,30 @@
+<form>
 <div layout="column" layout-align="center center" style="height: 98vh;" class="login">
 	<md-content layout="column" layout-align="center center" class="wrapper wrapper-login">
 	 
 		<h1 class="center white">Fa&ccedil;a seu login</h1>
 		
-		<md-input-container>
-		  <label>Email</label>
-		  <input ng-model="email" type="email" id="email" name="email" class="size-input" ng-required="true">
-		</md-input-container>
-	  
-		<md-input-container style="margin-bottom: 0px;">
-		  <label>Password</label>
-		  <input ng-model="password" type="password" id="showPassword" class="size-input" ng-required="true">
-		</md-input-container>
-		
-		<div class="p-b1">	
-			<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
-			<button type="button" ng-click="forgotPassword($event)" class="small-gray" aria-label="Esqueceu a senha ?">Esqueceu a senha ?</button>
-		</div>	
-
-		<md-button class="btn m-b3" ng-click="signin()" aria-label="Entrar">Entrar</md-button>
-
-		<div class="m-b3">
-			<span class="small-gray">Nao possui uma conta ?</span>
-			<md-button class="white" ng-click="createAccount($event,null)" aria-label="Criar Conta">Criar Conta</md-button>
-		</div>
-	</md-content>
-</div>
+			<md-input-container>
+			  <label>Email</label>
+			  <input ng-model="email" type="email" id="email" name="email" class="size-input" ng-required="true">
+			</md-input-container>
+		  
+			<md-input-container style="margin-bottom: 0px;">
+			  <label>Password</label>
+			  <input ng-model="password" type="password" id="showPassword" class="size-input" ng-required="true" autocomplete="on">
+			</md-input-container>
+			
+			<div class="p-b1">	
+				<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>				
+				<button type="button" ng-click="forgotPassword($event)" class="small-gray" aria-label="Esqueceu a senha ?">Esqueceu a senha ?</button>
+			</div>	
+	
+			<md-button class="btn m-b3" ng-click="signin()" aria-label="Entrar">Entrar</md-button>
+			
+			<div class="m-b3">
+				<span class="small-gray">Nao possui uma conta ?</span>
+				<md-button class="white" ng-click="createAccount($event,null)" aria-label="Criar Conta">Criar Conta</md-button>
+			</div>
+		</md-content>
+	</div>
+</form> 	

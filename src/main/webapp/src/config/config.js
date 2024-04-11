@@ -5,7 +5,6 @@ angular.module('homeon').controller('configCtrl',
 
         $rootScope.statusMenu = true;
         $scope.user = $rootScope.authDetails;
-        $scope.MyData = WebSocketService;
 
         $scope.hasAnyPermission = function (authorities) {
             var hasPermission = false;
@@ -21,15 +20,8 @@ angular.module('homeon').controller('configCtrl',
             return hasPermission;
         };
 
-        $scope.conectWebsocket = function() {
-			WebSocketService.onOpen();
-            $localStorage.authDetails.websocket = true;
-            $rootScope.connectWS = true;
-		}
-
-        $scope.desconectWebsocket = function() {
-			WebSocketService.onClose();
-            $localStorage.authDetails.websocket = false;
-            $rootScope.connectWS = false;
-		}
+        $scope.changeWebSocket = function() {
+            $localStorage.authDetails.connectWebSocket = !$localStorage.authDetails.connectWebSocket
+            $localStorage.authDetails.connectWebSocket? WebSocketService.onOpen() : WebSocketService.onClose();
+		}          
     });
