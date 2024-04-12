@@ -30,7 +30,7 @@ public class Subscribe {
 		}
 		try {
 			clientMQTT.unsubscribe(topicos);
-			System.out.println("Topicos desassinados: " + topicos);
+			System.out.println("Topicos desassinados: " + topicos[0]);
 		} catch (MqttException ex) {
 			System.out.println(String.format("Erro ao se desinscrever no tópico %s - %s", Arrays.asList(topicos), ex));
 		}

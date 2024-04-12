@@ -26,6 +26,15 @@ public class Port extends BaseEntity<Long> {
     @OneToOne(mappedBy = "port")
     private Device device;	
 
+	public Port() {
+	}
+
+	public Port(String name, PortType type, Board board) {
+		this.name = name;
+		this.type = type;
+		this.board = board;
+	}
+
 	public String getName() {
 		return name;
 	}

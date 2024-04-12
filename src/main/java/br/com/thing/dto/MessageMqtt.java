@@ -2,6 +2,7 @@ package br.com.thing.dto;
 
 public class MessageMqtt {
 	private Long user;
+	private Long board;
 	private String msgType;
 	private Integer pin;
 	private int action;
@@ -48,4 +49,11 @@ public class MessageMqtt {
 		this.action = action;
 	}
 	
+	public Long getBoard() {
+		return board;
+	}
+
+	public void setBoard(Long board) {
+		this.board = board;
+	}
 }

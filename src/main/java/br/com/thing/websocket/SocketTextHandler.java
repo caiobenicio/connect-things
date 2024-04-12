@@ -11,10 +11,6 @@ import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.ConcurrentWebSocketSessionDecorator;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-import br.com.thing.dto.MessageMqtt;
-import br.com.thing.mqtt.MqttConnection;
-import br.com.thing.mqtt.Publisher;
-
 @Component
 public class SocketTextHandler extends TextWebSocketHandler {
 
@@ -43,21 +39,8 @@ public class SocketTextHandler extends TextWebSocketHandler {
 
 		if (!jsonObject.isNull("msgType") && jsonObject.get("msgType").toString().length() == 1) {
 			msgType = jsonObject.get("msgType").toString();
-
-			new Publisher(MqttConnection.CLIENT_ID, jsonObject.get("topic").toString(),
-					new MessageMqtt(user, null, msgType));
 		}
 
 	}
-
-//	protected void broadcast(String data) {
-//		final TextMessage message = new TextMessage(data);
-//		sessions.forEach((key, session) -> {
-//			try {
-//				session.sendMessage(message);
-//			} catch (IOException e) {
-//			}
-//		});
-//	}
 
 }

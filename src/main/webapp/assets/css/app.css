@@ -364,3 +364,18 @@ md-list {
     height: 50px;
 	cursor: pointer;
 }
+
+.sidenav-btn {
+	text-align: start;
+	width: 95%;	
+	padding: 0px 20px;
+	margin: 4px 8px;	
+}
+
+.navbar-item {
+	width: 100%;
+}
+
+md-menu-content.md-menu-bar-menu.md-dense .md-menu>.md-button, md-menu-content.md-menu-bar-menu.md-dense md-menu-item>.md-button {
+    text-align: center;
+}

@@ -2,6 +2,7 @@ package br.com.thing.dto;
 
 public class MessageMqttResponse {
 	private Long user;
+	private Long board;
 	private String msgType;
 	private String pinsIn[];
 	private String pinsOut[];
@@ -57,6 +58,14 @@ public class MessageMqttResponse {
 
 	public void setPin(String pin) {
 		this.pin = pin;
+	}
+
+	public Long getBoard() {
+		return board;
+	}
+
+	public void setBoard(Long board) {
+		this.board = board;
 	}
 
 }

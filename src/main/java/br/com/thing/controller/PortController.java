@@ -30,11 +30,11 @@ public class PortController extends GenericService<Port, Long> {
 	
     @GetMapping(value = "/findByPorts")
     public ResponseEntity<?> findByPorts(@RequestParam(name = "id") Long id
-    , @RequestParam(name = "topic") String topic) {
+    , @RequestParam(name = "topic") String topic , @RequestParam(name = "boardId") Long boardId) {
         if (topic == "null") {
             topic = "clientweb/inTopic";
         }
-        new Publisher(MqttConnection.CLIENT_ID, topic, "P");
+        new Publisher(MqttConnection.CLIENT_ID, id, boardId, topic, "P");
         return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
     }
     

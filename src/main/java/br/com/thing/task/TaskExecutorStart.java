@@ -3,7 +3,6 @@ package br.com.thing.task;
 import java.util.TimerTask;
 
 import br.com.thing.entity.Schedule;
-import br.com.thing.mqtt.MqttConnection;
 import br.com.thing.mqtt.Publisher;
 import br.com.thing.schedule.ScheduleTask;
 
