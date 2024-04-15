@@ -1,4 +1,4 @@
-package br.com.thing.utils;
+package br.com.thing.context;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

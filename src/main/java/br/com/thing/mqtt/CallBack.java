@@ -13,7 +13,7 @@ import org.springframework.web.socket.WebSocketSession;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import br.com.thing.dto.MessageMqttResponse;
-import br.com.thing.utils.ApplicationContextProvider;
+import br.com.thing.context.ApplicationContextProvider;
 import br.com.thing.websocket.SessionUser;
 
 @Service
@@ -21,21 +21,10 @@ public class CallBack implements MqttCallback {
 
 	private String instanceData = "";
 	private WebSocketSession session;
-
+	
+	public CallBack() {	super(); }
 	public CallBack(String instance) {
 		instanceData = instance;
-	}
-
-	public CallBack() {
-		super();
-	}
-
-	@Override
-	public void connectionLost(Throwable cause) {
-		System.out.println("Connection lost on instance \"" + instanceData + "\" with cause \"" + cause.getMessage()
-				+ "\" Reason code " + ((MqttException) cause).getReasonCode() + "\" Cause \""
-				+ ((MqttException) cause).getCause() + "\"");
-		cause.printStackTrace();
 	}
 
 	@Override
@@ -57,17 +46,13 @@ public class CallBack implements MqttCallback {
 
 						if (sessionId != null) {
 							session = SessionUser.getInstance().getSessions().get(sessionId);
-							session.sendMessage(new TextMessage(message.toString()));
+							
+							if (session.isOpen()) {
+								session.sendMessage(new TextMessage(message.toString()));
+							}
 						}
 
-
-						ApplicationContext context = ApplicationContextProvider.getApplicationContext();						
-						AutowireCapableBeanFactory factory = context.getAutowireCapableBeanFactory();
-
-						SavePort savePort = new SavePort(msg);
-						factory.autowireBean( savePort );
-						factory.initializeBean( savePort, "savePort" );
-						savePort.save();
+						savePort(msg);
 					}
 				}
 
@@ -85,5 +70,22 @@ public class CallBack implements MqttCallback {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void connectionLost(Throwable cause) {
+		System.out.println("Connection lost on instance \"" + instanceData + "\" with cause \"" + cause.getMessage()
+				+ "\" Reason code " + ((MqttException) cause).getReasonCode() + "\" Cause \"");
+		cause.printStackTrace();
+	}
+
+	private void savePort(MessageMqttResponse msg) {
+		ApplicationContext context = ApplicationContextProvider.getApplicationContext();						
+		AutowireCapableBeanFactory factory = context.getAutowireCapableBeanFactory();
+
+		SavePort savePort = new SavePort(msg);
+		factory.autowireBean( savePort );
+		factory.initializeBean( savePort, "savePort" );
+		savePort.save();
 	}
 }
