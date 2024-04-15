@@ -22,19 +22,23 @@ angular.module('homeon').controller('associateBoardCtrl',
 			}
 		});
 
+
 		$scope.savePortDevice = function (device) {
 			var pin = dataToPass
-			var port = { port: pin.name, type: pin.type, board: dataToPass.board, device: device }
+			var port = { name: pin.port.name, type: pin.port.type, board: dataToPass.board, device: device }
 
-			RestSrv.add(portUrl, port, function (status, data) {
+			device.client = $rootScope.authDetails;
+			device.port = port;
+
+			RestSrv.edit(deviceUrl, device, function (status, data) {
 				if (status === 'ok') {
-					ngNotify.set('Dispositivo Cadastrado com Sucesso!.', { type: 'success' });
+					ngNotify.set('Porta Associada com Sucesso!.', { type: 'success' });
 					$mdDialog.hide(data);
 					return;
 				} else {
-					ngNotify.set('Dispositivo não cadastrado!.', { type: 'error', duration: 5000 });
+					ngNotify.set('Porta não Associada!.', { type: 'error', duration: 5000 });
 					return;
 				}
 			});
-		};
+		};		
 	});

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToOne;
 
 @Entity
@@ -14,8 +15,10 @@ public class Device extends BaseEntity<Long> {
     private String description;
     private Boolean active;
         
+    //@JoinColumn(name = "port_id")    
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "port_id")    
+    @MapsId
+    @JoinColumn(name = "port_id")	
     public Port port;
 
     @ManyToOne

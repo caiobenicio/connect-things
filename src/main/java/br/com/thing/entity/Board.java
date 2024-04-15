@@ -1,5 +1,6 @@
 package br.com.thing.entity;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -119,6 +120,9 @@ public class Board extends BaseEntity<Long> {
 	}
 
 	public Set<Port> getPorts() {
+		if (this.ports == null) {
+			this.ports = new HashSet<>();
+		}
 		return ports;
 	}
 

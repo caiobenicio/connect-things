@@ -8,7 +8,6 @@ angular.module('homeon').controller('boardDetailsCtrl',
 
 		var boardUrl = SERVICE_PATH.PRIVATE_PATH + '/board';
 		$scope.board = {};
-		$scope.todos = [{name:'P12', type:'I'}, {name:'P11', type:'O'}, {name:'P10', type:'O'}];
 
 		var portUrl = SERVICE_PATH.PRIVATE_PATH + '/port';
 		$scope.ports = [];
@@ -28,10 +27,9 @@ angular.module('homeon').controller('boardDetailsCtrl',
 
 		$scope.editBoard = function(board) {
 			$scope.board.client = $rootScope.authDetails;
-			$scope.board.ports = $scope.ports
+			$scope.board.ports = $scope.ports;
 			RestSrv.edit(boardUrl, board, function(status, data) {
 				if (status === 'ok') {
-					//$scope.sendWebSocket();
 					ngNotify.set('Placa Atualizada com Sucesso!.', { type: 'success' });
 					return;
 				} else if (status == 204) {

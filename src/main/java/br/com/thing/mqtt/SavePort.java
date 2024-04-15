@@ -32,7 +32,7 @@ public class SavePort {
 
     public void save() {
         Optional<Board> board = boardRepository.findById(msg.getBoard());
-        if (board.isPresent()) {
+        if (board.isPresent() && board.get().getPorts().isEmpty()) {
             for (String in : msg.getPinsIn()) {
                 portRepository.save(new Port(in, PortType.I, board.get()));
             }

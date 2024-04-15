@@ -1,5 +1,6 @@
 package br.com.thing.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -7,6 +8,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 
 import br.com.thing.enums.PortType;
 
@@ -23,7 +25,9 @@ public class Port extends BaseEntity<Long> {
 	@JoinColumn(name = "board_id")
 	private Board board;
 	
-    @OneToOne(mappedBy = "port")
+    //@OneToOne(mappedBy = "port")
+    @OneToOne(mappedBy = "port", cascade = CascadeType.ALL)
+    @PrimaryKeyJoinColumn	
     private Device device;	
 
 	public Port() {
