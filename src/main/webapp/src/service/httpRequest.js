@@ -18,10 +18,10 @@ angular.module('homeon')
 					callback(httpStatus, response.data);
 				},
 				function errorCallback(response) {
-					if (response.data !== null) {
+					if (response.message !== null) {
 
-						console.log(response.data)
-						callback('error', response.data);
+						console.log(response.message)
+						callback('error', response.message);
 						$location.path('/');
 					}
 				});

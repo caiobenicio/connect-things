@@ -17,7 +17,6 @@ public class Device extends BaseEntity<Long> {
         
     //@JoinColumn(name = "port_id")    
     @OneToOne(fetch = FetchType.LAZY)
-    @MapsId
     @JoinColumn(name = "port_id")	
     public Port port;
 

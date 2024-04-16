@@ -25,10 +25,13 @@ angular.module('homeon').controller('associateBoardCtrl',
 
 		$scope.savePortDevice = function (device) {
 			var pin = dataToPass
-			var port = { name: pin.port.name, type: pin.port.type, board: dataToPass.board, device: device }
+			var port = { name: pin.port.name, type: pin.port.type, device: device }
 
 			device.client = $rootScope.authDetails;
+			device.client.boards = null;
 			device.port = port;
+			device.port.device.client = null;
+			device.port.device.port = null;
 
 			RestSrv.edit(deviceUrl, device, function (status, data) {
 				if (status === 'ok') {
