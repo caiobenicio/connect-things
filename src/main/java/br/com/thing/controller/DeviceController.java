@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,10 +46,10 @@ public class DeviceController extends GenericService<Device, Long> {
         return super.insert(device);
     }    
     
-    @Override
-	public ResponseEntity<?> update(@RequestBody Device device, Errors errors) {
-    	super.update(device, errors);
-
+    @PutMapping(value = "/updatePort")
+	public ResponseEntity<?> updatePort(@RequestBody Device device, Errors errors) {
+        deviceRepository.updatePort(device.getPort().getId(), device.getId());
     	return ResponseEntity.status(HttpStatus.OK).body(device);
 	}    
+    
 }

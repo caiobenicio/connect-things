@@ -25,15 +25,15 @@ angular.module('homeon').controller('associateBoardCtrl',
 
 		$scope.savePortDevice = function (device) {
 			var pin = dataToPass
-			var port = { name: pin.port.name, type: pin.port.type, device: device }
+			var port = { id: pin.port.id, name: pin.port.name, type: pin.port.type }
 
 			device.client = $rootScope.authDetails;
 			device.client.boards = null;
 			device.port = port;
-			device.port.device.client = null;
-			device.port.device.port = null;
+			//device.port.device.client = null;
+			//device.port.device.port = null;
 
-			RestSrv.edit(deviceUrl, device, function (status, data) {
+			RestSrv.edit(deviceUrl+"/updatePort", device, function (status, data) {
 				if (status === 'ok') {
 					ngNotify.set('Porta Associada com Sucesso!.', { type: 'success' });
 					$mdDialog.hide(data);
