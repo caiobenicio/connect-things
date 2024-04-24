@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class Device extends BaseEntity<Long> {
 
@@ -13,16 +16,17 @@ public class Device extends BaseEntity<Long> {
     private String iconPath;
     private String description;
     private Boolean active;
-        
-    //@JoinColumn(name = "port_id")    
-    @OneToOne(fetch = FetchType.LAZY)
+         
+	@JsonManagedReference
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "port_id")	
     public Port port;
 
-    @ManyToOne
-    @JoinColumn(name = "client_id")
-    private Client client;	
-    
+	@JsonBackReference	
+	@ManyToOne
+	@JoinColumn(name = "client_id")
+	private Client client;	
+  
 	public Device() {}
 
 	public Device(String name, String description, Boolean active) {

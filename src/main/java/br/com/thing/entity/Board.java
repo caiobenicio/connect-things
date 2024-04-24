@@ -1,7 +1,7 @@
 package br.com.thing.entity;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -15,7 +15,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import br.com.thing.enums.DeviceType;
 
@@ -31,6 +32,7 @@ public class Board extends BaseEntity<Long> {
 	@Column(name = "topic_publish", length = 40)
 	private String topicPublish;
 
+	@JsonBackReference	
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;
@@ -41,13 +43,14 @@ public class Board extends BaseEntity<Long> {
 
 	private boolean status;
 	
-	@JsonIgnore
+	@JsonManagedReference(value="board-port")	
 	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
 	@LazyCollection(LazyCollectionOption.FALSE)
-	private Set<Port> ports;
-//	private String serialNumber;
-//	private String lastActivity;
-	// private Set<String> connectivityTypes = new HashSet<>();
+	private List<Port> ports;
+
+    //	private String serialNumber;
+    //	private String lastActivity;
+	//  private Set<String> connectivityTypes = new HashSet<>();
 	//  private Double inputTesion;
 	//  private Integer quantityDoorsIO;
 
@@ -119,14 +122,14 @@ public class Board extends BaseEntity<Long> {
 		this.status = status;
 	}
 
-	public Set<Port> getPorts() {
+	public List<Port> getPorts() {
 		if (this.ports == null) {
-			this.ports = new HashSet<>();
+			this.ports = new ArrayList<>();
 		}
 		return ports;
 	}
 
-	public void setPorts(Set<Port> ports) {
+	public void setPorts(List<Port> ports) {
 		if (this.ports == null) {
 			this.ports = ports;
 		} else {

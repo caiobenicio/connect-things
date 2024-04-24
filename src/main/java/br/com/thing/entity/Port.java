@@ -8,6 +8,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import br.com.thing.enums.PortType;
 
 @Entity
@@ -19,10 +21,12 @@ public class Port extends BaseEntity<Long> {
 	@Column(name = "type", length = 5)
 	private PortType type;
 
+	@JsonBackReference(value="board-port")		
 	@ManyToOne
 	@JoinColumn(name = "board_id")
 	private Board board;
 	
+	@JsonBackReference		
 	@OneToOne(mappedBy = "port")
     private Device device;	
 

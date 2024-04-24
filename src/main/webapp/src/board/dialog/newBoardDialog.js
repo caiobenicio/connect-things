@@ -5,6 +5,8 @@ angular.module('homeon').controller('newBoardDialogCtrl',
 		var boardUrl = SERVICE_PATH.PRIVATE_PATH + '/board';
 		$scope.board = {};
 		$scope.board.type = 'ESP8266';
+		$scope.board.topicPublish = 'clientweb/outTopic';
+		$scope.board.topicSubscribe = 'clientweb/inTopic';
 
 		$scope.saveBoard = function(board) {
 			$scope.board.client = $rootScope.authDetails;

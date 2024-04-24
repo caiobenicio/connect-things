@@ -1,12 +1,12 @@
 package br.com.thing.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,7 +25,6 @@ public class DeviceController extends GenericService<Device, Long> {
 
     @Autowired
     private DeviceRepository deviceRepository;
-    
     
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Long id) {
@@ -46,10 +45,10 @@ public class DeviceController extends GenericService<Device, Long> {
         return super.insert(device);
     }    
     
-    @PutMapping(value = "/updatePort")
-	public ResponseEntity<?> updatePort(@RequestBody Device device, Errors errors) {
-        deviceRepository.updatePort(device.getPort().getId(), device.getId());
-    	return ResponseEntity.status(HttpStatus.OK).body(device);
+    @PutMapping(value = "/updatePort/{portId}/{deviceId}")
+	public ResponseEntity<?> updatePort(@PathVariable("portId") Long portId, @PathVariable("deviceId") Long deviceId) {
+        deviceRepository.updatePort(portId, deviceId);
+    	return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
 	}    
     
 }

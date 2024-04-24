@@ -15,6 +15,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Client extends BaseEntity<Long> {
@@ -31,9 +32,16 @@ public class Client extends BaseEntity<Long> {
 	private List<Home> homes= new ArrayList<>();
 
 	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(mappedBy = "client")
 	@LazyCollection(LazyCollectionOption.FALSE)
 	private List<Board> boards = new ArrayList<>();
+
+	@JsonIgnore
+	@JsonManagedReference
+	@OneToMany(mappedBy = "client")
+	@LazyCollection(LazyCollectionOption.FALSE)
+	private List<Device> devices = new ArrayList<>();	
 
     @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "client_permission", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
@@ -101,4 +109,16 @@ public class Client extends BaseEntity<Long> {
         this.homes = homes;
     }
 
+	public void setBoards(List<Board> boards) {
+		this.boards = boards;
+	}
+
+	public List<Device> getDevices() {
+		return devices;
+	}
+
+	public void setDevices(List<Device> devices) {
+		this.devices = devices;
+	}
+	
 }

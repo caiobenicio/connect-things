@@ -7,6 +7,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Home extends BaseEntity<Long> {
 
@@ -16,6 +18,7 @@ public class Home extends BaseEntity<Long> {
     @JoinColumn(name = "client_id")
     private Client client;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "home")
     private List<Room> room;
 

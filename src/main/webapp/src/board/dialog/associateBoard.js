@@ -22,7 +22,6 @@ angular.module('homeon').controller('associateBoardCtrl',
 			}
 		});
 
-
 		$scope.savePortDevice = function (device) {
 			var pin = dataToPass
 			var port = { id: pin.port.id, name: pin.port.name, type: pin.port.type }
@@ -33,7 +32,7 @@ angular.module('homeon').controller('associateBoardCtrl',
 			//device.port.device.client = null;
 			//device.port.device.port = null;
 
-			RestSrv.edit(deviceUrl+"/updatePort", device, function (status, data) {
+			RestSrv.edit(deviceUrl+"/updatePort/"+device.port.id+"/"+device.id, null, function (status, data) {
 				if (status === 'ok') {
 					ngNotify.set('Porta Associada com Sucesso!.', { type: 'success' });
 					$mdDialog.hide(data);
