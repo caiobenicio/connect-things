@@ -26,7 +26,7 @@ public class Device extends BaseEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;	
-  
+ 
 	public Device() {}
 
 	public Device(String name, String description, Boolean active) {
