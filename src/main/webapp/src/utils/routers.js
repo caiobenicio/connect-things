@@ -23,6 +23,9 @@ angular.module('homeon').config(function($routeProvider) {
 		}).when('/device/:id', {
 			templateUrl: 'src/device/device-details.html',
 			controller: 'deviceDetailsCtrl'
+		}).when('/automation', {
+			templateUrl: 'src/automation/automation.html',
+			controller: 'automationCtrl'
 		}).when('/config', {
 			templateUrl: 'src/config/config.html',
 			controller: 'configCtrl'

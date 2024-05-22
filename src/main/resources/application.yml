@@ -8,11 +8,3 @@ spring:
     active: dev
   jackson:
     date-format: yyyy-MM-dd'T'HH:mm:ss.SSSZ
-
-
-# SERVER WEB //MQTT
-server:  
-  servlet:
-    context-path: /
-  port: 8081
-    
