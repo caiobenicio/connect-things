@@ -1,23 +1,45 @@
 'use strict';
 
 angular.module('homeon').controller('automationCtrl',
-    function ($scope, $rootScope) {
+    function ($scope, $rootScope, $mdColors) {
 
         $rootScope.statusMenu = true;
-        $scope.user = $rootScope.authDetails;
+        $scope.cards = [];
 
-        $scope.hasAnyPermission = function (authorities) {
-            var hasPermission = false;
+        this.datepickerDate = new Date();
 
-            $rootScope.authDetails.permissions.forEach(function (permission) {
-                authorities.forEach(function (authority) {
-                    if (permission.authority === authority) {
-                        hasPermission = true;
-                    }
-                });
-            });
+        var verde = $mdColors.getThemeColor('default-green-A100');
+        var azul = $mdColors.getThemeColor('default-blue-100');
+        var roxo = $mdColors.getThemeColor('default-DeepPurple-200');
+        var rosa = $mdColors.getThemeColor('default-pink-100');
 
-            return hasPermission;
-        };
-   
+        $scope.setCards = function () {
+            $scope.cards = [
+                {
+                    name: "Agendamentos",
+                    description: "Agendados",
+                    count: 2,
+                    Color: verde
+                },
+                {
+                    name: "Dispositivos",
+                    description: "Acionado",
+                    count: 1,
+                    Color: azul
+                },
+                {
+                    name: "Dispositivos",
+                    description: "Cancelado",
+                    count: 1,
+                    Color: roxo
+                },
+                {
+                    name: "Dispositivos",
+                    description: "Bloqueados",
+                    count: 0,
+                    Color: rosa
+                }]
+        }
+        $scope.setCards();
+
     });

@@ -27,5 +27,22 @@ angular.module('homeon', ['ngRoute', 'ngCookies', 'ngStorage', 'ngMaterial', 'ng
 				$location.path('/');
 			}
 		});
-	});
+	})	
+	
+	.config(function($mdThemingProvider) {
+	  
+		$mdThemingProvider.theme('default')
+		.dark();		
+		  //.primaryPalette('amazingDarkPaletteName')
+		//   .primaryPalette('blue')
+		//   .accentPalette('teal')
+		//   .warnPalette('red')
+		//   .backgroundPalette('grey');		  
+	  })	
+	  .config(function($mdDateLocaleProvider) {
+		$mdDateLocaleProvider.formatDate = function(date) {
+		   return moment(date).format('DD-MM-YYY');
+		};
+	})	  
+	;
 

@@ -236,6 +236,12 @@ md-select .md-select-value.md-select-placeholder {
 	color: white;
 }
 
+md-calendar {
+	margin-left: 12px;
+	border: 1px solid dimgrey;
+    border-radius: 7px; 
+}
+
 .md-select-icon {
 	color: white;
 }
@@ -378,4 +384,32 @@ md-list {
 
 md-menu-content.md-menu-bar-menu.md-dense .md-menu>.md-button, md-menu-content.md-menu-bar-menu.md-dense md-menu-item>.md-button {
     text-align: center;
+}
+
+
+.card {
+	display:inline-block;
+	/* float:left; */
+	width:200px;
+	height:150px;
+	margin:15px;
+	/* padding-top:5%; */
+	/* text-align:center; */
+	border: 1px solid grey;
+	background-color:#575594;
+	color:black;
+	font-family:'Helvetica';
+	cursor:pointer;
+	border-radius: 7px;	
+  }
+  
+  .card:hover {
+	background-color:rgba(87, 85, 148, 0.75);
+	color:white;
+	transition: 0.5s ease all;
+	-webkit-transition: 0.5s ease all;
+  }
+
+.border-round {
+	border-radius: 7px;
 }
