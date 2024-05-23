@@ -16,7 +16,7 @@
 				 
 				 <md-input-container class="md-block" flex-gt-sm>
 				   <label class="label-switch" >Status</label>
-					  <md-switch ng-model="device.active" aria-label="Status"></md-switch>	
+					  <md-switch ng-model="device.active" aria-label="Status" ng-change="updateStatus(device)"></md-switch>	
 				 </md-input-container>	
 			   </div>
 			   

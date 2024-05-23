@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeon').controller('deviceDetailsCtrl',
-	function($scope, RestSrv, SERVICE_PATH, $routeParams, $rootScope, ngNotify, $mdDialog, $mdMedia) {
+	function($scope, RestSrv, SERVICE_PATH, $routeParams, $rootScope, ngNotify, $mdDialog, $mdMedia, WebSocketService) {
 		$rootScope.statusMenu = true;
 		$scope.params = $routeParams;
 
@@ -44,4 +44,22 @@ angular.module('homeon').controller('deviceDetailsCtrl',
 				}, function() {	}
 			);
 		};
+
+		$scope.updateStatus  = function(device) {
+			device.client = $rootScope.authDetails;
+            if ( $rootScope.connectWebSocket ) {
+				 
+				WebSocketService.send(device); 
+            } else {
+				RestSrv.edit(deviceUrl, device, function(status, data) {
+					if (status === 'ok') {
+						ngNotify.set('Dispositivo Atualizado com Sucesso!.', { type: 'success' });
+						return;
+					} else {
+						ngNotify.set('Dispositivo não Atualizado!.', { type: 'error', duration: 5000 });
+						return;
+					}
+				});		
+			}
+		};		
 	});

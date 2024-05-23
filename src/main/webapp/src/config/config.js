@@ -21,7 +21,7 @@ angular.module('homeon').controller('configCtrl',
         };
 
         $scope.changeWebSocket = function() {
+            $localStorage.authDetails.connectWebSocket? WebSocketService.onClose() : WebSocketService.onOpen();
             $localStorage.authDetails.connectWebSocket = !$localStorage.authDetails.connectWebSocket
-            $localStorage.authDetails.connectWebSocket? WebSocketService.onOpen() : WebSocketService.onClose();
 		}          
     });

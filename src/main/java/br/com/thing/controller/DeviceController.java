@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.dto.DeviceDTO;
+import br.com.thing.dto.DevicePortDTO;
 import br.com.thing.entity.Board;
 import br.com.thing.entity.Device;
 import br.com.thing.entity.Port;
