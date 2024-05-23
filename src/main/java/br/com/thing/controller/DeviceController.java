@@ -32,14 +32,18 @@ public class DeviceController extends GenericService<Device, Long> {
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Long id) {
     	Optional<Device> device = deviceRepository.findById(id);
-        DeviceDTO deviceWithPort = deviceRepository.getDeviceBoardByPort(device.get().getPort().getId());  
-        Port port = new Port();
-        port.setName(deviceWithPort.getPortName());
-        device.get().setPort(port);
-        
-        Board board = new Board();
-        board.setName(deviceWithPort.getBoardName());
-        device.get().getPort().setBoard(board);
+
+        if (device.get().getPort() != null) {
+            DeviceDTO deviceWithPort = deviceRepository.getDeviceBoardByPort(device.get().getPort().getId());  
+            Port port = new Port();
+            port.setName(deviceWithPort.getPortName());
+            device.get().setPort(port);
+            
+            Board board = new Board();
+            board.setName(deviceWithPort.getBoardName());
+            device.get().getPort().setBoard(board);            
+        }
+
         return ResponseEntity.status(HttpStatus.OK).body(device);
     }
     
