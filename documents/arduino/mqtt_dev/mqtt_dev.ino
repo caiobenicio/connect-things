@@ -2,18 +2,18 @@
 #include <PubSubClient.h>
 #include <ArduinoJson.h>
 
-static const uint8_t digitalPins[] = {D4, D5, D6, D7};
+static const uint8_t digitalPins[] = {D0, D1, D2, D3, D4, D5, D6, D7, D8, D9, D10, D11, D12, D13};
+static const uint8_t analogicPins[] = {A0};
 
-uint8_t pinoPir = D3;  //Pino ligado ao sensor PIR
+static const char* ssid = "Elisangela ";
+static const char* password = "*";
+static const char* mqtt_server = "broker.mqtt-dashboard.com";
 
-const char* ssid = "Elisangela ";
-const char* password = "lia1020304050";
-const char* mqtt_server = "broker.mqtt-dashboard.com";
-
-const char* MQTT_SUBSCRIBE = "clientweb/inTopic";      //inTopic MQTT de escuta
-const char* MQTT_PUBLISH = "clientweb/outTopic";       //outTopic MQTT de escrita
+static const char* MQTT_SUBSCRIBE = "clientweb/inTopic";      //inTopic MQTT de escuta
+static const char* MQTT_PUBLISH = "clientweb/outTopic";       //outTopic MQTT de escrita
 
 unsigned long lastMsg = 0;
+char sensorOut[128];
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -21,11 +21,8 @@ PubSubClient client(espClient);
 
 StaticJsonDocument<128> sensorJson;
 
-char sensorOut[128];
-
 void setup_wifi() {
   delay(10);
-  // We start by connecting to a WiFi network
   Serial.println();
   Serial.print("Connecting to ");
   Serial.println(ssid);
@@ -86,14 +83,24 @@ void listPortResp(long user) {
   json["user"] = user;
   json["msgType"] = "P";
 
-  JsonArray pinIn = json.createNestedArray("pinsIn");
-  pinIn.add("D3");
+  JsonArray pinAnalogic = json.createNestedArray("pinAnalogic");
+  pinIn.add("A0");
 
-  JsonArray pinOut = json.createNestedArray("pinsOut");
+  JsonArray pinDigital = json.createNestedArray("pinDigital");
+  pinOut.add("D0");
+  pinOut.add("D1");
+  pinOut.add("D2");
+  pinOut.add("D3");
   pinOut.add("D4");
   pinOut.add("D5");
   pinOut.add("D6");
   pinOut.add("D7");
+  pinOut.add("D8");
+  pinOut.add("D9");
+  pinOut.add("D10");
+  pinOut.add("D11");
+  pinOut.add("D12");
+  pinOut.add("D13");
 
   char out[300];
   serializeJson(json, out);
@@ -105,10 +112,8 @@ void writeAction(int pos, int action) {
 }
 
 void reconnect() {
-  // Loop until we're reconnected
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
-    // Create a random client ID
     String clientId = "ESP8266Client-";
     clientId += String(random(0xffff), HEX);
 
@@ -131,13 +136,19 @@ void setup() {
   delay(200);
   Serial.begin(115200);
 
-  for (int i = 0; i <= 3; i++) {
-    pinMode(digitalPins[i], OUTPUT);
-    digitalWrite(digitalPins[i], LOW);
-    delay(10);
+  for (int i = 0; i <= 14; i++) {
+    if(i >= 2 && i <= 7) {
+      pinMode(digitalPins[i], OUTPUT);
+      digitalWrite(digitalPins[i], LOW);
+      delay(10);
+    } else if(i >= 8) {
+      pinMode(digitalPins[i], OUTPUT);
+      digitalWrite(digitalPins[i], LOW);
+      delay(10);
+    }
   }
 
-  pinMode(pinoPir, INPUT);   //Define pino sensor como entrada
+  pinMode(analogicPins[0], OUTPUT);
 
   setup_wifi();
   client.setServer(mqtt_server, 1883);

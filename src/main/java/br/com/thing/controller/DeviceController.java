@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.com.thing.dto.DeviceDTO;
+import br.com.thing.dto.DevicePortDTO;
 import br.com.thing.entity.Board;
 import br.com.thing.entity.Device;
 import br.com.thing.entity.Port;
@@ -32,14 +33,12 @@ public class DeviceController extends GenericService<Device, Long> {
     @GetMapping(value = "/{id}")
     public ResponseEntity<?> findById(@PathVariable("id") Long id) {
     	Optional<Device> device = deviceRepository.findById(id);
-        DeviceDTO deviceWithPort = deviceRepository.getDeviceBoardByPort(device.get().getPort().getId());  
-        Port port = new Port();
-        port.setName(deviceWithPort.getPortName());
-        device.get().setPort(port);
-        
-        Board board = new Board();
-        board.setName(deviceWithPort.getBoardName());
-        device.get().getPort().setBoard(board);
+        // DeviceDTO deviceWithPort = deviceRepository.getDeviceBoardByPort(device.get().getPort().getId());  
+     
+        // Port port = new Port();
+        // port.setId(deviceWithPort.getPortId());
+        // port.setName(deviceWithPort.getPortName());
+
         return ResponseEntity.status(HttpStatus.OK).body(device);
     }
     

@@ -1,0 +1,7 @@
+home 			-> CRUD.
+placa			-> CRUD, recebe e salva os pinos, associar/desassociar porta->dispositivo
+dispositivo 	-> CRUD, device -> port -> board habilitar/desabilitar, envia comando.
+sensor			-> CRUD, habilitar/desabilitar, recebe dados dos sensores.
+agenda			-> CRUD de evento.
+room 			-> CRUD.
+configurações   -> habilitar websocket
