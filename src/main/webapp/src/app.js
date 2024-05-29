@@ -41,7 +41,7 @@ angular.module('homeon', ['ngRoute', 'ngCookies', 'ngStorage', 'ngMaterial', 'ng
 	  })	
 	  .config(function($mdDateLocaleProvider) {
 		$mdDateLocaleProvider.formatDate = function(date) {
-		   return moment(date).format('DD-MM-YYY');
+		   return date;
 		};
 	})	  
 	;

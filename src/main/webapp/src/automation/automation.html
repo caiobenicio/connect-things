@@ -11,8 +11,8 @@
 		<md-card ng-repeat="card in cards" class="card" style="cursor: pointer;background:{{card.Color}}" md-theme-watch>
 			<md-card-title >
 				<md-card-title-text>
-					<span class="md-subhead">{{ card.name }}</span>
-                              <span class="md-headline">{{ card.description }}</span>
+                              <span class="md-headline">{{ card.name }}</span>
+					<!-- <span class="md-subhead">{{ card.name }}</span> -->
 				</md-card-title-text>
 			</md-card-title>
                   <md-card-content >
@@ -22,19 +22,20 @@
       </div>    
 
       <div class="md-padding padding-left-50" layout="row" layout-wrap>
-            <md-calendar ng-model="datepickerDate" ng-model-options="{timezone: 'UTC'}" > </md-calendar>
+            <md-calendar ng-model="datepickerDate" ng-model-options="{timezone: 'UTC'}" size="50" > </md-calendar>
 
             <div layout="column" layout-padding>
                   <div>
                         <h4>Calendar Values</h4>
                         <div>
-                          <strong>Date in local timezone:</strong>
-                          {{datepickerDate|date:"yyyy-MM-dd HH:mm Z"}}
+                              <strong>Date in local timezone:</strong>
+                              {{datepickerDate|date:"dd-MM-yyyy HH:mm:ss Z"}}
                         </div>
-                      </div>
-                      <md-divider></md-divider>
+                        </div>
+                        <md-divider></md-divider>
             </div>
           
       </div>         
+
 
 </md-content>

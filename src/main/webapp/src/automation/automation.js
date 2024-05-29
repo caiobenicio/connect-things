@@ -16,27 +16,27 @@ angular.module('homeon').controller('automationCtrl',
         $scope.setCards = function () {
             $scope.cards = [
                 {
-                    name: "Agendamentos",
-                    description: "Agendados",
+                    name: "Hoje",
+                    description: "Agendamentos",
                     count: 2,
                     Color: verde
                 },
                 {
-                    name: "Dispositivos",
-                    description: "Acionado",
-                    count: 1,
+                    name: "Programados",
+                    description: "Agendados",
+                    count: 2,
                     Color: azul
                 },
                 {
-                    name: "Dispositivos",
-                    description: "Cancelado",
+                    name: "Concluidos",
+                    description: "Acionado",
                     count: 1,
                     Color: roxo
                 },
                 {
-                    name: "Dispositivos",
-                    description: "Bloqueados",
-                    count: 0,
+                    name: "Todos",
+                    description: "Cancelado",
+                    count: 1,
                     Color: rosa
                 }]
         }

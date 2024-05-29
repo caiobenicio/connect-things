@@ -51,15 +51,16 @@ angular.module('homeon').controller('deviceDetailsCtrl',
 				 
 				WebSocketService.send(device); 
             } else {
-				RestSrv.edit(deviceUrl, device, function(status, data) {
+				RestSrv.edit(deviceUrl+"/updateStatus/"+device.port.id+"/"+device.id, null, function(status, data) {
 					if (status === 'ok') {
-						ngNotify.set('Dispositivo Atualizado com Sucesso!.', { type: 'success' });
+						ngNotify.set('Status Atualizado com Sucesso!.', { type: 'success' });
 						return;
 					} else {
-						ngNotify.set('Dispositivo não Atualizado!.', { type: 'error', duration: 5000 });
+						ngNotify.set('Status não Atualizado!.', { type: 'error', duration: 5000 });
 						return;
 					}
 				});		
 			}
 		};		
+
 	});

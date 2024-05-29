@@ -66,4 +66,9 @@ public class DeviceController extends GenericService<Device, Long> {
     	return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
 	}    
     
+    @PutMapping(value = "/updateStatus/{id}/{status}")
+	public ResponseEntity<?> updateStatus(@PathVariable("id") Long id, @PathVariable("status") boolean status) {
+        deviceRepository.updateStatus(id, status);
+    	return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
+	}    
 }
