@@ -1,5 +1,6 @@
 package br.com.thing.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -27,7 +28,7 @@ public class Port extends BaseEntity<Long> {
 	private Board board;
 	
 	@JsonBackReference		
-	@OneToOne(mappedBy = "port")
+	@OneToOne(mappedBy = "port", orphanRemoval = true, cascade = CascadeType.ALL)
     private Device device;	
 
 	public Port() {

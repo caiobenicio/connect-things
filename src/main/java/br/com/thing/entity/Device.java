@@ -6,6 +6,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -20,6 +23,7 @@ public class Device extends BaseEntity<Long> {
 	@JsonManagedReference
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "port_id")	
+	@Cascade(CascadeType.SAVE_UPDATE)
     public Port port;
 
 	@JsonBackReference	

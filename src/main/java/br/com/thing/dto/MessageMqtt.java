@@ -5,7 +5,7 @@ public class MessageMqtt {
 	private Long board;
 	private String msgType;
 	private Integer pin;
-	private int action;
+	private Integer action;
 	
 	public MessageMqtt() {
 	}

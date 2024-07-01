@@ -14,7 +14,7 @@
 					<span class="md-subhead">{{ card.description }}</span>
 				</md-card-title-text>
 				<md-card-title-media style="padding-left: .5rem">
-					<div class="md-media-sm card-media"><img ng-src="{{ card.iconPath }}" class="md-card-image" ></div>
+					<div class="md-media-sm card-media"><img ng-src="{{ card.iconPath }}" class="md-card-image" id="iconWhite"></div>
 				</md-card-title-media>
 			</md-card-title>
 
@@ -24,7 +24,7 @@
 					<span class="md-subhead">{{ card.description }}</span>
 				</md-card-title-text>
 				<md-card-title-media style="padding-left: .5rem">
-					<div class="md-media-sm card-media"><img ng-src="{{ card.iconPath }}" class="md-card-image" alt="Luz"></div>
+					<div class="md-media-sm card-media"><img ng-src="{{ card.iconPath }}" class="md-card-image" alt="Luz" id="iconWhite"></div>
 				</md-card-title-media>
 			</md-card-title>
 
@@ -34,7 +34,7 @@
 					<md-button class="md-warn" ng-click="removeItem($index)">Deletar</md-button>
 				</div>
 				<div ng-if="card.id">
-					<md-switch md-invert ng-model="card.active" aria-label="Ativo" >Ativo&nbsp;&nbsp;</md-switch>			        	
+					<md-switch md-invert ng-model="card.active" aria-label="Ativo" ng-change="updateStatus(card)">Ativo&nbsp;&nbsp;</md-switch>			        	
 				</div>
 			</md-card-actions>
 		</md-card>

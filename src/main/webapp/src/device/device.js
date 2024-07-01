@@ -65,4 +65,22 @@ angular.module('homeon').controller('deviceCtrl',
 			}, function () {
 			});
 		};
+
+		$scope.updateStatus  = function(device) {
+			device.client = $rootScope.authDetails;
+            if ( device.client.connectWebSocket ) {
+				 
+				WebSocketService.send(device); 
+            } else {
+				RestSrv.edit(deviceUrl+"/updateStatus/"+device.id+"/"+device.active, null, function(status, data) {
+					if (status === 'ok') {
+						ngNotify.set('Status Atualizado com Sucesso!.', { type: 'success' });
+						return;
+					} else {
+						ngNotify.set('Status não Atualizado!.', { type: 'error', duration: 5000 });
+						return;
+					}
+				});		
+			}
+		};			
 	});

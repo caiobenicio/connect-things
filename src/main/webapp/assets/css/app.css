@@ -413,3 +413,7 @@ md-menu-content.md-menu-bar-menu.md-dense .md-menu>.md-button, md-menu-content.m
 .border-round {
 	border-radius: 7px;
 }
+
+#iconWhite {
+	filter: invert();
+}

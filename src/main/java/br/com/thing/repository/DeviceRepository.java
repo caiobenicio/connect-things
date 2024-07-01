@@ -25,7 +25,7 @@ public interface DeviceRepository extends JpaRepository<Device, Long> {
    DeviceDTO getDeviceBoardByPort(@Param("id") Long id);
 
     @Modifying(clearAutomatically = true)
-    @Query("update Device set active = :portId where id = :id")
+    @Query("update Device set active = :status where id = :id")
 	void updateStatus(Long id, boolean status);
 
 	// @Query("update Device set port_id = :portId where id = :id")
