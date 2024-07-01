@@ -67,20 +67,27 @@ angular.module('homeon').controller('deviceCtrl',
 		};
 
 		$scope.updateStatus  = function(device) {
-			device.client = $rootScope.authDetails;
-            if ( device.client.connectWebSocket ) {
+			var mqtt = {};
+			mqtt.user = $rootScope.authDetails.id;
+			mqtt.device = device.id;
+			mqtt.action = (device.active === true)? 1 : 0;
+			mqtt.pin = device.port.id;
+
+			if (mqtt.pin != undefined) {
+				if ( $rootScope.authDetails.connectWebSocket) {
 				 
-				WebSocketService.send(device); 
-            } else {
-				RestSrv.edit(deviceUrl+"/updateStatus/"+device.id+"/"+device.active, null, function(status, data) {
-					if (status === 'ok') {
-						ngNotify.set('Status Atualizado com Sucesso!.', { type: 'success' });
-						return;
-					} else {
-						ngNotify.set('Status não Atualizado!.', { type: 'error', duration: 5000 });
-						return;
-					}
-				});		
+					WebSocketService.send(device); 
+				} else {
+					RestSrv.edit(deviceUrl+"/updateStatus/", mqtt, function(status, data) {
+						if (status === 'ok') {
+							ngNotify.set('Status Atualizado com Sucesso!.', { type: 'success' });
+							return;
+						} else {
+							ngNotify.set('Status não Atualizado!.', { type: 'error', duration: 5000 });
+							return;
+						}
+					});		
+				}				
 			}
 		};			
 	});

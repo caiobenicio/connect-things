@@ -83,8 +83,14 @@ public class DeviceController extends GenericService<Device, Long> {
         deviceRepository.updateStatus(device.getDevice(), device.getAction() ==1 ? true:false);
 
         Optional<Port> port = portRepository.findById(device.getPin());
-        Optional<Board> board = boardRepository.findById(port.get().getBoard().getId());
-        //new Publisher(MqttConnection.CLIENT_ID, device.getUser(), device.getBoard(), board.get().getTopicPublish(), "A", device.getPin(), device.getAction());
+
+        if (port.get()!= null) {
+            Optional<Board> board = boardRepository.findById(port.get().getBoard().getId());
+
+            int pino = Integer.valueOf(port.get().getName().substring(1, 3));
+    
+            new Publisher(MqttConnection.CLIENT_ID, device.getUser(), device.getBoard(), board.get().getTopicPublish(), "A", pino, device.getAction());            
+        }
 
         return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
     }
