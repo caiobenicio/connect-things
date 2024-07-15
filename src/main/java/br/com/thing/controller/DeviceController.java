@@ -89,7 +89,7 @@ public class DeviceController extends GenericService<Device, Long> {
 
             int pino = Integer.valueOf(port.get().getName().substring(1, 3));
     
-            new Publisher(MqttConnection.CLIENT_ID, device.getUser(), device.getBoard(), board.get().getTopicPublish(), "A", pino, device.getAction());            
+            new Publisher(MqttConnection.CLIENT_ID, device.getUser(), board.get().getId(), board.get().getTopicPublish(), "A", pino, device.getAction());            
         }
 
         return ResponseEntity.status(HttpStatus.OK).body(new ArrayList<>());
