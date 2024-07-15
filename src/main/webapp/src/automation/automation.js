@@ -6,7 +6,7 @@ angular.module('homeon').controller('automationCtrl',
         $rootScope.statusMenu = true;
         $scope.cards = [];
 
-        this.datepickerDate = new Date();
+        $rootScope.datepickerDate = new Date();
 
         var verde = $mdColors.getThemeColor('default-green-A100');
         var azul = $mdColors.getThemeColor('default-blue-100');
