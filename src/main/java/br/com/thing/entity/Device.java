@@ -30,6 +30,10 @@ public class Device extends BaseEntity<Long> {
 	@ManyToOne
 	@JoinColumn(name = "client_id")
 	private Client client;	
+
+	@JsonBackReference		
+	@OneToOne(mappedBy = "device", orphanRemoval = true)
+    private Schedule schedule;	
  
 	public Device() {}
 
@@ -95,5 +99,13 @@ public class Device extends BaseEntity<Long> {
 	public void setClient(Client client) {
 		this.client = client;
 	}
-   	
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+   		
 }

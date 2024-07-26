@@ -3,17 +3,18 @@ package br.com.thing.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
-
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -46,6 +47,10 @@ public class Client extends BaseEntity<Long> {
     @ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "client_permission", joinColumns = @JoinColumn(name = "client_id"), inverseJoinColumns = @JoinColumn(name = "permission_id"))
 	private List<Permission> permissions;
+
+	@JsonBackReference		
+	@OneToOne(mappedBy = "client", orphanRemoval = true, cascade = CascadeType.ALL)
+    private Schedule schedule;	
 
 	public Client() {
 	}
@@ -120,5 +125,13 @@ public class Client extends BaseEntity<Long> {
 	public void setDevices(List<Device> devices) {
 		this.devices = devices;
 	}
-	
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+		
 }

@@ -7,41 +7,23 @@
             </md-button>
       </div>
 
-      <div class="md-padding padding-left-50" layout="row" layout-wrap>
-            <md-card ng-repeat="card in cards" class="card" style="cursor: pointer;background:{{card.Color}}"
-                  md-theme-watch>
-                  <md-card-title>
-                        <md-card-title-text>
-                              <span class="md-headline">{{ card.name }}</span>
-                              <!-- <span class="md-subhead">{{ card.name }}</span> -->
-                        </md-card-title-text>
-                  </md-card-title>
-                  <md-card-content>
-                        <h1 class="margin-h">{{ card.count }}</h1>
-                  </md-card-content>
-            </md-card>
-      </div>
-
-      <div class="md-padding padding-left-50" layout="row" layout-wrap>
-            <!-- <md-calendar ng-model="datepickerDate" ng-model-options="{timezone: 'UTC'}" size="50"> </md-calendar> -->
-            <!-- <md-datepicker ng-model="datepickerDate" ng-model-options="{timezone: 'UTC'}" ></md-datepicker> -->
-
-            <form action="/action_page.php">
-                  <label for="birthdaytime">Birthday (date and time):</label>
-                  <input type="datetime-local" id="birthdaytime" name="birthdaytime">
-                  <input type="submit">
-            </form>
-            <div>
-                  <h4>Calendar Values</h4>
-                  <div>
-                        <strong>Date in local timezone:</strong>
-                        {{datepickerDate|date:"dd-MM-yyyy HH:mm:ss"}}
-                  </div>
+      <div class="md-padding padding-left-50" layout="row" layout-wrap id="automation">
+            <div layout="row">
+                  <md-card ng-repeat="card in cards" class="card" style="cursor: pointer; background:{{card.Color}}" md-theme-watch>
+                        <md-card-title>
+                              <md-card-title-text>
+                                    <span class="md-headline">{{ card.name }}</span>
+                              </md-card-title-text>
+                        </md-card-title>
+                        <md-card-content>
+                              <h1 class="margin-h">{{ card.count }}</h1>
+                        </md-card-content>
+                  </md-card>                  
             </div>
-            <md-divider></md-divider>
-      </div>
 
+            <div layout="row">
+                  <md-calendar ng-model="datepickerDate" ng-model-options="{timezone: 'UTC'}" size="50" ng-click="buscaAgenda(datepickerDate)"> </md-calendar>
+            </div>
       </div>
-
 
 </md-content>

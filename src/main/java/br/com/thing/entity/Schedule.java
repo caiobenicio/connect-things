@@ -2,13 +2,18 @@ package br.com.thing.entity;
 
 import java.util.Date;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class Schedule extends BaseEntity<Long> {
@@ -21,7 +26,7 @@ public class Schedule extends BaseEntity<Long> {
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy", timezone = "GMT-3")
 	@Temporal(TemporalType.DATE)
-	@Column(name = "date_schedule", nullable = false)
+	@Column(name = "date_schedule", nullable = true)
 	private Date dateSchedule;
 
 	@NotNull
@@ -37,6 +42,20 @@ public class Schedule extends BaseEntity<Long> {
 
 	private boolean repeat;
 	private Integer interval;
+
+	@JsonManagedReference
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "client_id")	
+	@Cascade(CascadeType.SAVE_UPDATE)
+    public Client client;	
+
+	@JsonManagedReference
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "device_id")	
+	@Cascade(CascadeType.SAVE_UPDATE)
+    public Device device;	
+
+	private boolean executed;	
 
 	public Schedule() {
 	}
@@ -105,4 +124,28 @@ public class Schedule extends BaseEntity<Long> {
 		this.interval = interval;
 	}
 
+	public void setClient(Client client) {
+		this.client = client;
+	}
+
+	public Client getClient() {
+		return client;
+	}
+
+	public Device getDevice() {
+		return device;
+	}
+
+	public void setDevice(Device device) {
+		this.device = device;
+	}
+
+	public boolean isExecuted() {
+		return executed;
+	}
+
+	public void setExecuted(boolean executed) {
+		this.executed = executed;
+	}	
+	
 }

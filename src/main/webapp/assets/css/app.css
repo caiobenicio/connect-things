@@ -417,3 +417,8 @@ md-menu-content.md-menu-bar-menu.md-dense .md-menu>.md-button, md-menu-content.m
 #iconWhite {
 	filter: invert();
 }
+
+#automation {
+	display: flex;
+	flex-direction: column;
+}
