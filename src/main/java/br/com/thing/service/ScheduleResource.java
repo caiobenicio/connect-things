@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.thing.entity.Home;
 import br.com.thing.entity.Schedule;
 import br.com.thing.repository.ScheduleRepository;
 import br.com.thing.schedule.ScheduleTask;

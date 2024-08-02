@@ -9,7 +9,7 @@ angular.module('homeon').controller('automationCtrl',
 		$scope.scheduled = [];
 		$scope.scheduleNotEx = [];
 		$scope.dateSchedule = [];
-        $rootScope.datepickerDate = new Date();
+        $scope.datepickerDate = new Date();
 
         var verde = $mdColors.getThemeColor('default-green-A100');
         var azul = $mdColors.getThemeColor('default-blue-100');
@@ -54,5 +54,7 @@ angular.module('homeon').controller('automationCtrl',
                 }
             });  
 		};
+
+		$scope.buscaAgenda($scope.datepickerDate);
 
     });
