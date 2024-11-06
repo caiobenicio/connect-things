@@ -209,3 +209,8 @@ md-list-item, md-list-item .md-list-item-inner {
 .md-list-config {
   min-height: 50px;
 }
+
+.auto-table .datatable-container {
+  /* max-width: 800px; */
+  min-width: 700px;
+}

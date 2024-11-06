@@ -1,17 +1,17 @@
 <!doctype html>
 <html lang="pt-br">
 <head>
-<meta charset="UTF-8">
-<title>Home On</title>
-<link rel="icon" href="./assets/ico/conn.jpg" type="image/x-icon" />
-<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+	<meta charset="UTF-8">
+	<title>Home On</title>
+	<link rel="icon" href="./assets/ico/conn.jpg" type="image/x-icon" />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
 
-<script src="/assets/js/jquery.3.2.1.min.js"></script>
-<link rel="stylesheet" href="/assets/css/angular-material.min.css">
-<link rel="stylesheet" href="/assets/css/ng-notify.min.css">
-<link rel="stylesheet" href="/assets/css/angular-material-icons.css">
-<link rel="stylesheet" href="/assets/css/app.css">
-<link rel="stylesheet" href="/assets/css/table.css">
+	<script src="/assets/js/jquery.3.2.1.min.js"></script>
+	<link rel="stylesheet" href="/assets/css/angular-material.min.css">
+	<link rel="stylesheet" href="/assets/css/ng-notify.min.css">
+	<link rel="stylesheet" href="/assets/css/angular-material-icons.css">
+	<link rel="stylesheet" href="/assets/css/app.css">
+	<link rel="stylesheet" href="/assets/css/table.css">
 </head>
 
 <body ng-app="homeon" >
@@ -21,7 +21,7 @@
 
 		<div class="d-flex">
 			<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left"
-				md-is-locked-open="$mdMedia('min-width: 700px')" ng-if="statusMenu" ng-include="'src/fragments/sidenav.html'"> 
+				md-is-locked-open="$mdMedia('min-width: 500px')" ng-if="statusMenu" ng-include="'src/fragments/sidenav.html'"> 
 			</md-sidenav>
 
 			<ng-view flex md-scroll-y> </ng-view>	

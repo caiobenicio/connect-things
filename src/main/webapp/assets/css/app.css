@@ -236,11 +236,11 @@ md-select .md-select-value.md-select-placeholder {
 	color: white;
 }
 
-md-calendar {
+/* md-calendar {
 	margin-left: 12px;
 	border: 1px solid dimgrey;
     border-radius: 7px; 
-}
+} */
 
 .md-select-icon {
 	color: white;
@@ -421,4 +421,8 @@ md-menu-content.md-menu-bar-menu.md-dense .md-menu>.md-button, md-menu-content.m
 #automation {
 	display: flex;
 	flex-direction: column;
+}
+
+.auto-table {
+	margin-left: 30px;
 }
