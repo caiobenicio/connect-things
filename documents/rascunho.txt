@@ -5,3 +5,42 @@ sensor			-> CRUD, habilitar/desabilitar, recebe dados dos sensores.
 agenda			-> CRUD de evento.
 room 			-> CRUD.
 configurações   -> habilitar websocket
+
+
+Assinar Topico MQTT  = clientweb/inTopic
+Publicar Topico MQTT = clientweb/outTopic **broker
+[
+{
+  "user"   : 4,
+  "board"  : 8,  
+  "msgType": "A",
+  "pin"    : 0, // D0 -> 0
+  "action" : 1  // 1 = liga, 0 = desliga 
+}
+{
+  "user"   : 4,
+  "board"  : 8,  
+  "msgType": "A",
+  "pin"    : 0, 
+  "action" : 1  
+}
+{
+	"user": 4,
+	"board": 8,
+	"msgType": "P",
+    "pinsIn" :["P10"],
+    "pinsOut":["P11"]	
+}]
+
+SELECT * FROM schedule as a WHERE (date_schedule >= CURRENT_DATE) OR (repeat = true) AND client_id = 4;-- hoje
+SELECT * FROM schedule as a WHERE client_id = 4; -- todos 
+SELECT * FROM schedule as a WHERE (date_schedule >= CURRENT_DATE) OR (repeat = true) AND client_id = 4 and executed = false;
+
+INSERT INTO public.schedule(id, command, date_schedule, end_schedule, interval, repeat, start_schedule, topic, client_id, executed)
+	VALUES (1, 'A', TO_DATE('2024-07-25', 'YYYY-MM-DD'), now(), 1, false, now(), 'clientweb/inTopic', 4, true);
+
+INSERT INTO public.schedule(id, command, date_schedule, end_schedule, interval, repeat, start_schedule, topic, client_id, executed)
+	VALUES (2, 'A', TO_DATE('2024-07-26', 'YYYY-MM-DD'), now(), 1, false, now(), 'clientweb/inTopic', 4, false);
+
+INSERT INTO public.schedule(id, command, date_schedule, end_schedule, interval, repeat, start_schedule, topic, client_id, executed)
+	VALUES (3, 'A', TO_DATE('2024-07-27', 'YYYY-MM-DD'), now(), 1, false, now(), 'clientweb/inTopic', 4, false);
